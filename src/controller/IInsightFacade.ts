@@ -62,7 +62,11 @@ export interface IInsightFacade {
      * Ultimately, a dataset must be added or loaded from disk before queries can
      * be successfully answered.
      */
-    addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]>;
+    addDataset(
+        id: string,
+        content: string,
+        kind: InsightDatasetKind,
+    ): Promise<string[]>;
 
     /**
      * Remove a dataset from insightUBC.

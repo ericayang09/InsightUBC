@@ -1,0 +1,18 @@
+{
+    "title": "no key value pairs in LT",
+    "query": {
+        "WHERE": {
+            "LT": {
+
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

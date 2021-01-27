@@ -1,0 +1,20 @@
+{
+    "title": "COLUMNS is empty",
+    "query": {
+		
+		"WHERE": {
+            "GT": {
+                "courses_avg": 97
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+
+            ],
+            "ORDER": "courses_avg"
+        }
+
+	},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

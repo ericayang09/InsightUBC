@@ -1,0 +1,19 @@
+{
+    "title": "result too large error",
+    "query": {
+	  "WHERE": {
+		"GT": {
+		  "courses_avg": 80
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_dept",
+		  "courses_avg"
+		],
+		"ORDER": "courses_avg"
+	  }
+	},
+    "isQueryValid": false,
+    "result": "ResultTooLargeError"
+}

@@ -1,0 +1,24 @@
+{
+    "title": "single key in OR logic comparison",
+    "query": {
+	  "WHERE": {
+		"OR": [
+		  {
+			"IS": {
+			  "courses_uuid": "1261"
+			}
+		  }
+		]
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_dept",
+		  "courses_avg",
+		  "courses_instructor"
+		],
+		"ORDER": "courses_avg"
+	  }
+	},
+    "isQueryValid": true,
+	"result":[{"courses_dept":"cpsc","courses_avg":83.41,"courses_instructor":"belleville, patrice"}]
+}

@@ -1,0 +1,18 @@
+{
+    "title": "dataset id has underscore / dataset hasn't been added yet",
+    "query": {
+	  "WHERE": {
+		"GT": {
+		  "under_score_avg": 97
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "under_score_dept"
+		],
+		"ORDER": "under_score_avg"
+	  }
+	},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

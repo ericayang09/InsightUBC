@@ -1,0 +1,19 @@
+{
+    "title": "0 results returned",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_avg": 99.9
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result":[]
+}

@@ -1,0 +1,45 @@
+{
+    "title": "valid skeys",
+    "query": {
+	  "WHERE": {
+		"AND": [
+		  {
+			"IS": {
+			  "courses_dept": "cpsc"
+			}
+		  },
+		  {
+			"IS": {
+			  "courses_id": "121"
+			}
+		  },
+		  {
+			"IS": {
+			  "courses_instructor": "belleville, patrice"
+			}
+		  },
+		  {
+			"IS": {
+			  "courses_title": "model comptn"
+			}
+		  },
+		  {
+			"IS": {
+			  "courses_uuid": "1260"
+			}
+		  }
+		]
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_dept",
+		  "courses_id",
+		  "courses_instructor",
+		  "courses_title",
+		  "courses_uuid"
+		]
+	  }
+	},
+    "isQueryValid": true,
+	"result":[{"courses_dept":"cpsc","courses_id":"121","courses_instructor":"belleville, patrice","courses_title":"model comptn","courses_uuid":"1260"}]
+}
