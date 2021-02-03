@@ -24,8 +24,6 @@ export interface Section {
     Professor: string;  // instructor
     Title: string;      // title
     id: string;         // uuid
-    // JSON.parse is going to not set id properly because this id is a number in JSON while the type here is string
-    // Prob needs to be set manually after doing JSON.parse
 
     // json key         m fields
     Avg: number;        // avg
@@ -61,6 +59,23 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
+
+        /*
+
+        let obj be a new Section with uninitialized values.
+        then initialize values of obj that are requested by the Query (e.g. what's in COLUMNS).
+        then JSON.stringify( obj ) will stringify only those values that are initialized
+        i just need to figure out how to change the order of elements in the json string
+        Order of the keys in each item of the returned array is same as order of the keys in COLUMNS.
+
+        Query ORDER is to order items in the returned array in ascending order.
+        - What order if ORDER is empty in query?
+
+        - order is in ascending order of numbers if ORDER is a number type
+        - order is in alphabetical order if ORDER is string type.
+            - what if two items are tied? e.g. order by alphabetical but both values are "CPSC". what order then?
+
+        * */
         return Promise.reject("Not implemented.");
     }
 
