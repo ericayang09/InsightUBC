@@ -6,6 +6,8 @@ import {
 } from "./IInsightFacade";
 import { InsightError, NotFoundError } from "./IInsightFacade";
 
+import { validateQuery } from "../QueryValidateLibrary";
+
 // Represents a dataset
 export interface Dataset {
     // dataset id so we can pick this dataset when querying
@@ -61,7 +63,6 @@ export default class InsightFacade implements IInsightFacade {
     public performQuery(query: any): Promise<any[]> {
 
         /*
-
         let obj be a new Section with uninitialized values.
         then initialize values of obj that are requested by the Query (e.g. what's in COLUMNS).
         then JSON.stringify( obj ) will stringify only those values that are initialized
@@ -74,8 +75,14 @@ export default class InsightFacade implements IInsightFacade {
         - order is in ascending order of numbers if ORDER is a number type
         - order is in alphabetical order if ORDER is string type.
             - what if two items are tied? e.g. order by alphabetical but both values are "CPSC". what order then?
-
         * */
+
+        // Validate the Query. Checking for InsightError
+        if (validateQuery(query) === false) {
+            return Promise.reject(new InsightError());
+        }
+        // At this point, the query should be a perfectly valid query (except for NotFoundError and ResultTooLarge)
+
         return Promise.reject("Not implemented.");
     }
 
