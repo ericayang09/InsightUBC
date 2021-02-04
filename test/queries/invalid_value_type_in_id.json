@@ -1,0 +1,17 @@
+{
+    "title": "Invalid value type in id, should be string",
+    "query": {
+	  "WHERE": {
+		"IS": {
+		  "courses_id": 97
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_instructor"
+		]
+	  }
+	},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

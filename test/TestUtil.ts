@@ -1,18 +1,28 @@
 import * as fs from "fs";
 import Log from "../src/Util";
 import { ITestQuery } from "./InsightFacade.spec";
-import {expect} from "chai";
-import {InsightError, ResultTooLargeError} from "../src/controller/IInsightFacade";
+import { expect } from "chai";
+import {
+    InsightError,
+    ResultTooLargeError,
+} from "../src/controller/IInsightFacade";
 import PromisedAssertion = Chai.PromisedAssertion;
 
 export default class TestUtil {
-
-    public static verifyQueryResult(futureResult: Promise<any[]>, test: ITestQuery): PromisedAssertion {
+    public static verifyQueryResult(
+        futureResult: Promise<any[]>,
+        test: ITestQuery,
+    ): PromisedAssertion {
         let expectation: PromisedAssertion;
         if (test.isQueryValid) {
-            expectation = expect(futureResult).to.eventually.deep.equal(test.result);
+            expectation = expect(futureResult).to.eventually.deep.equal(
+                test.result,
+            );
         } else {
-            const err = (test.result === "ResultTooLargeError") ? ResultTooLargeError : InsightError;
+            const err =
+                test.result === "ResultTooLargeError"
+                    ? ResultTooLargeError
+                    : InsightError;
             expectation = expect(futureResult).to.be.rejectedWith(err);
         }
         return expectation;
@@ -50,11 +60,18 @@ export default class TestUtil {
 
             try {
                 const query = JSON.parse(content.toString());
-                TestUtil.validate(query, {title: "string", query: null, isQueryValid: "boolean", result: null});
+                TestUtil.validate(query, {
+                    title: "string",
+                    query: null,
+                    isQueryValid: "boolean",
+                    result: null,
+                });
                 query["filename"] = file;
                 testQueries.push(query);
             } catch (err) {
-                Log.error(`${methodName} ${skipFile} does not conform to the query schema.`);
+                Log.error(
+                    `${methodName} ${skipFile} does not conform to the query schema.`,
+                );
                 throw new Error(`In ${file} ${err.message}`);
             }
         }
@@ -95,14 +112,17 @@ export default class TestUtil {
         }
     }
 
-    private static validate(content: any, schema: {[key: string]: string}) {
+    private static validate(content: any, schema: { [key: string]: string }) {
         for (const [property, type] of Object.entries(schema)) {
             if (!content.hasOwnProperty(property)) {
                 throw new Error(`required property ${property} is missing.`);
             } else if (type !== null && typeof content[property] !== type) {
-                throw new Error(`the value of ${property} is not ${type === "object" ? "an" : "a"} ${type}.`);
+                throw new Error(
+                    `the value of ${property} is not ${
+                        type === "object" ? "an" : "a"
+                    } ${type}.`,
+                );
             }
-
         }
     }
 }

@@ -1,0 +1,19 @@
+{
+    "title": "duplicate keys in GT and COLUMNS",
+    "query": {
+	  "WHERE": {
+		"GT": {
+		  "courses_avg": 98.6,
+		  "courses_avg": 98.6
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_title",
+		  "courses_title"
+		]
+	  }
+	},
+    "isQueryValid": true,
+	"result":[{"courses_title":"career planning"},{"courses_title":"multimedia sys"},{"courses_title":"multimedia sys"},{"courses_title":"assess lrn diffi"},{"courses_title":"educ stds autism"},{"courses_title":"educ stds autism"},{"courses_title":"educ stds autism"},{"courses_title":"algb topology i"},{"courses_title":"algb topology i"},{"courses_title":"cl pro prim care"},{"courses_title":"cl pro prim care"},{"courses_title":"work int health"},{"courses_title":"work int health"}]
+}

@@ -1,0 +1,17 @@
+{
+    "title": "Invalid key type in EQ",
+    "query": {
+	  "WHERE": {
+		"EQ": {
+		  "courses_instructor": "string"
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_instructor"
+		]
+	  }
+	},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

@@ -1,0 +1,42 @@
+{
+    "title": "Negative ",
+    "query": {
+	  "WHERE": {
+	    "AND": [
+	      {
+	        "LT": {
+	          "courses_avg": -10
+	        }
+	      },
+	      {
+	        "LT": {
+	          "courses_pass": -20
+	        }
+	      },
+	      {
+	        "LT": {
+	          "courses_fail": -30
+	        }
+	      },
+	      {
+	        "LT": {
+	          "courses_audit": -40
+	        }
+	      },
+	      {
+	        "LT": {
+	          "courses_year": -50
+	        }
+	      }
+	    ]
+	  },
+	  "OPTIONS": {
+	    "COLUMNS": [
+	      "courses_dept",
+	      "courses_instructor"
+	    ]
+	  }
+	},
+    "isQueryValid": true,
+    "result": []
+}
