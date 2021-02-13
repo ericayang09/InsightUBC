@@ -34,6 +34,12 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
         return Promise.reject(new InsightError());
     }
 
+    let orderKey: string = "";
+    // Find out the order key if ORDER exists
+    if ("ORDER" in query.OPTIONS) {
+        orderKey = query.OPTIONS.ORDER;
+    }
+
     let keysToReturn: Keys[] = [];
     // Find out which key/fields we want to return
     for (i = 0; i < query.OPTIONS.COLUMNS.length; ++i) {
@@ -52,17 +58,12 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
         // if shouldAdd === true, then add the necessary data to the return array.
         if (shouldAdd(where, section)) {
             let retSection: any = getSectionObjectToReturn(datasetId, section, keysToReturn);
-            retArray.push(retSection);
+            retArray = insertSectionToReturnArray(retSection, retArray, orderKey);
             // Result too great error
             if (retArray.length > 5000) {
                 return Promise.reject(new ResultTooLargeError());
             }
         }
-    }
-
-    // Sort retArray based on ORDER if ORDER exists
-    if ("ORDER" in query.OPTIONS) {
-        //
     }
 
     return Promise.resolve(retArray);
@@ -119,6 +120,25 @@ function getSectionObjectToReturn(datasetId: string, section: Section, keysToRet
         retSection[retKey] = retVal;
     }
     return retSection;
+}
+
+// Inserts given section return data to the return array in the correct order
+function insertSectionToReturnArray(section: any, retArray: any[], orderKey: string): any[] {
+    if (orderKey !== "") {
+        let i;
+        for (i = 0; i < retArray.length; ++i) {
+            let sec: any = retArray[i];
+            if (section[orderKey] < sec[orderKey]) {
+                retArray.splice(i, 0, section);
+                return retArray;
+            }
+        }
+        retArray.push(section);
+    } else {
+        retArray.push(section);
+    }
+
+    return retArray;
 }
 
 // ----------------------- shouldAdd and helpers ---------------------------
@@ -249,8 +269,3 @@ function queryORHelper(array: any, section: Section): boolean {
 }
 
 // ----------------------------------------------------------------------------------
-
-// -------- Sort Return Array ---------
-
-
-// ------------------------------------
