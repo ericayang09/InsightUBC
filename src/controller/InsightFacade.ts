@@ -6,6 +6,9 @@ import {
 } from "./IInsightFacade";
 import { InsightError, NotFoundError } from "./IInsightFacade";
 
+import { validateQuery } from "../QueryValidateLibrary";
+import { performQueryAfterValidation } from "../QueryPerformLibrary";
+
 // Represents a dataset
 export interface Dataset {
     // dataset id so we can pick this dataset when querying
@@ -60,23 +63,13 @@ export default class InsightFacade implements IInsightFacade {
 
     public performQuery(query: any): Promise<any[]> {
 
-        /*
+        // Validate the Query. Checking for InsightError
+        if (validateQuery(query) === false) {
+            return Promise.reject(new InsightError());
+        }
+        // At this point, the query should be a perfectly valid query (except for NotFoundError and ResultTooLarge)
 
-        let obj be a new Section with uninitialized values.
-        then initialize values of obj that are requested by the Query (e.g. what's in COLUMNS).
-        then JSON.stringify( obj ) will stringify only those values that are initialized
-        i just need to figure out how to change the order of elements in the json string
-        Order of the keys in each item of the returned array is same as order of the keys in COLUMNS.
-
-        Query ORDER is to order items in the returned array in ascending order.
-        - What order if ORDER is empty in query?
-
-        - order is in ascending order of numbers if ORDER is a number type
-        - order is in alphabetical order if ORDER is string type.
-            - what if two items are tied? e.g. order by alphabetical but both values are "CPSC". what order then?
-
-        * */
-        return Promise.reject("Not implemented.");
+        return performQueryAfterValidation(query, this.datasets); // Promise.reject("Not implemented.");
     }
 
     public listDatasets(): Promise<InsightDataset[]> {
