@@ -1,13 +1,13 @@
 import Log from "../Util";
-import {
-    IInsightFacade,
-    InsightDataset,
-    InsightDatasetKind,
-} from "./IInsightFacade";
-import { InsightError, NotFoundError } from "./IInsightFacade";
+import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, } from "./IInsightFacade";
 
-import { validateQuery } from "../QueryValidateLibrary";
-import { performQueryAfterValidation } from "../QueryPerformLibrary";
+import * as dataSetHelpers from "../dataSetHelpers";
+import {existingDataSetID, validateDataSetKind, validJSON} from "../dataSetHelpers";
+
+import {validateQuery} from "../QueryValidateLibrary";
+import {performQueryAfterValidation} from "../QueryPerformLibrary";
+import * as JSZip from "jszip";
+import * as fs from "fs";
 
 // Represents a dataset
 export interface Dataset {
@@ -15,6 +15,7 @@ export interface Dataset {
     id: string;
     // array including all sections within this dataset
     sections: Section[];
+    // no field for numRows, will simply call sections.length in listDatSet
 }
 
 // Represents a section read from dataset
@@ -54,7 +55,58 @@ export default class InsightFacade implements IInsightFacade {
         content: string,
         kind: InsightDatasetKind,
     ): Promise<string[]> {
-        return Promise.reject("Not implemented.");
+        if (!dataSetHelpers.validDataSetID(id)) {
+            return Promise.reject(new InsightError("error: Invalid DataSet ID")); }
+        if (existingDataSetID(id, this.datasets)) {
+            return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID")); }
+        if (!validateDataSetKind(kind)) {
+            return Promise.reject(new InsightError("error: Invalid Dataset Kind")); }
+        try {
+            if (!fs.existsSync("./data")) {
+                fs.mkdirSync("./data");
+            }
+        } catch (e) {
+            return Promise.reject(new InsightError("error: unable to disk file data"));
+        }
+        if (kind === InsightDatasetKind.Courses) {
+            let files: any[] = [];
+            let zip = new JSZip();
+            zip.loadAsync(content, {base64: true}).then((zipFile) => {
+                return zipFile.folder("courses"); }).then((courses) => {
+                courses.forEach((relativePath, file) => {
+                    files.push(file.async("string"));
+                });
+                if (files.length === 0) {
+                    return Promise.reject(new InsightError("error: Empty Folder"));
+                }
+            });
+            Promise.all(files).then((returnedFile) => {
+                // parse the file for individual sections
+                let data: Section[] = [];
+                for (let file of returnedFile) {
+                    const tempSection: Section[] = parseData(file);
+                    if (tempSection.length > 0 && tempSection != null) {
+                        tempSection.forEach((section) => data.push(section));
+                    }
+                }
+                if (data.length === 0) {
+                    return Promise.reject(new InsightError("error: No Valid Sections"));
+                } else { // adding to memory
+                    let thisDataSet: Dataset = {id: id, sections: data, };
+                    this.datasets.push(thisDataSet);
+                    // saving to disk
+                    // used information provided at
+                    // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
+                    try {
+                        fs.writeFileSync("./data/" + id, JSON.stringify(data));
+                    } catch (e) {
+                        return Promise.reject(new InsightError("error: unable to write to disk"));
+                    }
+                }
+            }).catch((error: any) => {
+                return Promise.reject(new InsightError("error: not all files are valid"));
+            });
+        }
     }
 
     public removeDataset(id: string): Promise<string> {
@@ -75,4 +127,51 @@ export default class InsightFacade implements IInsightFacade {
     public listDatasets(): Promise<InsightDataset[]> {
         return Promise.reject("Not implemented.");
     }
+}
+
+function parseData(file: any): Section[] {
+    let returnSectionList: Section[] = [];
+    let temp;
+    if (!validJSON(file)) {
+        return [];
+    } else {
+        temp = JSON.parse(file);
+    }
+    let tempSections = temp["result"];
+    let currentSection: Section = {
+        Section: "",
+        Subject: "",
+        Course: "",
+        Professor: "",
+        Title: "",
+        id: "",
+        Avg: 0,
+        Pass: 0,
+        Fail: 0,
+        Audit: 0,
+        Year: 0,
+    };
+    for (const section of tempSections) {
+        currentSection.Subject = section["Subject"];
+        currentSection.Course = section["Course"];
+        currentSection.Professor = section["Professor"];
+        currentSection.Title = section["Title"];
+        currentSection.id = section["id"];
+        currentSection.Avg = section["Avg"];
+        currentSection.Pass = section["Pass"];
+        currentSection.Fail = section["Fail"];
+        currentSection.Audit = section["Audit"];
+        if (section["Section"] === "overall") {
+            currentSection.Year = 1900;
+        } else {
+            currentSection.Year = section["Year"];
+        }
+        returnSectionList.push(section);
+    }
+    // used information provided at:
+    // https://stackoverflow.com/questions/39308423/how-to-convert-json-object-to-an-typescript-array
+    // https://www.cloudhadoop.com/2018/09/how-to-convert-array-to-json-and-json.html
+    // https://stackoverflow.com/questions/59749441/parse-array-of-json-objects-to-array-of-typescript-objects
+    // OK BASICALLY PARSE THE JSON OBJECTS ONE BY ONE AND THEN ADD THEM TO A SECTION OBJECT
+    return returnSectionList;
 }
