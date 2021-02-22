@@ -8,6 +8,8 @@ import {validateQuery} from "../QueryValidateLibrary";
 import {performQueryAfterValidation} from "../QueryPerformLibrary";
 import * as JSZip from "jszip";
 import * as fs from "fs";
+import {rejects} from "assert";
+import {resolve} from "path";
 
 // Represents a dataset
 export interface Dataset {
@@ -48,7 +50,7 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     // All datasets kept track of by this class
-    public datasets: Dataset[];
+    public datasets: Dataset[] = [];
 
     public addDataset(
         id: string,
@@ -62,52 +64,89 @@ export default class InsightFacade implements IInsightFacade {
         if (!validateDataSetKind(kind)) {
             return Promise.reject(new InsightError("error: Invalid Dataset Kind")); }
         try {
-            if (!fs.existsSync("./data")) {
-                fs.mkdirSync("./data");
-            }
+            if (!fs.existsSync("./data")) { fs.mkdirSync("./data"); }
         } catch (e) {
-            return Promise.reject(new InsightError("error: unable to disk file data"));
+            return Promise.reject(new InsightError("error: unable to file to disk"));
         }
-        if (kind === InsightDatasetKind.Courses) {
-            let files: any[] = [];
-            let zip = new JSZip();
-            zip.loadAsync(content, {base64: true}).then((zipFile) => {
-                return zipFile.folder("courses"); }).then((courses) => {
-                courses.forEach((relativePath, file) => {
-                    files.push(file.async("string"));
+        return new Promise<string[]>((res, reject) => {
+            if (kind === InsightDatasetKind.Courses) {
+                let files: any[] = [];
+                let zip = new JSZip();
+                zip.loadAsync(content, {base64: true}).then((zipFile) => {
+                    zipFile.folder("courses").forEach((relativePath, file) => {
+                        files.push(file.async("string"));
+                    });
+                    if (files.length === 0) {
+                        return Promise.reject(new InsightError("error: Empty Folder"));
+                    }
+                    return Promise.all(files);
+                }).then((returnedFile) => {
+                    // parse the file for individual sections
+                    let data: Section[] = [];
+                    for (let file of returnedFile) {
+                        let tempSection: Section[] = parseData(file);
+                        if (tempSection.length > 0 && tempSection != null) { // add sections to a temp list of sections
+                            tempSection.forEach((section) => data.push(section));
+                        }
+                    }
+                    if (data.length === 0) {
+                        return reject(new InsightError("error: No Valid Sections"));
+                    } else { // adding to memory
+                        let thisDataSet: Dataset = {id: id, sections: data, };
+                        this.datasets.push(thisDataSet);
+                    }
+                        // saving to disk
+                        // used information provided at
+                        // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
+                    try { fs.writeFileSync("./data/" + id, JSON.stringify(data));
+                    } catch (e) { return Promise.reject(new InsightError("error: unable to write to disk")); }
+                    res(returnedFile);
+                }).catch((error: any) => {
+                    return reject(new InsightError("error: not all files are valid"));
                 });
-                if (files.length === 0) {
-                    return Promise.reject(new InsightError("error: Empty Folder"));
-                }
-            });
-            Promise.all(files).then((returnedFile) => {
-                // parse the file for individual sections
-                let data: Section[] = [];
-                for (let file of returnedFile) {
-                    const tempSection: Section[] = parseData(file);
-                    if (tempSection.length > 0 && tempSection != null) {
-                        tempSection.forEach((section) => data.push(section));
-                    }
-                }
-                if (data.length === 0) {
-                    return Promise.reject(new InsightError("error: No Valid Sections"));
-                } else { // adding to memory
-                    let thisDataSet: Dataset = {id: id, sections: data, };
-                    this.datasets.push(thisDataSet);
-                    // saving to disk
-                    // used information provided at
-                    // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
-                    try {
-                        fs.writeFileSync("./data/" + id, JSON.stringify(data));
-                    } catch (e) {
-                        return Promise.reject(new InsightError("error: unable to write to disk"));
-                    }
-                }
-            }).catch((error: any) => {
-                return Promise.reject(new InsightError("error: not all files are valid"));
-            });
-        }
+            }
+        });
     }
+
+    // if (kind === InsightDatasetKind.Courses) {
+    //     let files: any[] = [];
+    //     let zip = new JSZip();
+    //     zip.loadAsync(content, {base64: true}).then((zipFile) => {
+    //         return zipFile.folder("courses"); }).then((courses) => {
+    //         courses.forEach((relativePath, file) => {
+    //             files.push(file.async("string"));
+    //         });
+    //         if (files.length === 0) {
+    //             return Promise.reject(new InsightError("error: Empty Folder"));
+    //         }
+    //     });
+    //     Promise.all(files).then((returnedFile) => {
+    //         // parse the file for individual sections
+    //         let data: Section[] = [];
+    //         for (let file of returnedFile) {
+    //             const tempSection: Section[] = parseData(file);
+    //             if (tempSection.length > 0 && tempSection != null) {
+    //                 tempSection.forEach((section) => data.push(section));
+    //             }
+    //         }
+    //         if (data.length === 0) {
+    //             return Promise.reject(new InsightError("error: No Valid Sections"));
+    //         } else { // adding to memory
+    //             let thisDataSet: Dataset = {id: id, sections: data, };
+    //             this.datasets.push(thisDataSet);
+    //             // saving to disk
+    //             // used information provided at
+    //             // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
+    //             try {
+    //                 fs.writeFileSync("./data/" + id, JSON.stringify(data));
+    //             } catch (e) {
+    //                 return Promise.reject(new InsightError("error: unable to write to disk"));
+    //             }
+    //         }
+    //     }).catch((error: any) => {
+    //         return Promise.reject(new InsightError("error: not all files are valid"));
+    //     });
+    // }
 
     public removeDataset(id: string): Promise<string> {
         return Promise.reject("Not implemented.");

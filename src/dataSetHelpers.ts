@@ -1,6 +1,5 @@
 import {InsightDatasetKind, InsightError, } from "./controller/IInsightFacade";
 import {Dataset, } from "./controller/InsightFacade";
-import * as fs from "fs";
 
 export function validDataSetID(key: string): boolean {
     if (key == null ||                          // string != null
@@ -13,9 +12,9 @@ export function validDataSetID(key: string): boolean {
     }
 }
 
-export function existingDataSetID(key: string, dataset: Dataset[]): boolean {
-    for (let data of dataset) {
-        if (data.id === key) {
+export function existingDataSetID(id: string, dataset: any): boolean {
+    for (const data of dataset) {
+        if (data.id === id) {
             return true;
             break;
         }
