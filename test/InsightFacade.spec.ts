@@ -468,7 +468,7 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
     // ====================Erica's Tests=======================
     // at least one valid course section
     it("Should add a valid dataset one course", function () {
-        const id: string = "oneCourse";
+        const id: string = "oneValidCourse";
         const expected: string[] = [id];
         const futureResult: Promise<string[]> = insightFacade
             .addDataset(id, datasets[id], InsightDatasetKind.Courses);
