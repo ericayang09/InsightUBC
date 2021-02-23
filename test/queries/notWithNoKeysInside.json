@@ -1,0 +1,27 @@
+{
+    "title": "order with sKey",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "NOT": {
+                    }
+                },
+                {
+                    "EQ": {
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg",
+                "courses_instructor"
+            ],
+            "ORDER": "courses_instructor"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

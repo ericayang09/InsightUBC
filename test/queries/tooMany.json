@@ -1,0 +1,19 @@
+{
+    "title": "SELECT dept, avg WHERE avg < 97",
+    "query": {
+        "WHERE": {
+            "LT": {
+                "courses_avg": 97
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": false,
+    "result": "ResultTooLargeError"
+}
