@@ -1,0 +1,19 @@
+{
+    "title": "Empty And",
+    "query": {
+        "WHERE": {
+            "GT": {
+            "courses_audit": -1
+        }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": []
+}
