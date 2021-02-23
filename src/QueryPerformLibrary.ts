@@ -117,7 +117,7 @@ function getSectionObjectToReturn(datasetId: string, section: Section, keysToRet
                 break;
             }
         }
-        retSection[retKey] = retVal;
+        retSection[retKey] = keyEnum === Keys.uuid ? retVal.toString() : retVal;
     }
     return retSection;
 }
