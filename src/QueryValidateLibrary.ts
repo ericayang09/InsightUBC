@@ -55,14 +55,6 @@ export function validateQuery(query: any): boolean {
         return false;
     }
 
-    // Validate id exists in added datasets
-    // for (let dset of this.datasets) {
-    //     if (dset.id === id) {
-    //         break;
-    //     }
-    //     return false;
-    // }
-
     // Big Recursive Function for Validation
     return validateAllKeys(query, id);
 }
@@ -134,7 +126,7 @@ export function validateKeyAndValue(key: string, json: any, id: string): boolean
                 return Array.isArray(valueInArray) === false && Number.isFinite(valueInArray) === false
                     && typeof(valueInArray) !== "string";
             } else {
-                return true;
+                return false;
             }
         } else {
             return false;
@@ -172,7 +164,7 @@ export function validateKeyAndValue(key: string, json: any, id: string): boolean
                 return true;
             } else {
                 // check if can convert to number
-                let numcheck: number = json[key];
+                let numcheck: number = Number(json[key]);
                 return Number.isInteger(numcheck);
             }
         } else {
@@ -200,6 +192,14 @@ function helperValidateMSComparisonAndNegation(key: string, json: any, id: strin
     if (key === "LT" || key === "GT" || key === "EQ") {
         for (let childKey of Object.keys(value)) {
             if (validateMKeyOnly(childKey, id) === false) {
+                return false;
+            }
+        }
+    }
+    if (key === "NOT") {
+        for (let childKey of Object.keys(value)) {
+            if ((childKey === "IS" || childKey === "LT"
+                || childKey === "GT" || childKey === "EQ" || childKey === "NOT") === false) {
                 return false;
             }
         }
