@@ -8,8 +8,6 @@ import {validateQuery} from "../QueryValidateLibrary";
 import {performQueryAfterValidation} from "../QueryPerformLibrary";
 import * as JSZip from "jszip";
 import * as fs from "fs";
-import {rejects} from "assert";
-import {resolve} from "path";
 
 // Represents a dataset
 export interface Dataset {
@@ -51,6 +49,7 @@ export default class InsightFacade implements IInsightFacade {
 
     // All datasets kept track of by this class
     public datasets: Dataset[] = [];
+    public idList: string[] = [];
 
     public addDataset(
         id: string,
@@ -94,16 +93,19 @@ export default class InsightFacade implements IInsightFacade {
                     } else { // adding to memory
                         let thisDataSet: Dataset = {id: id, sections: data, };
                         this.datasets.push(thisDataSet);
+                        this.idList.push(id);
                     }
                         // saving to disk
                         // used information provided at
                         // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
                     try { fs.writeFileSync("./data/" + id, JSON.stringify(data));
                     } catch (e) { return Promise.reject(new InsightError("error: unable to write to disk")); }
-                    res(returnedFile);
+                    res(this.idList);
                 }).catch((error: any) => {
                     return reject(new InsightError("error: not all files are valid"));
                 });
+            } else if (kind === InsightDatasetKind.Rooms) {
+                return reject(new InsightError("error: rooms is currently an invalid kind"));
             }
         });
     }
