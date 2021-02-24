@@ -15,7 +15,6 @@ export interface Dataset {
     id: string;
     // array including all sections within this dataset
     sections: Section[];
-    // no field for numRows, will simply call sections.length in listDatSet
 }
 
 // Represents a section read from dataset
@@ -58,17 +57,17 @@ export default class InsightFacade implements IInsightFacade {
     ): Promise<string[]> {
         if (!dataSetHelpers.validDataSetID(id)) {
             return Promise.reject(new InsightError("error: Invalid DataSet ID")); }
-        if (existingDataSetID(id, this.datasets)) {
+        if (existingDataSetID(id, this.idList)) {
             return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID")); }
         if (!validateDataSetKind(kind)) {
             return Promise.reject(new InsightError("error: Invalid Dataset Kind")); }
         try {
             if (!fs.existsSync("./data")) { fs.mkdirSync("./data"); }
         } catch (e) {
-            return Promise.reject(new InsightError("error: unable to file to disk"));
+            return Promise.reject(new InsightError("error: unable to add file to disk"));
         }
         return new Promise<string[]>((res, reject) => {
-            if (kind === InsightDatasetKind.Courses) {
+        if (kind === InsightDatasetKind.Courses) {
                 let files: any[] = [];
                 let zip = new JSZip();
                 zip.loadAsync(content, {base64: true}).then((zipFile) => {
@@ -155,14 +154,36 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
-
         // Validate the Query. Checking for InsightError
-        if (validateQuery(query) === false) {
+        if (validateQuery(query) === false || this.checkDatasetExists(query) === false) {
             return Promise.reject(new InsightError());
         }
         // At this point, the query should be a perfectly valid query (except for NotFoundError and ResultTooLarge)
 
         return performQueryAfterValidation(query, this.datasets); // Promise.reject("Not implemented.");
+    }
+
+    // checks if dataset exists in Datasets. if not, checks disk.
+    public checkDatasetExists(query: any): boolean {
+        let firstKeyInColumns: string = query.OPTIONS.COLUMNS[0];
+        let datasetId: string = firstKeyInColumns.substr(0, firstKeyInColumns.indexOf("_"));
+        // Validate id exists in added datasets
+        for (let dsetid of this.idList) {
+            if (dsetid === datasetId) {
+                return true;
+            }
+        }
+        // at this point, dataset doesn't exist in memory
+        fs.readFile("./data/" + datasetId, "utf-8", (err, data) => {
+            if (err) { return false; }
+
+            let fromDisk = JSON.parse(data);
+            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk };
+            this.datasets.push(thisDataSet);
+            this.idList.push(datasetId);
+        });
+
+        return false;
     }
 
     public listDatasets(): Promise<InsightDataset[]> {
@@ -179,20 +200,20 @@ function parseData(file: any): Section[] {
         temp = JSON.parse(file);
     }
     let tempSections = temp["result"];
-    let currentSection: Section = {
-        Section: "",
-        Subject: "",
-        Course: "",
-        Professor: "",
-        Title: "",
-        id: "",
-        Avg: 0,
-        Pass: 0,
-        Fail: 0,
-        Audit: 0,
-        Year: 0,
-    };
     for (const section of tempSections) {
+        let currentSection: Section = {
+            Section: "",
+            Subject: "",
+            Course: "",
+            Professor: "",
+            Title: "",
+            id: "",
+            Avg: 0,
+            Pass: 0,
+            Fail: 0,
+            Audit: 0,
+            Year: 0,
+        };
         currentSection.Subject = section["Subject"];
         currentSection.Course = section["Course"];
         currentSection.Professor = section["Professor"];
@@ -207,7 +228,7 @@ function parseData(file: any): Section[] {
         } else {
             currentSection.Year = section["Year"];
         }
-        returnSectionList.push(section);
+        returnSectionList.push(currentSection);
     }
     // used information provided at:
     // https://stackoverflow.com/questions/39308423/how-to-convert-json-object-to-an-typescript-array
