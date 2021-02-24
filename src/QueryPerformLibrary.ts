@@ -71,7 +71,7 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
 
 // Helper to get section object with relevant keys
 function getSectionObjectToReturn(datasetId: string, section: Section, keysToReturn: Keys[]): any {
-    let retSection: any = {};
+    let retSec: any = {};
     for (const keyEnum of keysToReturn) { // Populate retSection with relevant info to return
         let retVal = section[keyEnum];
         let retKey = datasetId;
@@ -117,9 +117,9 @@ function getSectionObjectToReturn(datasetId: string, section: Section, keysToRet
                 break;
             }
         }
-        retSection[retKey] = retVal;
+        retSec[retKey] = keyEnum === Keys.uuid ? retVal.toString() : (keyEnum === Keys.year ? Number(retVal) : retVal);
     }
-    return retSection;
+    return retSec;
 }
 
 // Inserts given section return data to the return array in the correct order
@@ -202,7 +202,7 @@ function queryISHelper(val: any, section: Section): boolean {
     }
     if (hasAsteriskStart) { // only at start
         compareVal = compareVal.substr(1, compareVal.length - 1);
-        sectionValStr = sectionValStr.substr(sectionValStr.length - compareVal.length + 1, compareVal.length);
+        sectionValStr = sectionValStr.substr(sectionValStr.length - compareVal.length, compareVal.length);
         return sectionValStr === compareVal;
     }
     if (hasAsteriskEnd) { // only at end
@@ -243,7 +243,7 @@ function queryEQHelper(val: any, section: Section): boolean {
     let compareVal: number|string = val[fullKeyString];
     let sectionVal: number|string = section[keyEnum];
 
-    return compareVal === sectionVal;
+    return compareVal.toString() === sectionVal.toString();
 }
 
 function queryANDHelper(array: any, section: Section): boolean {
