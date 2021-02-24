@@ -51,7 +51,8 @@ export default class InsightFacade implements IInsightFacade {
     // All datasets kept track of by this class
     public datasets: Dataset[] = [];
     public idList: string[] = [];
-
+    public insightDatasets: InsightDataset[] = [];
+    // AddDataset
     public addDataset(
         id: string,
         content: string,
@@ -74,8 +75,7 @@ export default class InsightFacade implements IInsightFacade {
                 let zip = new JSZip();
                 zip.loadAsync(content, {base64: true}).then((zipFile) => {
                     zipFile.folder("courses").forEach((relativePath, file) => {
-                        files.push(file.async("string"));
-                    });
+                        files.push(file.async("string")); });
                     if (files.length === 0) {
                         return Promise.reject(new InsightError("error: Empty Folder"));
                     }
@@ -87,15 +87,16 @@ export default class InsightFacade implements IInsightFacade {
                         let tempSection: Section[] = parseData(file);
                         if (tempSection.length > 0 && tempSection != null) { // add sections to a temp list of sections
                             tempSection.forEach((section) => data.push(section));
-                        }
-                    }
+                        } }
                     if (data.length === 0) {
                         return reject(new InsightError("error: No Valid Sections"));
                     } else { // adding to memory
                         let thisDataSet: Dataset = {id: id, sections: data, kind: InsightDatasetKind.Courses};
+                        const insightDataset: InsightDataset
+                            = {id: id, kind: InsightDatasetKind.Courses, numRows: data.length};
+                        this.insightDatasets.push(insightDataset);
                         this.datasets.push(thisDataSet);
-                        this.idList.push(id);
-                    }
+                        this.idList.push(id); }
                         // saving to disk
                         // used information provided at
                         // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
@@ -182,24 +183,27 @@ export default class InsightFacade implements IInsightFacade {
      */
 
     public listDatasets(): Promise<InsightDataset[]> {
-        let insightDatasetList: InsightDataset[] = [];
-        return new Promise<InsightDataset[]> ((resolve) => {
-            if (this.datasets.length === 0) {
-                return insightDatasetList;
-            }
-            try {
-                for (const oneDataset of this.datasets) {
-                    const oneInsightDataset: InsightDataset = {id: "", kind: InsightDatasetKind.Courses, numRows: 0};
-                    oneInsightDataset.id = oneDataset.id;
-                    oneInsightDataset.kind = oneDataset.kind;
-                    oneInsightDataset.numRows = oneDataset.sections.length;
-                    insightDatasetList.push(oneInsightDataset);
-                }
-            } catch (e) {
-                return e;
-            }
-            return insightDatasetList;
+        return new Promise((resolve) => {
+            resolve(this.insightDatasets);
         });
+        // let insightDatasetList: InsightDataset[] = [];
+        // return new Promise<InsightDataset[]> ((resolve) => {
+        //     if (this.datasets.length === 0) {
+        //         return insightDatasetList;
+        //     }
+        //     try {
+        //         for (const oneDataset of this.datasets) {
+        //             const oneInsightDataset: InsightDataset = {id: "", kind: InsightDatasetKind.Courses, numRows: 0};
+        //             oneInsightDataset.id = oneDataset.id;
+        //             oneInsightDataset.kind = oneDataset.kind;
+        //             oneInsightDataset.numRows = oneDataset.sections.length;
+        //             insightDatasetList.push(oneInsightDataset);
+        //         }
+        //     } catch (e) {
+        //         return e;
+        //     }
+        //     return insightDatasetList;
+        // });
     }
 }
 

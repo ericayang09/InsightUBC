@@ -602,16 +602,15 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
         const expected: string = id;
         const dataset: InsightDataset = {id: "oneValidCourse", kind: InsightDatasetKind.Courses, numRows: 19};
         const expectedDatasetList: InsightDataset[] = [dataset];
-        return insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
-            .then((res) => {
-                return insightFacade.listDatasets();
-            }).then((result) => {
-                expect(result).to.deep.equal(expectedDatasetList);
-            }).catch((err) => {
-                expect(err).to.be.instanceOf(InsightError);
+        insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses).then((resultOfAdd) => {
+            return insightFacade.listDatasets().then((resultOfList) => {
+                return resultOfList;
             }).catch((err) => {
                 expect(err).to.be.instanceOf(InsightError);
             });
+        }).catch((err) => {
+            expect(err).to.be.instanceOf(InsightError);
+        });
     });
     // successfully remove valid dataset and list should be empty
     it("Should remove a valid dataset and list should be empty", function () {
