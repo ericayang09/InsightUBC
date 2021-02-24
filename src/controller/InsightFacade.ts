@@ -1,5 +1,5 @@
 import Log from "../Util";
-import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, } from "./IInsightFacade";
+import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 
 import * as dataSetHelpers from "../dataSetHelpers";
 import {existingDataSetID, validateDataSetKind, validJSON} from "../dataSetHelpers";
@@ -8,6 +8,7 @@ import {validateQuery} from "../QueryValidateLibrary";
 import {performQueryAfterValidation} from "../QueryPerformLibrary";
 import * as JSZip from "jszip";
 import * as fs from "fs";
+// import {NotFoundError} from "restify";
 
 // Represents a dataset
 export interface Dataset {
@@ -15,6 +16,7 @@ export interface Dataset {
     id: string;
     // array including all sections within this dataset
     sections: Section[];
+    kind: InsightDatasetKind;
 }
 
 // Represents a section read from dataset
@@ -49,7 +51,8 @@ export default class InsightFacade implements IInsightFacade {
     // All datasets kept track of by this class
     public datasets: Dataset[] = [];
     public idList: string[] = [];
-
+    public insightDatasets: InsightDataset[] = [];
+    // AddDataset
     public addDataset(
         id: string,
         content: string,
@@ -72,8 +75,7 @@ export default class InsightFacade implements IInsightFacade {
                 let zip = new JSZip();
                 zip.loadAsync(content, {base64: true}).then((zipFile) => {
                     zipFile.folder("courses").forEach((relativePath, file) => {
-                        files.push(file.async("string"));
-                    });
+                        files.push(file.async("string")); });
                     if (files.length === 0) {
                         return Promise.reject(new InsightError("error: Empty Folder"));
                     }
@@ -85,20 +87,21 @@ export default class InsightFacade implements IInsightFacade {
                         let tempSection: Section[] = parseData(file);
                         if (tempSection.length > 0 && tempSection != null) { // add sections to a temp list of sections
                             tempSection.forEach((section) => data.push(section));
-                        }
-                    }
+                        } }
                     if (data.length === 0) {
                         return reject(new InsightError("error: No Valid Sections"));
                     } else { // adding to memory
-                        let thisDataSet: Dataset = {id: id, sections: data, };
+                        let thisDataSet: Dataset = {id: id, sections: data, kind: InsightDatasetKind.Courses};
+                        const insightDataset: InsightDataset
+                            = {id: id, kind: InsightDatasetKind.Courses, numRows: data.length};
+                        this.insightDatasets.push(insightDataset);
                         this.datasets.push(thisDataSet);
-                        this.idList.push(id);
-                    }
+                        this.idList.push(id); }
                         // saving to disk
                         // used information provided at
                         // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
                     try { fs.writeFileSync("./data/" + id, JSON.stringify(data));
-                    } catch (e) { return Promise.reject(new InsightError("error: unable to write to disk")); }
+                    } catch (e) { return reject(new InsightError("error: unable to write to disk")); }
                     res(this.idList);
                 }).catch((error: any) => {
                     return reject(new InsightError("error: not all files are valid"));
@@ -109,48 +112,57 @@ export default class InsightFacade implements IInsightFacade {
         });
     }
 
-    // if (kind === InsightDatasetKind.Courses) {
-    //     let files: any[] = [];
-    //     let zip = new JSZip();
-    //     zip.loadAsync(content, {base64: true}).then((zipFile) => {
-    //         return zipFile.folder("courses"); }).then((courses) => {
-    //         courses.forEach((relativePath, file) => {
-    //             files.push(file.async("string"));
-    //         });
-    //         if (files.length === 0) {
-    //             return Promise.reject(new InsightError("error: Empty Folder"));
-    //         }
-    //     });
-    //     Promise.all(files).then((returnedFile) => {
-    //         // parse the file for individual sections
-    //         let data: Section[] = [];
-    //         for (let file of returnedFile) {
-    //             const tempSection: Section[] = parseData(file);
-    //             if (tempSection.length > 0 && tempSection != null) {
-    //                 tempSection.forEach((section) => data.push(section));
-    //             }
-    //         }
-    //         if (data.length === 0) {
-    //             return Promise.reject(new InsightError("error: No Valid Sections"));
-    //         } else { // adding to memory
-    //             let thisDataSet: Dataset = {id: id, sections: data, };
-    //             this.datasets.push(thisDataSet);
-    //             // saving to disk
-    //             // used information provided at
-    //             // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
-    //             try {
-    //                 fs.writeFileSync("./data/" + id, JSON.stringify(data));
-    //             } catch (e) {
-    //                 return Promise.reject(new InsightError("error: unable to write to disk"));
-    //             }
-    //         }
-    //     }).catch((error: any) => {
-    //         return Promise.reject(new InsightError("error: not all files are valid"));
-    //     });
-    // }
-
     public removeDataset(id: string): Promise<string> {
-        return Promise.reject("Not implemented.");
+        if (!dataSetHelpers.validDataSetID(id)) {
+            return Promise.reject(new InsightError("error: Invalid DataSet ID")); }
+        if (!existingDataSetID(id, this.idList)) { // check idList first, if not in idList do another check
+            let noID: boolean = true;
+            for (let dataset of this.datasets) {
+                if (dataset.id === id) {
+                    noID = false; }
+            }
+            if (noID === true) {
+                return Promise.reject(new NotFoundError("error: no existing dataSet with this ID"));
+            }
+        }
+        return new Promise<string>((res, reject) => {
+            // used information provided at:
+            // https://stackoverflow.com/questions/8668174/indexof-method-in-an-object-array/38516944
+            if (this.datasets.length !== 0) {
+                let indexOfDataset;
+                indexOfDataset = this.datasets.findIndex((oneDataset) => oneDataset.id === id);
+                if (indexOfDataset >= 0) {
+                    try {
+                        this.datasets.splice(indexOfDataset, 1);
+                    } catch (err) {
+                        return reject(new InsightError("error: unable to remove dataset from memory"));
+                    }
+                }
+            } else if (this.datasets.length === 0) {
+                return reject(new InsightError("error: currently no datasets in memory"));
+            }
+            if (this.idList.length !== 0) {
+                let indexOfID;
+                indexOfID = this.idList.indexOf(id);
+                if (indexOfID >= 0) {
+                    try {
+                        this.idList.splice(indexOfID, 1);
+                    } catch (err) {
+                        return reject(new InsightError("error: unable to remove id from idList"));
+                    }
+                }
+            }
+            if (fs.existsSync("./data")) {
+                try {
+                    fs.unlinkSync("./data/" + id);
+                } catch (e) {
+                    return reject(new InsightError("error: unable to remove dataset from disk"));
+                }
+            } else {
+                return reject(new InsightError("error: currently no 'data' folder on disk"));
+            }
+            res(id);
+        });
     }
 
     public performQuery(query: any): Promise<any[]> {
@@ -162,6 +174,12 @@ export default class InsightFacade implements IInsightFacade {
 
         return performQueryAfterValidation(query, this.datasets); // Promise.reject("Not implemented.");
     }
+    /**
+     * List all currently added datasets, their types, and number of rows.
+     *
+     * @return Promise <InsightDataset[]>
+     * The promise should fulfill an array of currently added InsightDatasets, and will only fulfill.
+     */
 
     // checks if dataset exists in Datasets. if not, checks disk.
     public checkDatasetExists(query: any): boolean {
@@ -178,7 +196,7 @@ export default class InsightFacade implements IInsightFacade {
             if (err) { return false; }
 
             let fromDisk = JSON.parse(data);
-            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk };
+            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, kind: InsightDatasetKind.Courses };
             this.datasets.push(thisDataSet);
             this.idList.push(datasetId);
         });
@@ -187,7 +205,27 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public listDatasets(): Promise<InsightDataset[]> {
-        return Promise.reject("Not implemented.");
+        return new Promise((resolve) => {
+            resolve(this.insightDatasets);
+        });
+        // let insightDatasetList: InsightDataset[] = [];
+        // return new Promise<InsightDataset[]> ((resolve) => {
+        //     if (this.datasets.length === 0) {
+        //         return insightDatasetList;
+        //     }
+        //     try {
+        //         for (const oneDataset of this.datasets) {
+        //             const oneInsightDataset: InsightDataset = {id: "", kind: InsightDatasetKind.Courses, numRows: 0};
+        //             oneInsightDataset.id = oneDataset.id;
+        //             oneInsightDataset.kind = oneDataset.kind;
+        //             oneInsightDataset.numRows = oneDataset.sections.length;
+        //             insightDatasetList.push(oneInsightDataset);
+        //         }
+        //     } catch (e) {
+        //         return e;
+        //     }
+        //     return insightDatasetList;
+        // });
     }
 }
 

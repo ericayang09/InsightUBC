@@ -15,13 +15,14 @@ export function validateQuery(query: any): boolean {
         return false;
     }
     // Check COLUMNS exists
-    if (query.OPTIONS.COLUMNS === undefined) {
+    if (query.OPTIONS.COLUMNS === undefined || Array.isArray(query.OPTIONS.COLUMNS) === false) {
         return false;
     }
     // Check COLUMNS isn't empty
     if (query.OPTIONS.COLUMNS.length <= 0) {
         return false;
     }
+
     // Get dataset id and check it
     let id: string = retrieveIdFromKey(query.OPTIONS.COLUMNS[0]);
     if (id.length === 0) {
@@ -60,6 +61,9 @@ export function validateQuery(query: any): boolean {
 }
 
 export function retrieveIdFromKey(key: string): string {
+    if (Number.isFinite(Number(key))) {
+        return "";
+    }
     return key.substr(0, key.indexOf("_"));
 }
 
@@ -198,8 +202,8 @@ function helperValidateMSComparisonAndNegation(key: string, json: any, id: strin
     }
     if (key === "NOT") {
         for (let childKey of Object.keys(value)) {
-            if ((childKey === "IS" || childKey === "LT"
-                || childKey === "GT" || childKey === "EQ" || childKey === "NOT") === false) {
+            if ((childKey === "IS" || childKey === "LT" || childKey === "GT" || childKey === "EQ"
+                || childKey === "NOT" || childKey === "OR" || childKey === "AND") === false) {
                 return false;
             }
         }
