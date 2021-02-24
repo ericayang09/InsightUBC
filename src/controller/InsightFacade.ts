@@ -55,20 +55,19 @@ export default class InsightFacade implements IInsightFacade {
         content: string,
         kind: InsightDatasetKind,
     ): Promise<string[]> {
-        return new Promise<string[]>((res, reject) => {
         if (!dataSetHelpers.validDataSetID(id)) {
-            return reject(new InsightError("error: Invalid DataSet ID")); }
+            return Promise.reject(new InsightError("error: Invalid DataSet ID")); }
         if (existingDataSetID(id, this.idList)) {
-            return reject(new InsightError("error: Pre-existing DataSet with this ID")); }
+            return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID")); }
         if (!validateDataSetKind(kind)) {
-            return reject(new InsightError("error: Invalid Dataset Kind")); }
+            return Promise.reject(new InsightError("error: Invalid Dataset Kind")); }
         try {
             if (!fs.existsSync("./data")) { fs.mkdirSync("./data"); }
         } catch (e) {
             return Promise.reject(new InsightError("error: unable to add file to disk"));
         }
-        // return new Promise<string[]>((res, reject) => {
-        if (kind === InsightDatasetKind.Courses && !existingDataSetID(id, this.idList)) {
+        return new Promise<string[]>((res, reject) => {
+        if (kind === InsightDatasetKind.Courses) {
                 let files: any[] = [];
                 let zip = new JSZip();
                 zip.loadAsync(content, {base64: true}).then((zipFile) => {
@@ -201,20 +200,20 @@ function parseData(file: any): Section[] {
         temp = JSON.parse(file);
     }
     let tempSections = temp["result"];
-    let currentSection: Section = {
-        Section: "",
-        Subject: "",
-        Course: "",
-        Professor: "",
-        Title: "",
-        id: "",
-        Avg: 0,
-        Pass: 0,
-        Fail: 0,
-        Audit: 0,
-        Year: 0,
-    };
     for (const section of tempSections) {
+        let currentSection: Section = {
+            Section: "",
+            Subject: "",
+            Course: "",
+            Professor: "",
+            Title: "",
+            id: "",
+            Avg: 0,
+            Pass: 0,
+            Fail: 0,
+            Audit: 0,
+            Year: 0,
+        };
         currentSection.Subject = section["Subject"];
         currentSection.Course = section["Course"];
         currentSection.Professor = section["Professor"];
