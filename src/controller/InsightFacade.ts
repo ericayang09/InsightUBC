@@ -155,14 +155,36 @@ export default class InsightFacade implements IInsightFacade {
     }
 
     public performQuery(query: any): Promise<any[]> {
-
         // Validate the Query. Checking for InsightError
-        if (validateQuery(query) === false) {
+        if (validateQuery(query) === false || this.checkDatasetExists(query) === false) {
             return Promise.reject(new InsightError());
         }
         // At this point, the query should be a perfectly valid query (except for NotFoundError and ResultTooLarge)
 
         return performQueryAfterValidation(query, this.datasets); // Promise.reject("Not implemented.");
+    }
+
+    // checks if dataset exists in Datasets. if not, checks disk.
+    public checkDatasetExists(query: any): boolean {
+        let firstKeyInColumns: string = query.OPTIONS.COLUMNS[0];
+        let datasetId: string = firstKeyInColumns.substr(0, firstKeyInColumns.indexOf("_"));
+        // Validate id exists in added datasets
+        for (let dsetid of this.idList) {
+            if (dsetid === datasetId) {
+                return true;
+            }
+        }
+        // at this point, dataset doesn't exist in memory
+        fs.readFile("./data/" + datasetId, "utf-8", (err, data) => {
+            if (err) { return false; }
+
+            let fromDisk = JSON.parse(data);
+            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk };
+            this.datasets.push(thisDataSet);
+            this.idList.push(datasetId);
+        });
+
+        return false;
     }
 
     public listDatasets(): Promise<InsightDataset[]> {
