@@ -5,7 +5,7 @@ export function validDataSetID(key: string): boolean {
     if (key == null ||                          // string != null
         !key ||                                 // string not undefined
         key.trim().length === 0 ||              // cannot be all whitespaces
-        key.includes("_")) {                // cannot contain underscore
+        key.includes("_")) {                    // cannot contain underscore
         return false;
     } else {
         return true;

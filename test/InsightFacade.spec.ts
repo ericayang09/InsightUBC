@@ -2,11 +2,11 @@ import * as chai from "chai";
 import {expect} from "chai";
 import * as fs from "fs-extra";
 import * as chaiAsPromised from "chai-as-promised";
-import {InsightDataset, InsightDatasetKind, InsightError, } from "../src/controller/IInsightFacade";
+import {InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "../src/controller/IInsightFacade";
 import InsightFacade from "../src/controller/InsightFacade";
 import Log from "../src/Util";
 import TestUtil from "./TestUtil";
-import {NotFoundError} from "restify";
+// import {NotFoundError} from "restify";
 
 // This extends chai with assertions that natively support Promises
 chai.use(chaiAsPromised);
@@ -562,11 +562,13 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
     it("Should not add same dataset twice", function () {
         const id: string = "oneValidCourse";
         const expected: string[] = [id];
-        return insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses).then((result: string[]) => {
-            return insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
-        }).then((result2: string[]) => {
-            expect(result2).to.be.rejectedWith(InsightError);
-        }).catch((err: any) => {
+        insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses).then((result) => {
+            expect(result).to.eventually.deep.equal(expected);
+        }).then((res) => {
+            insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses);
+        }).then((result2) => {
+            return expect(result2).to.be.rejectedWith(InsightError);
+        }).catch((err) => {
             expect(err).to.be.instanceOf(InsightError);
         });
     });
@@ -581,19 +583,15 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
             .addDataset(id2, datasets[id2], InsightDatasetKind.Courses);
         return expect(futureResult2).to.eventually.deep.equal(expected);
     });
-    // TESTS FOR REMOVE DATASET and LIST DATA SET
-    // successfully remove valid dataset
-    it("Should remove a valid dataset", function () {
-        const id: string = "courses";
+    // should successfully remove a valid dataset
+    it("Should remove a single valid Dataset", function () {
+        const id: string = "oneValidCourse";
         const expected: string = id;
-        return insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
+        const futureResult: Promise<string> = insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
             .then(() => {
-                return insightFacade.removeDataset(id);
-            }).then((result: string) => {
-                expect(result).to.eventually.deep.equal(expected);
-            }).catch((err: any) => {
-                expect(err).to.be.instanceOf(InsightError);
-            });
+            return insightFacade.removeDataset(id);
+        });
+        expect(futureResult).to.eventually.deep.equal(expected);
     });
     // successfully remove valid dataset and list should be empty
     it("Should remove a valid dataset and list should be empty", function () {
@@ -632,7 +630,7 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
         const expected: string = id;
         const futureResult: Promise<string> = insightFacade
             .removeDataset(id);
-        return expect(futureResult).to.be.rejectedWith(NotFoundError);
+        return expect(futureResult).to.be.rejectedWith(InsightError);
     });
     // shouldn't remove with undefined
     it("Should not remove undefined id", function () {
@@ -647,16 +645,13 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
         const id: string = "courses";
         const id2: string = "oneValidCourse";
         const expected: string = id;
-        return insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
-            .then((result1: string[]) => {
-                return insightFacade.addDataset(id2, datasets[id], InsightDatasetKind.Courses);
-            }).then((result2: string[]) => {
+        const futureResult: Promise<string> = insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
+            .then(() => {
+                insightFacade.addDataset(id2, datasets[id2], InsightDatasetKind.Courses);
+            }).then(() => {
                 return insightFacade.removeDataset(id);
-            }).then((result3: string) => {
-                expect(result3).to.eventually.deep.equal(id);
-            }).catch((err: any) => {
-                expect(err).to.be.instanceOf(InsightError);
             });
+        expect(futureResult).to.eventually.deep.equal(expected);
     });
     // datasets added, remove one, list should equal 1
     it("Should remove correctly list length 1", function () {
