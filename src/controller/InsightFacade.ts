@@ -16,6 +16,7 @@ export interface Dataset {
     id: string;
     // array including all sections within this dataset
     sections: Section[];
+    kind: InsightDatasetKind;
 }
 
 // Represents a section read from dataset
@@ -91,7 +92,7 @@ export default class InsightFacade implements IInsightFacade {
                     if (data.length === 0) {
                         return reject(new InsightError("error: No Valid Sections"));
                     } else { // adding to memory
-                        let thisDataSet: Dataset = {id: id, sections: data, };
+                        let thisDataSet: Dataset = {id: id, sections: data, kind: InsightDatasetKind.Courses};
                         this.datasets.push(thisDataSet);
                         this.idList.push(id);
                     }
@@ -173,9 +174,32 @@ export default class InsightFacade implements IInsightFacade {
 
         return performQueryAfterValidation(query, this.datasets); // Promise.reject("Not implemented.");
     }
+    /**
+     * List all currently added datasets, their types, and number of rows.
+     *
+     * @return Promise <InsightDataset[]>
+     * The promise should fulfill an array of currently added InsightDatasets, and will only fulfill.
+     */
 
     public listDatasets(): Promise<InsightDataset[]> {
-        return Promise.reject("Not implemented.");
+        let insightDatasetList: InsightDataset[] = [];
+        return new Promise<InsightDataset[]> ((resolve) => {
+            if (this.datasets.length === 0) {
+                return insightDatasetList;
+            }
+            try {
+                for (const oneDataset of this.datasets) {
+                    const oneInsightDataset: InsightDataset = {id: "", kind: InsightDatasetKind.Courses, numRows: 0};
+                    oneInsightDataset.id = oneDataset.id;
+                    oneInsightDataset.kind = oneDataset.kind;
+                    oneInsightDataset.numRows = oneDataset.sections.length;
+                    insightDatasetList.push(oneInsightDataset);
+                }
+            } catch (e) {
+                return e;
+            }
+            return insightDatasetList;
+        });
     }
 }
 

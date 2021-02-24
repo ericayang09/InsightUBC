@@ -18,3 +18,7 @@ test/*.map
 
 .DS_Store
 .env
+
+data/          # Ignore directories named data
+!src/**/data/  # Unless it is a subdirectory of src
+!test/**/data/ # or a subdirectory of test
