@@ -196,7 +196,7 @@ export default class InsightFacade implements IInsightFacade {
             if (err) { return false; }
 
             let fromDisk = JSON.parse(data);
-            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk };
+            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, kind: InsightDatasetKind.Courses };
             this.datasets.push(thisDataSet);
             this.idList.push(datasetId);
         });
