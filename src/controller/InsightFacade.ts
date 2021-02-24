@@ -15,7 +15,6 @@ export interface Dataset {
     id: string;
     // array including all sections within this dataset
     sections: Section[];
-    // no field for numRows, will simply call sections.length in listDatSet
 }
 
 // Represents a section read from dataset
@@ -56,19 +55,20 @@ export default class InsightFacade implements IInsightFacade {
         content: string,
         kind: InsightDatasetKind,
     ): Promise<string[]> {
+        return new Promise<string[]>((res, reject) => {
         if (!dataSetHelpers.validDataSetID(id)) {
-            return Promise.reject(new InsightError("error: Invalid DataSet ID")); }
-        if (existingDataSetID(id, this.datasets)) {
-            return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID")); }
+            return reject(new InsightError("error: Invalid DataSet ID")); }
+        if (existingDataSetID(id, this.idList)) {
+            return reject(new InsightError("error: Pre-existing DataSet with this ID")); }
         if (!validateDataSetKind(kind)) {
-            return Promise.reject(new InsightError("error: Invalid Dataset Kind")); }
+            return reject(new InsightError("error: Invalid Dataset Kind")); }
         try {
             if (!fs.existsSync("./data")) { fs.mkdirSync("./data"); }
         } catch (e) {
-            return Promise.reject(new InsightError("error: unable to file to disk"));
+            return Promise.reject(new InsightError("error: unable to add file to disk"));
         }
-        return new Promise<string[]>((res, reject) => {
-            if (kind === InsightDatasetKind.Courses) {
+        // return new Promise<string[]>((res, reject) => {
+        if (kind === InsightDatasetKind.Courses && !existingDataSetID(id, this.idList)) {
                 let files: any[] = [];
                 let zip = new JSZip();
                 zip.loadAsync(content, {base64: true}).then((zipFile) => {
@@ -207,7 +207,7 @@ function parseData(file: any): Section[] {
         } else {
             currentSection.Year = section["Year"];
         }
-        returnSectionList.push(section);
+        returnSectionList.push(currentSection);
     }
     // used information provided at:
     // https://stackoverflow.com/questions/39308423/how-to-convert-json-object-to-an-typescript-array

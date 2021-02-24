@@ -12,11 +12,10 @@ export function validDataSetID(key: string): boolean {
     }
 }
 
-export function existingDataSetID(id: string, dataset: any): boolean {
-    for (const data of dataset) {
-        if (data.id === id) {
+export function existingDataSetID(id: string, datasetIDs: string[]): boolean {
+    for (const oneID of datasetIDs) {
+        if (oneID === id) {
             return true;
-            break;
         }
     }
     return false;
