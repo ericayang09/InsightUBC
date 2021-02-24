@@ -1,6 +1,5 @@
-
-import { Dataset, Section } from "./controller/InsightFacade";
-import {InsightError, ResultTooLargeError} from "./controller/IInsightFacade";
+import {Dataset, Section} from "./controller/InsightFacade";
+import {InsightDatasetKind, InsightError, ResultTooLargeError} from "./controller/IInsightFacade";
 
 // Enum to represent keys
 enum Keys {
@@ -21,7 +20,8 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
     let datasetId: string = firstKeyInColumns.substr(0, firstKeyInColumns.indexOf("_"));
 
     // Get dataset we want to query
-    let dataset: Dataset = { id: "", sections: [] }; // Dataset with the id we are querying
+    let dataset: Dataset
+        = { id: "", sections: [], kind: InsightDatasetKind.Courses}; // Dataset with the id we are querying
     let i;
     for (i = 0; i < datasets.length; ++i) {
         if (datasets[i].id === datasetId) {
