@@ -193,7 +193,9 @@ export default class InsightFacade implements IInsightFacade {
         }
         // at this point, dataset doesn't exist in memory
         fs.readFile("./data/" + datasetId, "utf-8", (err, data) => {
-            if (err) { return false; }
+            if (err) {
+                return false;
+            }
 
             let fromDisk = JSON.parse(data);
             let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, kind: InsightDatasetKind.Courses };
