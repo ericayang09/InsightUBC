@@ -66,6 +66,9 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
         }
     }
 
+
+    // TODO DO TRANSFORMATIONS
+
     return Promise.resolve(retArray);
 }
 
