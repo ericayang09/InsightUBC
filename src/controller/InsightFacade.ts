@@ -16,6 +16,9 @@ export interface Dataset {
     id: string;
     // array including all sections within this dataset
     sections: Section[];
+    // array for the rooms present in this dataset
+    rooms: Room[];
+    // kind determines whether sections or rooms is populated (i.e. does this dataset hold sections or rooms)
     kind: InsightDatasetKind;
 }
 
@@ -36,6 +39,20 @@ export interface Section {
     Fail: number;       // fail
     Audit: number;      // audit
     Year: number;       // year
+}
+
+export interface Room {
+    fullname:   string; // e.g. Hugh Dempster Pavilion
+    shortname:  string; // e.g. DMP
+    number:     string; // not always a number so string
+    name:       string; // room id; shortname + "_" + number
+    address:    string; // e.g. "6245 Agronomy Road V6T 1Z4"
+    lat:        number; // latitude of the building, as received via HTTP request
+    long:       number; // longitude of the building, as received via HTTP request
+    seats:      number; // The number of seats in the room. Should this value be missing in the dataset, default to 0
+    type:       string; // The room type (e.g., "Small Group").
+    furniture:  string; // The room furniture (e.g., "Classroom-Movable Tables & Chairs").
+    href:       string; // e.g. "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/DMP-201"
 }
 
 /**
@@ -91,7 +108,8 @@ export default class InsightFacade implements IInsightFacade {
                     if (data.length === 0) {
                         return reject(new InsightError("error: No Valid Sections"));
                     } else { // adding to memory
-                        let thisDataSet: Dataset = {id: id, sections: data, kind: InsightDatasetKind.Courses};
+                        let thisDataSet: Dataset = {id: id, sections: data, rooms: [],
+                            kind: InsightDatasetKind.Courses};
                         const insightDataset: InsightDataset
                             = {id: id, kind: InsightDatasetKind.Courses, numRows: data.length};
                         this.insightDatasets.push(insightDataset);
@@ -198,7 +216,8 @@ export default class InsightFacade implements IInsightFacade {
             }
 
             let fromDisk = JSON.parse(data);
-            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, kind: InsightDatasetKind.Courses };
+            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, rooms: [],
+                kind: InsightDatasetKind.Courses };
             this.datasets.push(thisDataSet);
             this.idList.push(datasetId);
         });
