@@ -17,7 +17,8 @@ module.exports = {
         {
             "files": ["**/*.spec.ts"],
             "rules": {
-                "max-lines": "off"
+                "max-lines": "off",
+                "max-nested-callbacks": "off",
             }
         },
         {
@@ -62,14 +63,18 @@ module.exports = {
         "@typescript-eslint/type-annotation-spacing": "error",
         "@typescript-eslint/unified-signatures": "error",
         "arrow-parens": ["error", "always"],
+        "brace-style": ["error", "1tbs"],
         "complexity": "off",
         "constructor-super": "error",
         "curly": "error",
         "dot-notation": "off",
         "eol-last": "error",
         "guard-for-in": "off",
+        "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "max-classes-per-file": "off",
         "max-lines": ["error", 300],
+        "max-nested-callbacks": ["error", 2],
+        "max-statements-per-line": "error",
         "member-ordering": "off",
         "new-parens": "error",
         "no-bitwise": "error",
