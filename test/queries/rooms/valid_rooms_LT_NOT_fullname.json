@@ -1,0 +1,47 @@
+{
+    "title": "LT NOT fullname",
+    "query": {
+      "WHERE": {
+        "AND": [
+          {
+            "NOT": {
+              "IS": {
+                "rooms_furniture": "*Tables*"
+              }
+            }
+          },
+          {
+            "LT": {
+              "rooms_seats": 300
+            }
+          }
+        ]
+      },
+      "OPTIONS": {
+        "COLUMNS": [
+          "rooms_shortname",
+          "maxSeats"
+        ],
+        "ORDER": {
+          "dir": "DOWN",
+          "keys": [
+            "maxSeats"
+          ]
+        }
+      },
+      "TRANSFORMATIONS": {
+        "GROUP": [
+          "rooms_shortname"
+        ],
+        "APPLY": [
+          {
+            "maxSeats": {
+              "MAX": "rooms_seats"
+            }
+          }
+        ]
+      }
+    },
+    "isQueryValid": true,
+    "result":[{"rooms_shortname":"SCRF","maxSeats":280},{"rooms_shortname":"BUCH","maxSeats":275},{"rooms_shortname":"CHEM","maxSeats":265},{"rooms_shortname":"HENN","maxSeats":257},{"rooms_shortname":"FSC","maxSeats":250},{"rooms_shortname":"BIOL","maxSeats":228},{"rooms_shortname":"GEOG","maxSeats":225},{"rooms_shortname":"MATH","maxSeats":224},{"rooms_shortname":"MCML","maxSeats":200},{"rooms_shortname":"WOOD","maxSeats":181},{"rooms_shortname":"ESB","maxSeats":150},{"rooms_shortname":"AERL","maxSeats":144},{"rooms_shortname":"MATX","maxSeats":106},{"rooms_shortname":"WESB","maxSeats":102},{"rooms_shortname":"FNH","maxSeats":99},{"rooms_shortname":"LASR","maxSeats":94},{"rooms_shortname":"ANSO","maxSeats":90},{"rooms_shortname":"ORCH","maxSeats":72},{"rooms_shortname":"SOWK","maxSeats":68},{"rooms_shortname":"MGYM","maxSeats":40},{"rooms_shortname":"OSBO","maxSeats":39},{"rooms_shortname":"IBLC","maxSeats":30},{"rooms_shortname":"UCLL","maxSeats":30},{"rooms_shortname":"PCOH","maxSeats":24}]
+}

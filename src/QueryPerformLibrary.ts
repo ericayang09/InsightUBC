@@ -21,7 +21,7 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
 
     // Get dataset we want to query
     let dataset: Dataset
-        = { id: "", sections: [], kind: InsightDatasetKind.Courses}; // Dataset with the id we are querying
+        = { id: "", sections: [], rooms: [], kind: InsightDatasetKind.Courses}; // Dataset with the id we are querying
     let i;
     for (i = 0; i < datasets.length; ++i) {
         if (datasets[i].id === datasetId) {
@@ -65,6 +65,9 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
             }
         }
     }
+
+
+    // TODO DO TRANSFORMATIONS
 
     return Promise.resolve(retArray);
 }
