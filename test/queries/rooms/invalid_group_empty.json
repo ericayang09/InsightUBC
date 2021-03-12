@@ -1,0 +1,45 @@
+{
+    "title": "group must be non empty",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "max Seats"
+    ],
+    "ORDER": {
+      "dir": "UP",
+      "keys": [
+        "rooms_shortname",
+        "max Seats"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+    ],
+    "APPLY": [
+      {
+        "max Seats": {
+          "MAX": "rooms_seats"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result":"InsightError"
+}
