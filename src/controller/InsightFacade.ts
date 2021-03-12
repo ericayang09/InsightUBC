@@ -9,6 +9,7 @@ import {validateQuery} from "../QueryValidateLibrary";
 import {performQueryAfterValidation} from "../QueryPerformLibrary";
 import * as JSZip from "jszip";
 import * as fs from "fs";
+import {getId} from "../KeyHelpers";
 
 // Represents a dataset
 export interface Dataset {
@@ -170,14 +171,16 @@ export default class InsightFacade implements IInsightFacade {
 
     // checks if dataset exists in Datasets. if not, checks disk.
     public checkDatasetExists(query: any): boolean {
-        let firstKeyInColumns: string = query.OPTIONS.COLUMNS[0];
-        let datasetId: string = firstKeyInColumns.substr(0, firstKeyInColumns.indexOf("_"));
+        let datasetId: string = getId(query);
         // Validate id exists in added datasets
         for (let dsetid of this.idList) {
             if (dsetid === datasetId) {
                 return true;
             }
         }
+
+        // TODO modify this to read rooms data from disk
+
         // at this point, dataset doesn't exist in memory
         fs.readFile("./data/" + datasetId, "utf-8", (err, data) => {
             if (err) {

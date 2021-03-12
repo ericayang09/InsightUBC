@@ -1,6 +1,7 @@
 /** Validates the given query . true for valid, false for invalid. */
 import Log from "./Util";
 import {validateColumns, validateOrder, validateStructure, validateTransformation} from "./QueryValidateHelpers";
+import {getId} from "./KeyHelpers";
 
 let activeMKeys: string[] = [];
 let activeSKeys: string[] = [];
@@ -18,26 +19,15 @@ export function validateQuery(query: any): boolean {
     if (validateStructure(query) === false) {
         return false;
     }
+
     // Get dataset id and check it
-    let randomValidKey: string = query.OPTIONS.COLUMNS[0];
-    let id: string = retrieveIdFromKey(randomValidKey);
+    let id: string = getId(query);
     if (id.length === 0) {
         return false;
     }
-    if (id === randomValidKey) {
-        // then column is fucking useless and i cant get id from there
-        // get id from transformation group
-        if (query.TRANSFORMATIONS !== undefined && query.TRANSFORMATIONS.GROUP !== undefined) {
-            randomValidKey = query.TRANSFORMATIONS.GROUP[0];
-            id = retrieveIdFromKey(randomValidKey);
-            if (id === randomValidKey) {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+
     // SET activeMKeys and activeSKeys
+    let randomValidKey: string = query.OPTIONS.COLUMNS[0];
     let randomValidField: string = randomValidKey.substr(randomValidKey.indexOf("_") + 1, randomValidKey.length);
     if (randomValidField.length === 0) {
         return false;
@@ -79,6 +69,9 @@ export function validateAllKeys(json: any, id: string): boolean {
     if (Array.isArray(json) === false) {
         // CASE: json object
         for (let key of Object.keys(json)) {
+            if (key === "OPTIONS" || key === "TRANSFORMATIONS") {
+                continue;
+            }
             let bKeyValid: boolean = validateKeyAndValue(key, json, id); // Check key is valid
             if (bKeyValid) {
                 bKeyValid = bKeyValid && validateAllKeys(json[key], id); // Check child keys
