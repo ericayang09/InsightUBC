@@ -525,15 +525,20 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
     // should successfully remove a valid dataset
     it("Should remove a single valid Dataset", function () {
         const id: string = "oneValidCourse";
-        const expected: string = id;
-        return insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
-            .then(() => {
-                return insightFacade.removeDataset(id);
-            }).then((res) => {
-                expect(res).to.deep.equal(expected);
-            }).catch((err: any) => {
-                expect(err).to.be.instanceOf(InsightError);
-            });
+        const expectedRemove: string = id;
+        const expectedAdd: string[] = [id];
+        insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
+            .then((resultOfAdd) => {
+                expect(resultOfAdd).to.deep.equal(expectedAdd);
+                return insightFacade.removeDataset(id).then((resultOfRemove) => {
+                    expect(resultOfRemove).to.deep.equal(expectedRemove);
+                    return resultOfRemove;
+                }).catch((err) => {
+                    return err;
+                });
+            }).catch((err) => {
+                return err;
+        });
     });
     // should successfully remove a valid dataset
     it("Should add and list a valid dataset", function () {
@@ -541,14 +546,16 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
         const expected: string = id;
         const dataset: InsightDataset = {id: "oneValidCourse", kind: InsightDatasetKind.Courses, numRows: 19};
         const expectedDatasetList: InsightDataset[] = [dataset];
-        insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses).then((resultOfAdd) => {
-            return insightFacade.listDatasets().then((resultOfList) => {
-                return resultOfList;
+        insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Courses)
+            .then((resultOfAdd) => {
+                return insightFacade.listDatasets().then((resultOfList) => {
+                    expect(resultOfList).to.deep.equal(expectedDatasetList);
+                    return resultOfList;
             }).catch((err) => {
-                expect(err).to.be.instanceOf(InsightError);
+                return err;
             });
         }).catch((err) => {
-            expect(err).to.be.instanceOf(InsightError);
+            return err;
         });
     });
     // successfully remove valid dataset and list should be empty
