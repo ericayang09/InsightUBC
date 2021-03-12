@@ -2,7 +2,7 @@ import {getDataStringKey} from "./KeyHelpers";
 import {InsightDatasetKind, ResultTooLargeError} from "./controller/IInsightFacade";
 import {Dataset} from "./controller/InsightFacade";
 import {shouldAdd, SortRule} from "./QueryPerformLibrary";
-import {Decimal} from "../node_modules/Decimal.js";
+import { Decimal } from "decimal.js";
 
 export function getMatchingSectionsOrRoomsRaw(dataset: Dataset, query: any, ): any[] {
     let dataArrayRaw: any[] = [];
