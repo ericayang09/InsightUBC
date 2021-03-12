@@ -57,6 +57,16 @@ export function addCourseDataset(
     });
 }
 
+export function addRoomDataset(
+    id: string,
+    content: string,
+    idList: string[],
+    insightDatasets: InsightDataset[],
+    datasets: Dataset[],
+): Promise<string[]> {
+    return;
+}
+
 function parseData(file: any): Section[] {
     let returnSectionList: Section[] = [];
     let temp;
