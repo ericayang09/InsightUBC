@@ -37,7 +37,7 @@ export function addCourseDataset(
             return Promise.reject(new InsightError("error: No Valid Sections"));
         } else {
             // add to memory
-            let thisDataSet: Dataset = {id: id, sections: data, kind: InsightDatasetKind.Courses};
+            let thisDataSet: Dataset = {id: id, sections: data, rooms: [], kind: InsightDatasetKind.Courses};
             const insightDataset: InsightDataset = {id: id, kind: InsightDatasetKind.Courses, numRows: data.length};
             insightDatasets.push(insightDataset);
             datasets.push(thisDataSet);
