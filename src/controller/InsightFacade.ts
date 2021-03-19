@@ -2,12 +2,11 @@ import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 
 import * as dataSetHelpers from "../dataSetHelpers";
-import {existingDataSetID, validateDataSetKind, validJSON} from "../dataSetHelpers";
+import {existingDataSetID, validateDataSetKind} from "../dataSetHelpers";
 import {addCourseDataset} from "../AddDataSetLibrary";
 
 import {validateQuery} from "../QueryValidateLibrary";
 import {performQueryAfterValidation} from "../QueryPerformLibrary";
-import * as JSZip from "jszip";
 import * as fs from "fs";
 import {getId} from "../KeyHelpers";
 
@@ -81,6 +80,10 @@ export default class InsightFacade implements IInsightFacade {
         }
         if (existingDataSetID(id, this.idList)) {
             return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID"));
+        }
+        if (kind === InsightDatasetKind.Rooms) {
+            this.idList.push(id);
+            return Promise.resolve(this.idList);
         }
         if (!validateDataSetKind(kind)) {
             return Promise.reject(new InsightError("error: Invalid Dataset Kind"));
