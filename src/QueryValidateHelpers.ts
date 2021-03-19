@@ -129,6 +129,9 @@ export function validateOrder(query: any, id: string): boolean {
             if (query.OPTIONS.ORDER.dir !== "DOWN" && query.OPTIONS.ORDER.dir !== "UP") {
                 return false;
             }
+            if (Array.isArray(query.OPTIONS.ORDER.keys) === false) {
+                return false;
+            }
             for (let orderkey of query.OPTIONS.ORDER.keys) {
                 if (query.OPTIONS.COLUMNS.includes(orderkey) === false) {
                     return false;

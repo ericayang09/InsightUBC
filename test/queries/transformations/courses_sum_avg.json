@@ -1,0 +1,31 @@
+{
+    "title": "courses sum avg",
+    "query": {
+      "WHERE": {
+        "GT": {
+          "courses_avg": 97
+        }
+      },
+      "OPTIONS": {
+        "COLUMNS": [
+          "courses_dept",
+          "sumavg"
+        ],
+        "ORDER": "sumavg"
+      },
+      "TRANSFORMATIONS": {
+        "GROUP": [
+          "courses_dept"
+        ],
+        "APPLY": [
+          {
+            "sumavg": {
+              "SUM": "courses_avg"
+            }
+          }
+        ]
+      }
+    },
+    "isQueryValid": true,
+    "result":[{"courses_dept":"educ","sumavg":97.5},{"courses_dept":"crwr","sumavg":196},{"courses_dept":"eece","sumavg":197.5},{"courses_dept":"spph","sumavg":197.96},{"courses_dept":"cnps","sumavg":294.13},{"courses_dept":"math","sumavg":783.2},{"courses_dept":"nurs","sumavg":1177.72},{"courses_dept":"epse","sumavg":1862.24}]
+}
