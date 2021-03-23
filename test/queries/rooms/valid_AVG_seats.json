@@ -18,12 +18,12 @@
   "OPTIONS": {
     "COLUMNS": [
       "rooms_shortname",
-      "sumSeat"
+      "avgSeats"
     ],
     "ORDER": {
       "dir": "DOWN",
       "keys": [
-        "sumSeat"
+        "avgSeats"
       ]
     }
   },
@@ -33,13 +33,13 @@
     ],
     "APPLY": [
       {
-        "sumSeat": {
-          "SUM": "rooms_seats"
+        "avgSeats": {
+          "AVG": "rooms_seats"
         }
       }
     ]
   }
 },
     "isQueryValid": true,
-    "result":[{"rooms_shortname":"LSC","sumSeat":700},{"rooms_shortname":"OSBO","sumSeat":442},{"rooms_shortname":"HEBB","sumSeat":375}]
+    "result":[{"rooms_shortname":"OSBO","avgSeats":442},{"rooms_shortname":"HEBB","avgSeats":375},{"rooms_shortname":"LSC","avgSeats":350}]
 }

@@ -41,7 +41,8 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
         underscore_bad: "./test/data/underscore_bad.zip",
         validWithSurprise: "./test/data/validWithSurprise.zip",
         notZip: "./test/data/courses.txt",
-        withoutDir: "./test/data/withoutDir.zip"
+        withoutDir: "./test/data/withoutDir.zip",
+        rooms: "./test/data/rooms.zip"
     };
     let datasets: { [id: string]: string } = {};
     let insightFacade: InsightFacade;
@@ -401,6 +402,14 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
     // });
     // // ========================================================
     // ====================Erica's Tests=======================
+    // one valid room dataset
+    it("should add rooms dataset", function () {
+        const id: string = "rooms";
+        const expected: string[] = [id];
+        const futureResult: Promise<string[]> = insightFacade
+            .addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+        return expect(futureResult).to.eventually.deep.equal(expected);
+    });
     // at least one valid course section
     it("Should add a valid dataset one course", function () {
         const id: string = "oneValidCourse";
@@ -747,6 +756,10 @@ describe("InsightFacade PerformQuery", () => {
         courses: {
             path: "./test/data/courses.zip",
             kind: InsightDatasetKind.Courses,
+        },
+        rooms: {
+            path: "./test/data/rooms.zip",
+            kind: InsightDatasetKind.Rooms,
         },
     };
     let insightFacade: InsightFacade;

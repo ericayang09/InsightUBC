@@ -3,10 +3,11 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFou
 
 import * as dataSetHelpers from "../dataSetHelpers";
 import {existingDataSetID, validateDataSetKind} from "../dataSetHelpers";
-import {addCourseDataset} from "../AddDataSetLibrary";
+import {addCourseDataset, addRoomDataset} from "../AddDataSetLibrary";
 
 import {validateQuery} from "../QueryValidateLibrary";
 import {performQueryAfterValidation} from "../QueryPerformLibrary";
+// import * as JSZip from "jszip";
 import * as fs from "fs";
 import {getId} from "../KeyHelpers";
 
@@ -81,10 +82,6 @@ export default class InsightFacade implements IInsightFacade {
         if (existingDataSetID(id, this.idList)) {
             return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID"));
         }
-        if (kind === InsightDatasetKind.Rooms) {
-            this.idList.push(id);
-            return Promise.resolve(this.idList);
-        }
         if (!validateDataSetKind(kind)) {
             return Promise.reject(new InsightError("error: Invalid Dataset Kind"));
         }
@@ -98,7 +95,7 @@ export default class InsightFacade implements IInsightFacade {
         if (kind === InsightDatasetKind.Courses) {
             return addCourseDataset(id, content, this.idList, this.insightDatasets, this.datasets);
         } else if (kind === InsightDatasetKind.Rooms) {
-            return Promise.reject(new InsightError("error: rooms is currently an invalid kind"));
+            return addRoomDataset(id, content, this.idList, this.insightDatasets, this.datasets);
         }
     }
 
@@ -182,17 +179,29 @@ export default class InsightFacade implements IInsightFacade {
             }
         }
 
-        // TODO modify this to read rooms data from disk
-
         // at this point, dataset doesn't exist in memory
         fs.readFile("./data/" + datasetId, "utf-8", (err, data) => {
             if (err) {
                 return false;
             }
 
+            let thisDataSet: Dataset;
             let fromDisk = JSON.parse(data);
-            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, rooms: [],
-                kind: InsightDatasetKind.Courses };
+            let randomValidKey: string = query.OPTIONS.COLUMNS[0];
+            let randomValidField: string = randomValidKey.substr(randomValidKey.indexOf("_") + 1,
+                randomValidKey.length);
+            const sectionsMKeys: string[] = [ "avg", "pass", "fail", "audit", "year" ];
+            const sectionsSKeys: string[] = [ "dept", "id", "instructor", "title", "uuid" ];
+            const roomsMKeys: string[] = [ "lat", "lon", "seats" ];
+            const roomsSKeys: string[] =
+                [ "fullname", "shortname", "number", "name", "address", "type", "furniture", "href" ];
+            if (sectionsMKeys.includes(randomValidField) || sectionsSKeys.includes(randomValidField)) {
+                thisDataSet = {id: datasetId, sections: fromDisk, rooms: [],
+                    kind: InsightDatasetKind.Courses };
+            } else if (roomsMKeys.includes(randomValidField) || roomsSKeys.includes(randomValidField)) {
+                thisDataSet = {id: datasetId, sections: [], rooms: fromDisk,
+                    kind: InsightDatasetKind.Rooms };
+            }
             this.datasets.push(thisDataSet);
             this.idList.push(datasetId);
         });

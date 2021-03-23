@@ -59,8 +59,8 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
         if (typeof(query.OPTIONS.ORDER) === "string") {
             sortRule.keys.push(query.OPTIONS.ORDER);
         } else {
-            sortRule.direction = query.OPTIONS.dir;
-            for (let k of query.OPTIONS.keys) {
+            sortRule.direction = query.OPTIONS.ORDER.dir;
+            for (let k of query.OPTIONS.ORDER.keys) {
                 sortRule.keys.push(k);
             }
         }
