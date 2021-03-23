@@ -1,5 +1,14 @@
 import {Dataset, Section} from "./controller/InsightFacade";
 import {InsightDatasetKind, InsightError, ResultTooLargeError} from "./controller/IInsightFacade";
+import {retrieveIdFromKey} from "./QueryValidateLibrary";
+import {getDataStringKey, getId} from "./KeyHelpers";
+import apply = Reflect.apply;
+import {
+    doApplyIdontcare,
+    doGroupsIdontcare,
+    getMatchingSectionsOrRoomsRaw,
+    sortWithSortRule
+} from "./QueryPerformHelpers";
 
 // Enum to represent keys
 enum Keys {
@@ -12,15 +21,29 @@ enum Keys {
     pass = "Pass",
     fail = "Fail",
     audit = "Audit",
-    year = "Year"
+    year = "Year",
+
+    fullname = "fullname",
+    shortname = "shortname",
+    number= "number",
+    name = "name",
+    address = "address",
+    lat = "lat",
+    lon = "lon",
+    seats = "seats",
+    type = "type",
+    furniture = "furniture",
+    href = "href"
+}
+
+export interface SortRule {
+    direction: string;
+    keys: string[];
 }
 
 export function performQueryAfterValidation(query: any, datasets: Dataset[]): Promise<any[]> {
-    let firstKeyInColumns: string = query.OPTIONS.COLUMNS[0];
-    let datasetId: string = firstKeyInColumns.substr(0, firstKeyInColumns.indexOf("_"));
-
-    // Get dataset we want to query
-    let dataset: Dataset
+    let datasetId: string = getId(query); // Get dataset id and check it
+    let dataset: Dataset // Get dataset we want to query
         = { id: "", sections: [], rooms: [], kind: InsightDatasetKind.Courses}; // Dataset with the id we are querying
     let i;
     for (i = 0; i < datasets.length; ++i) {
@@ -28,18 +51,20 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
             dataset = datasets[i];
         }
     }
-
-    // Check that dataset id is not empty at this point
-    if (dataset.id.length <= 0) {
+    if (dataset.id.length <= 0) { // Check that dataset id is not empty at this point
         return Promise.reject(new InsightError());
     }
-
-    let orderKey: string = "";
-    // Find out the order key if ORDER exists
+    let sortRule: SortRule = { direction: "UP", keys: [] };
     if ("ORDER" in query.OPTIONS) {
-        orderKey = query.OPTIONS.ORDER;
+        if (typeof(query.OPTIONS.ORDER) === "string") {
+            sortRule.keys.push(query.OPTIONS.ORDER);
+        } else {
+            sortRule.direction = query.OPTIONS.dir;
+            for (let k of query.OPTIONS.keys) {
+                sortRule.keys.push(k);
+            }
+        }
     }
-
     let keysToReturn: Keys[] = [];
     // Find out which key/fields we want to return
     for (i = 0; i < query.OPTIONS.COLUMNS.length; ++i) {
@@ -48,32 +73,29 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
         let keyEnum: Keys = (Keys as any)[keyString];
         keysToReturn.push(keyEnum);
     }
-
-    let retArray: any[] = [];
-    // Find all the sections that match the query
-    for (i = 0; i < dataset.sections.length; ++i) {
-        let where: any = query.WHERE;
-        let section: Section = dataset.sections[i];
-
-        // if shouldAdd === true, then add the necessary data to the return array.
-        if (shouldAdd(where, section)) {
-            let retSection: any = getSectionObjectToReturn(datasetId, section, keysToReturn);
-            retArray = insertSectionToReturnArray(retSection, retArray, orderKey);
-            // Result too great error
-            if (retArray.length > 5000) {
-                return Promise.reject(new ResultTooLargeError());
-            }
-        }
+    let dataArrayRaw: any[] = getMatchingSectionsOrRoomsRaw(dataset, query); // Get all the matching data first
+    if (dataArrayRaw.length > 5000) {
+        return Promise.reject(new ResultTooLargeError()); // Result too great error
     }
-
-
-    // TODO DO TRANSFORMATIONS
-
-    return Promise.resolve(retArray);
+    if (query.TRANSFORMATIONS !== undefined) {
+        let groupDictionary: any = doGroupsIdontcare(query.TRANSFORMATIONS.GROUP, dataArrayRaw); // put into groups
+        let arrayOfTransformedObjs: any[] = doApplyIdontcare(groupDictionary, query.TRANSFORMATIONS.APPLY, query);
+        // sort
+        let sortedArray: any[] = sortWithSortRule(sortRule, arrayOfTransformedObjs);
+        return Promise.resolve(sortedArray);
+    } else {
+        let retArray: any[] = [];
+        for (let d of dataArrayRaw) {
+            let retSection: any = getSectionObjectToReturn(datasetId, d, keysToReturn);
+            retArray.push(retSection);
+        }
+        retArray = sortWithSortRule(sortRule, retArray);
+        return Promise.resolve(retArray);
+    }
 }
 
 // Helper to get section object with relevant keys
-function getSectionObjectToReturn(datasetId: string, section: Section, keysToReturn: Keys[]): any {
+function getSectionObjectToReturn(datasetId: string, section: any, keysToReturn: Keys[]): any {
     let retSec: any = {};
     for (const keyEnum of keysToReturn) { // Populate retSection with relevant info to return
         let retVal = section[keyEnum];
@@ -147,47 +169,45 @@ function insertSectionToReturnArray(section: any, retArray: any[], orderKey: str
 // ----------------------- shouldAdd and helpers ---------------------------
 
 // should add function returns boolean - just check if a given section matches the WHERE of query
-function shouldAdd(where: any, section: Section): boolean {
-    // If where is empty
+export function shouldAdd(where: any, sectionOrRoom: any): boolean {
     if (Object.keys(where).length <= 0) {
-        return true;
+        return true; // If where is empty
     }
-
-    return shouldAddHelper(where, section);
+    return shouldAddHelper(where, sectionOrRoom);
 }
 
-function shouldAddHelper(queryObj: any, section: Section): boolean {
+function shouldAddHelper(queryObj: any, sectionOrRoom: any): boolean {
     let key: any = Object.keys(queryObj)[0];
     let val: any = queryObj[key];
 
     switch (key) {
         case "IS": {
-            return queryISHelper(val, section);
+            return queryISHelper(val, sectionOrRoom);
         }
         case "NOT": {
-            return !shouldAddHelper(val, section); // Negate whether it was a match
+            return !shouldAddHelper(val, sectionOrRoom); // Negate whether it was a match
         }
         case "LT": {
-            return queryLTHelper(val, section);
+            return queryLTHelper(val, sectionOrRoom);
         }
         case "GT": {
-            return queryGTHelper(val, section);
+            return queryGTHelper(val, sectionOrRoom);
         }
         case "EQ": {
-            return queryEQHelper(val, section);
+            return queryEQHelper(val, sectionOrRoom);
         }
         case "AND": {
-            return queryANDHelper(val, section);
+            return queryANDHelper(val, sectionOrRoom);
         }
         case "OR": {
-            return queryORHelper(val, section);
+            return queryORHelper(val, sectionOrRoom);
         }
     }
 
     return true;
 }
 
-function queryISHelper(val: any, section: Section): boolean {
+function queryISHelper(val: any, section: any): boolean {
     let fullKeyString: string = Object.keys(val)[0];
     let keyString = fullKeyString.substr(fullKeyString.indexOf("_") + 1, fullKeyString.length);
     let keyEnum: Keys = (Keys as any)[keyString];
@@ -217,7 +237,7 @@ function queryISHelper(val: any, section: Section): boolean {
     return sectionValStr === compareVal;
 }
 
-function queryLTHelper(val: any, section: Section): boolean {
+function queryLTHelper(val: any, section: any): boolean {
     let fullKeyString: string = Object.keys(val)[0];
     let keyString = fullKeyString.substr(fullKeyString.indexOf("_") + 1, fullKeyString.length);
     let keyEnum: Keys = (Keys as any)[keyString];
@@ -227,7 +247,7 @@ function queryLTHelper(val: any, section: Section): boolean {
     return compareVal > sectionVal;
 }
 
-function queryGTHelper(val: any, section: Section): boolean {
+function queryGTHelper(val: any, section: any): boolean {
     // terminate
     let fullKeyString: string = Object.keys(val)[0];
     let keyString = fullKeyString.substr(fullKeyString.indexOf("_") + 1, fullKeyString.length);
@@ -238,7 +258,7 @@ function queryGTHelper(val: any, section: Section): boolean {
     return compareVal < sectionVal;
 }
 
-function queryEQHelper(val: any, section: Section): boolean {
+function queryEQHelper(val: any, section: any): boolean {
     // terminate
     let fullKeyString: string = Object.keys(val)[0];
     let keyString = fullKeyString.substr(fullKeyString.indexOf("_") + 1, fullKeyString.length);
@@ -249,7 +269,7 @@ function queryEQHelper(val: any, section: Section): boolean {
     return compareVal.toString() === sectionVal.toString();
 }
 
-function queryANDHelper(array: any, section: Section): boolean {
+function queryANDHelper(array: any, section: any): boolean {
     // for each object of array, run shouldAddHelper
     // then && them all together. or use bitwise and
     let i;
@@ -261,7 +281,7 @@ function queryANDHelper(array: any, section: Section): boolean {
     return true;
 }
 
-function queryORHelper(array: any, section: Section): boolean {
+function queryORHelper(array: any, section: any): boolean {
     let i;
     for (i = 0; i < array.length; ++i) {
         if (shouldAddHelper(array[i], section)) {
