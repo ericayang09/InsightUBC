@@ -1,0 +1,46 @@
+{
+    "title": "apply body should only have 1 key, has 0",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "max Seats"
+    ],
+    "ORDER": {
+      "dir": "UP",
+      "keys": [
+        "rooms_shortname",
+        "max Seats"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+        "rooms_shortname"
+    ],
+    "APPLY": [
+      {
+        "max Seats": {
+
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result":"InsightError"
+}

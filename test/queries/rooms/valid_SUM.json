@@ -18,12 +18,12 @@
   "OPTIONS": {
     "COLUMNS": [
       "rooms_shortname",
-      "maxSeats"
+      "sumSeat"
     ],
     "ORDER": {
       "dir": "DOWN",
       "keys": [
-        "maxSeats"
+        "sumSeat"
       ]
     }
   },
@@ -33,13 +33,13 @@
     ],
     "APPLY": [
       {
-        "maxSeats": {
-          "SUM": "rooms_lon"
+        "sumSeat": {
+          "SUM": "rooms_seats"
         }
       }
     ]
   }
 },
     "isQueryValid": true,
-    "result":[{"rooms_shortname":"OSBO","maxSeats":-123.24},{"rooms_shortname":"HEBB","maxSeats":-123.25},{"rooms_shortname":"LSC","maxSeats":-246.49}]
+    "result":[{"rooms_shortname":"LSC","sumSeat":700},{"rooms_shortname":"OSBO","sumSeat":442},{"rooms_shortname":"HEBB","sumSeat":375}]
 }

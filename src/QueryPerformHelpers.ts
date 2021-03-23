@@ -143,19 +143,31 @@ function compareSortRule(x: any, y: any, sortRule: SortRule): boolean {
                         if (x[sortRule.keys[2]] === y[sortRule.keys[2]]) {
                             return false;
                         } else {
-                            return x[sortRule.keys[2]] < y[sortRule.keys[2]];
+                            if (sortRule.direction === "UP") {
+                                return x[sortRule.keys[2]] < y[sortRule.keys[2]];
+                            } else {
+                                return x[sortRule.keys[2]] > y[sortRule.keys[2]];
+                            }
                         }
                     } else {
                         return false;
                     }
                 } else {
-                    return x[sortRule.keys[1]] < y[sortRule.keys[1]];
+                    if (sortRule.direction === "UP") {
+                        return x[sortRule.keys[1]] < y[sortRule.keys[1]];
+                    } else {
+                        return x[sortRule.keys[1]] > y[sortRule.keys[1]];
+                    }
                 }
             } else {
                 return false;
             }
         } else {
-            return x[sortRule.keys[0]] < y[sortRule.keys[0]];
+            if (sortRule.direction === "UP") {
+                return x[sortRule.keys[0]] < y[sortRule.keys[0]];
+            } else {
+                return x[sortRule.keys[0]] > y[sortRule.keys[0]];
+            }
         }
     } else {
         return true;
