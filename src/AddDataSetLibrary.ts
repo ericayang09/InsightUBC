@@ -1,8 +1,12 @@
-import {Dataset, Section} from "./controller/InsightFacade";
-import {InsightDataset, InsightDatasetKind, InsightError, ResultTooLargeError} from "./controller/IInsightFacade";
+import {Dataset, Room, Section} from "./controller/InsightFacade";
+import {InsightDataset, InsightDatasetKind, InsightError} from "./controller/IInsightFacade";
 import * as JSZip from "jszip";
 import * as fs from "fs";
 import {validJSON} from "./dataSetHelpers";
+import {parseForTable, parseForBuildings, parseForRooms, findBody} from "./AddRoomHelpers";
+
+const parse5 = require("parse5");
+// const http = require("http");
 
 export function addCourseDataset(
     id: string,
@@ -21,8 +25,7 @@ export function addCourseDataset(
             return Promise.reject(new InsightError("error: Empty Folder"));
         }
         return Promise.all(files);
-    }).then((returnedFile) => {
-        // parse file for individual sections
+    }).then((returnedFile) => { // parse file for individual sections
         let data: Section[] = [];
         for (let file of returnedFile) {
             let tempSection: Section[] = parseData(file);
@@ -43,8 +46,7 @@ export function addCourseDataset(
             datasets.push(thisDataSet);
             idList.push(id);
         }
-        // save to disk
-        // used information provided at
+        // save to disk; used information provided at
         // stackoverflow.com/questions/42179037/writing-json-object-to-a-json-file-with-fs-writefilesync
         try {
             fs.writeFileSync("./data/" + id, JSON.stringify(data));
@@ -100,6 +102,72 @@ function parseData(file: any): Section[] {
     // https://stackoverflow.com/questions/39308423/how-to-convert-json-object-to-an-typescript-array
     // https://www.cloudhadoop.com/2018/09/how-to-convert-array-to-json-and-json.html
     // https://stackoverflow.com/questions/59749441/parse-array-of-json-objects-to-array-of-typescript-objects
-    // OK BASICALLY PARSE THE JSON OBJECTS ONE BY ONE AND THEN ADD THEM TO A SECTION OBJECT
     return returnSectionList;
+}
+
+export function addRoomDataset(
+    id: string,
+    content: string,
+    idList: string[],
+    insightDatasets: InsightDataset[],
+    datasets: Dataset[],
+): Promise<string[]> {
+    let zip = new JSZip();
+    let buildings: any[] = [], table: any[] = [], roomsList: Room[] = [];
+    return zip.loadAsync(content, {base64: true}).then((zipFile) => {
+        let stringFile = zipFile.folder("rooms").file("index.htm").async("text");
+        return Promise.resolve(stringFile);
+    }).then((fileData) => {
+        let htmData = parse5.parse(fileData);
+        let body = findBody(htmData);
+        parseForTable(body, table); // find all nodes with name "table"
+        let tbody = table[0].childNodes.find((node: any) => {
+            return node.nodeName === "tbody";
+        });
+        if (tbody != null) { // Building data in form {buildingName, buildingCode, buildingAddress, href}
+            buildings = parseForBuildings(tbody);
+        }
+        let promises = []; // parse each building in buildings for room data
+        for (let build of buildings) {
+            promises.push(zip.file("rooms" + build.href.substr(1)).async("text"));
+        }
+        return Promise.all(promises);
+    }).then((roomFile) => {
+        let parsedRoomFiles = [];
+        for (let oneRoomFile of roomFile) {
+            parsedRoomFiles.push(parse5.parse(oneRoomFile));
+        }
+        for (let oneBuilding of parsedRoomFiles) {
+            let building = buildings[parsedRoomFiles.indexOf(oneBuilding)];
+            let tempRooms = parseForRooms(oneBuilding, building);
+            if (tempRooms) {
+                roomsList = roomsList.concat(tempRooms);
+            }
+        }
+        if (roomsList.length === 0) {
+            return Promise.reject(new InsightError("No valid rooms found"));
+        } else { // add to memory and write to disk
+            addRoomsToMemory(roomsList, datasets, insightDatasets, id, idList);
+            try {
+                fs.writeFileSync("./data/" + id, JSON.stringify(roomsList));
+            } catch (e) {
+                return Promise.reject(new InsightError("unable to write room dataset to disk"));
+            }
+        }
+        return Promise.resolve(idList);
+        }).catch((error: any) => {
+            return Promise.reject(new InsightError("unable to parse building files"));
+        });
+}
+
+export function addRoomsToMemory(roomsList: any[],
+                                 datasets: Dataset[],
+                                 insightDatasets: InsightDataset[],
+                                 id: string,
+                                 idList: string[]) {
+    let thisDataSet: Dataset = {id: id, sections: [], rooms: roomsList, kind: InsightDatasetKind.Rooms};
+    let insightDataset: InsightDataset = {id: id, kind: InsightDatasetKind.Rooms, numRows: roomsList.length};
+    datasets.push(thisDataSet);
+    insightDatasets.push(insightDataset);
+    idList.push(id);
 }
