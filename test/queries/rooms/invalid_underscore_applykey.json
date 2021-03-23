@@ -1,0 +1,46 @@
+{
+    "title": "cannot have underscore in applyKey",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "max_Seats"
+    ],
+    "ORDER": {
+      "dir": "UP",
+      "keys": [
+        "rooms_shortname",
+        "max_Seats"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+        "rooms_shortname"
+    ],
+    "APPLY": [
+      {
+        "max_Seats": {
+          "MAX": "rooms_seats"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result":"InsightError"
+}

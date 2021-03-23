@@ -1,63 +1,66 @@
 /** Validates the given query . true for valid, false for invalid. */
 import Log from "./Util";
+import {validateColumns, validateOrder, validateStructure, validateTransformation} from "./QueryValidateHelpers";
+
+let activeMKeys: string[] = [];
+let activeSKeys: string[] = [];
+let activeSKeysStringOnly: string[] = [];
+const sectionsMKeys: string[] = [ "avg", "pass", "fail", "audit", "year" ];
+const sectionsSKeys: string[] = [ "dept", "id", "instructor", "title", "uuid" ];
+const sectionsSKeysStringOnly: string[] = ["dept", "instructor", "title"];
+const roomsMKeys: string[] = [ "lat", "lon", "seats" ];
+const roomsSKeys: string[] = [ "fullname", "shortname", "number", "name", "address", "type", "furniture", "href" ];
+const comparatorsAndNegator: string[] = ["LT", "GT", "EQ", "NOT", "IS"];
+const comparatorsAll: string[] = ["LT", "GT", "EQ", "NOT", "IS", "AND", "OR"];
 
 export function validateQuery(query: any): boolean {
-    // Check WHERE exists
-    if (query.WHERE === undefined) {
+    // validate overall structure
+    if (validateStructure(query) === false) {
         return false;
     }
-    // Check if WHERE has more than 0 or 1 keys
-    if (Object.keys(query.WHERE).length !== 0 && Object.keys(query.WHERE).length !== 1) {
-        return false;
-    }
-    // Check OPTIONS exists
-    if (query.OPTIONS === undefined) {
-        return false;
-    }
-    // Check COLUMNS exists
-    if (query.OPTIONS.COLUMNS === undefined || Array.isArray(query.OPTIONS.COLUMNS) === false) {
-        return false;
-    }
-    // Check COLUMNS isn't empty
-    if (query.OPTIONS.COLUMNS.length <= 0) {
-        return false;
-    }
-
     // Get dataset id and check it
-    let id: string = retrieveIdFromKey(query.OPTIONS.COLUMNS[0]);
+    let randomValidKey: string = query.OPTIONS.COLUMNS[0];
+    let id: string = retrieveIdFromKey(randomValidKey);
     if (id.length === 0) {
         return false;
     }
-    // Check keys inside COLUMNS are valid
-    for (let key of query.OPTIONS.COLUMNS) {
-        if (validateMSKeyOnly(key, id) === false) {
+    if (id === randomValidKey) {
+        // then column is fucking useless and i cant get id from there
+        // get id from transformation group
+        if (query.TRANSFORMATIONS !== undefined && query.TRANSFORMATIONS.GROUP !== undefined) {
+            randomValidKey = query.TRANSFORMATIONS.GROUP[0];
+            id = retrieveIdFromKey(randomValidKey);
+            if (id === randomValidKey) {
+                return false;
+            }
+        } else {
             return false;
         }
     }
-    // Check if OPTIONS has more than 2 keys
-    if (Object.keys(query.OPTIONS).length > 2) {
+    // SET activeMKeys and activeSKeys
+    let randomValidField: string = randomValidKey.substr(randomValidKey.indexOf("_") + 1, randomValidKey.length);
+    if (randomValidField.length === 0) {
         return false;
     }
-    // Check if OPTIONS has 2 keys but one of them isn't ORDER
-    if (Object.keys(query.OPTIONS).length === 2 && "ORDER" in query.OPTIONS === false) {
+    if (sectionsMKeys.includes(randomValidField) || sectionsSKeys.includes(randomValidField)) {
+        activeMKeys = sectionsMKeys;
+        activeSKeys = sectionsSKeys;
+        activeSKeysStringOnly = sectionsSKeysStringOnly;
+    } else if (roomsMKeys.includes(randomValidField) || roomsSKeys.includes(randomValidField)) {
+        activeMKeys = roomsMKeys;
+        activeSKeys = roomsSKeys;
+        activeSKeysStringOnly = roomsSKeys;
+    } else {
         return false;
     }
-    // Check if order exists, it isn't an empty value
-    if ("ORDER" in query.OPTIONS && query.OPTIONS.ORDER === undefined) {
+    // validate group and apply and columns and order
+    if (validateTransformation(query, id) === false || validateColumns(query, id) === false
+        || validateOrder(query, id) === false) {
         return false;
     }
-    // If ORDER exists, check value(which is a key) of ORDER is valid
-    if ("ORDER" in query.OPTIONS && (typeof(query.OPTIONS.ORDER) !== "string"
-        || validateMSKeyOnly(query.OPTIONS.ORDER, id) === false)) {
-        return false;
-    }
-    // If ORDER exists, the ORDER key must exist in COLUMNS array
-    if ("ORDER" in query.OPTIONS && query.OPTIONS.COLUMNS.includes(query.OPTIONS.ORDER) === false) {
-        return false;
-    }
-
     // Big Recursive Function for Validation
-    return validateAllKeys(query, id);
+    let retval: boolean =  validateAllKeys(query, id);
+    return retval;
 }
 
 export function retrieveIdFromKey(key: string): string {
@@ -73,7 +76,6 @@ export function validateAllKeys(json: any, id: string): boolean {
     if (Number.isFinite(json) || typeof(json) === "string") {
         return true;
     }
-    // Log.info(json);
     if (Array.isArray(json) === false) {
         // CASE: json object
         for (let key of Object.keys(json)) {
@@ -137,7 +139,7 @@ export function validateKeyAndValue(key: string, json: any, id: string): boolean
         }
     }
     // LT GT EQ IS NOT
-    if (key === "LT" || key === "GT" || key === "EQ" || key === "NOT" || key === "IS") {
+    if (comparatorsAndNegator.includes(key)) {
         return helperValidateMSComparisonAndNegation(key, json, id);
     }
     // If id portion of key doesn't match our id, return false
@@ -150,14 +152,14 @@ export function validateKeyAndValue(key: string, json: any, id: string): boolean
         return false;
     }
     // SKEY, MKEY check
-    if ([ "avg", "pass", "fail", "audit", "year" ].includes(field)) {
+    if (activeMKeys.includes(field)) {
         // value better be a valid number
         return Number.isFinite(json[key]);
     }
-    if ([ "dept", "id", "instructor", "title", "uuid" ].includes(field)) {
+    if (activeSKeys.includes(field)) {
         // value better be a valid string, e.g. look for asterisks rules and shit
         if (typeof json[key] === "string") {
-            if (field === "dept" || field === "instructor" ||  field === "title") {
+            if (activeSKeysStringOnly.includes(field)) {
                 // Asterisk Check
                 if (json[key].length > 2) {
                     let asteriskCheck: string = json[key].substr(1, json[key].length - 2);
@@ -202,8 +204,7 @@ function helperValidateMSComparisonAndNegation(key: string, json: any, id: strin
     }
     if (key === "NOT") {
         for (let childKey of Object.keys(value)) {
-            if ((childKey === "IS" || childKey === "LT" || childKey === "GT" || childKey === "EQ"
-                || childKey === "NOT" || childKey === "OR" || childKey === "AND") === false) {
+            if ((comparatorsAll.includes(childKey)) === false) {
                 return false;
             }
         }
@@ -228,7 +229,7 @@ export function validateMKeyOnly(key: string, id: string): boolean {
         return false;
     }
     // MKEY check
-    if ([ "avg", "pass", "fail", "audit", "year" ].includes(field)) {
+    if (activeMKeys.includes(field)) {
         return true;
     }
     return false;
@@ -244,7 +245,7 @@ export function validateSKeyOnly(key: string, id: string): boolean {
         return false;
     }
     // SKEY check
-    if ([ "dept", "id", "instructor", "title", "uuid" ].includes(field)) {
+    if (activeSKeys.includes(field)) {
         return true;
     }
     return false;
