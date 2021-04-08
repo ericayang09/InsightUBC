@@ -1,0 +1,31 @@
+{
+    "title": "courses count insturcotrs",
+    "query": {
+      "WHERE": {
+        "GT": {
+          "courses_avg": 97
+        }
+      },
+      "OPTIONS": {
+        "COLUMNS": [
+          "courses_dept",
+          "countinstructor"
+        ],
+        "ORDER": "countinstructor"
+      },
+      "TRANSFORMATIONS": {
+        "GROUP": [
+          "courses_dept"
+        ],
+        "APPLY": [
+          {
+            "countinstructor": {
+              "COUNT": "courses_instructor"
+            }
+          }
+        ]
+      }
+    },
+    "isQueryValid": true,
+    "result":[{"courses_dept":"educ","countinstructor":1},{"courses_dept":"crwr","countinstructor":2},{"courses_dept":"eece","countinstructor":2},{"courses_dept":"spph","countinstructor":2},{"courses_dept":"cnps","countinstructor":3},{"courses_dept":"nurs","countinstructor":4},{"courses_dept":"math","countinstructor":5},{"courses_dept":"epse","countinstructor":8}]
+}

@@ -1,0 +1,31 @@
+{
+    "title": "courses max avg",
+    "query": {
+      "WHERE": {
+          "GT": {
+            "courses_avg": 97
+          }
+        },
+        "OPTIONS": {
+          "COLUMNS": [
+            "courses_dept",
+            "maxavg"
+          ],
+          "ORDER": "maxavg"
+        },
+        "TRANSFORMATIONS": {
+          "GROUP": [
+            "courses_dept"
+          ],
+          "APPLY": [
+            {
+              "maxavg": {
+                "MAX": "courses_avg"
+              }
+            }
+          ]
+        }
+      },
+    "isQueryValid": true,
+    "result":[{"courses_dept":"educ","maxavg":97.5},{"courses_dept":"crwr","maxavg":98},{"courses_dept":"nurs","maxavg":98.71},{"courses_dept":"eece","maxavg":98.75},{"courses_dept":"epse","maxavg":98.8},{"courses_dept":"spph","maxavg":98.98},{"courses_dept":"cnps","maxavg":99.19},{"courses_dept":"math","maxavg":99.78}]
+}
