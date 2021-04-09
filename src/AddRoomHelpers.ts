@@ -1,5 +1,12 @@
 import {InsightDatasetKind, InsightError, } from "./controller/IInsightFacade";
 import {Room} from "./controller/InsightFacade";
+const http = require("http");
+
+interface GeoResponse {
+    lat?: number;
+    lon?: number;
+    error?: string;
+}
 
 export function parseForTable(nodes: any, dataArray: any[]) {
     if (nodes.nodeName === "table") {
@@ -39,7 +46,8 @@ export function parseForBuildings(node: any) {
                     tdNodes.push(child);
                 }
             }
-            let thisBuilding: any = {buildingName: "", buildingCode: "", buildingAddress: "", href: "" };
+            let thisBuilding: any
+                = {buildingName: "", buildingCode: "", buildingAddress: "", href: "", lat: 0, long: 0};
             for (let tdNode of tdNodes) { // search each td Node for building properties
                 let tdAttribute = tdNode.attrs[0].value;
                 let tdChild = tdNode.childNodes;
@@ -72,6 +80,39 @@ export function parseForBuildings(node: any) {
     return buildings;
 }
 
+export function parseForLonAndLat(address: string): Promise<GeoResponse> {
+    let geoResponse: GeoResponse = {};
+    let encodedAddress = encodeURIComponent(address);
+    return new Promise<any>((resolve, reject) => {
+        http.get("http://cs310.students.cs.ubc.ca:11316/api/v1/project_team175/" + encodedAddress,
+            (result: { headers?: any; resume?: any; setEncoding?: any; on?: any; statusCode?: any; }) => {
+                const {statusCode} = result;
+                let returnData = "";
+                let error;
+                if (statusCode !== 200) { // HTTP status codes: 200 = OK
+                    error = new InsightError("GeoLocation request failed; status code:" + statusCode);
+                }
+                if (error) {
+                    return reject(error.message);
+                } else {
+                    result.setEncoding("utf8");
+                    result.on("data", (data: any) => {
+                        returnData += data;
+                    });
+                    result.on("end", () => {
+                        if (!JSON.parse(returnData).error) {
+                            geoResponse.lon = JSON.parse(returnData).lon;
+                            geoResponse.lat = JSON.parse(returnData).lat;
+                            return resolve(geoResponse);
+                        } else {
+                            return reject(new InsightError("error getting lat and lon"));
+                        }
+                    });
+                }
+        });
+    });
+}
+
 export function parseForRooms(room: any, building: any): Room[] {
     let roomsList: Room[] = [];
     let roomTable: any[] = [];
@@ -93,9 +134,11 @@ export function parseForRooms(room: any, building: any): Room[] {
     let fullName = building.buildingName;
     let shortName = building.buildingCode;
     let buildAddress = building.buildingAddress;
+    let buildingLat = building.lat;
+    let buildingLong = building.long;
     for (let tr of trNodes) {
         let oneRoom: Room = {fullname: fullName, shortname: shortName, number: "", name: "", address: buildAddress,
-            lat: 0, long: 0, seats: 0, type: "", furniture: "", href: ""};
+            lat: buildingLat, long: buildingLong, seats: 0, type: "", furniture: "", href: ""};
         parseOneRoom(tr, oneRoom);
         oneRoom.name = shortName + "_" + oneRoom.number;
         roomsList.push(oneRoom);
@@ -137,4 +180,17 @@ export function parseOneRoom(trNode: any, oneRoom: Room) {
             oneRoom.type = tdChild[0].value.trim();
         }
     }
+}
+
+export function roomsListHelper(parsedRoomFiles: any[],
+                                buildings: any[]): Room[] {
+    let roomsList: Room[] = [];
+    for (let oneBuilding of parsedRoomFiles) {
+        let building = buildings[parsedRoomFiles.indexOf(oneBuilding)];
+        let tempRooms = parseForRooms(oneBuilding, building);
+        if (tempRooms) {
+            roomsList = roomsList.concat(tempRooms);
+        }
+    }
+    return roomsList;
 }

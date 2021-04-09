@@ -3,10 +3,9 @@ import {InsightDataset, InsightDatasetKind, InsightError} from "./controller/IIn
 import * as JSZip from "jszip";
 import * as fs from "fs";
 import {validJSON} from "./dataSetHelpers";
-import {parseForTable, parseForBuildings, parseForRooms, findBody} from "./AddRoomHelpers";
+import {parseForTable, parseForBuildings, findBody, parseForLonAndLat, roomsListHelper} from "./AddRoomHelpers";
 
 const parse5 = require("parse5");
-// const http = require("http");
 
 export function addCourseDataset(
     id: string,
@@ -29,7 +28,7 @@ export function addCourseDataset(
         let data: Section[] = [];
         for (let file of returnedFile) {
             let tempSection: Section[] = parseData(file);
-            if (tempSection.length > 0 && tempSection != null) {
+            if (tempSection.length > 0 && tempSection !== undefined) {
                 // add sections to list of sections: data
                 tempSection.forEach((section) => {
                     data.push(section);
@@ -113,7 +112,7 @@ export function addRoomDataset(
     datasets: Dataset[],
 ): Promise<string[]> {
     let zip = new JSZip();
-    let buildings: any[] = [], table: any[] = [], roomsList: Room[] = [];
+    let buildings: any[] = [], table: any[] = [], roomsList: Room[] = [], geoResponses: any[] = [];
     return zip.loadAsync(content, {base64: true}).then((zipFile) => {
         let stringFile = zipFile.folder("rooms").file("index.htm").async("text");
         return Promise.resolve(stringFile);
@@ -124,26 +123,27 @@ export function addRoomDataset(
         let tbody = table[0].childNodes.find((node: any) => {
             return node.nodeName === "tbody";
         });
-        if (tbody != null) { // Building data in form {buildingName, buildingCode, buildingAddress, href}
+        // Building data in form {buildingName, buildingCode, buildingAddress, href, lat, long}
+        if (tbody != null) {
             buildings = parseForBuildings(tbody);
         }
         let promises = []; // parse each building in buildings for room data
         for (let build of buildings) {
-            promises.push(zip.file("rooms" + build.href.substr(1)).async("text"));
+            promises.push(parseForLonAndLat(build.buildingAddress).then((geoR) => {
+                build.long = geoR.lon;
+                build.lat = geoR.lat;
+                geoResponses.push(geoR);
+            }));
         }
         return Promise.all(promises);
+    }).then(() => {
+        let promises: any[] = [];
+        buildings.forEach((build) => promises.push(zip.file("rooms" + build.href.substr(1)).async("text")));
+        return Promise.all(promises);
     }).then((roomFile) => {
-        let parsedRoomFiles = [];
-        for (let oneRoomFile of roomFile) {
-            parsedRoomFiles.push(parse5.parse(oneRoomFile));
-        }
-        for (let oneBuilding of parsedRoomFiles) {
-            let building = buildings[parsedRoomFiles.indexOf(oneBuilding)];
-            let tempRooms = parseForRooms(oneBuilding, building);
-            if (tempRooms) {
-                roomsList = roomsList.concat(tempRooms);
-            }
-        }
+        let parsedRoomFiles: any[] = [];
+        roomFile.forEach((oneRoom) => parsedRoomFiles.push(parse5.parse(oneRoom)));
+        roomsList = roomsListHelper(parsedRoomFiles, buildings);
         if (roomsList.length === 0) {
             return Promise.reject(new InsightError("No valid rooms found"));
         } else { // add to memory and write to disk
