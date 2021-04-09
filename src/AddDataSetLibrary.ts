@@ -112,7 +112,7 @@ export function addRoomDataset(
     datasets: Dataset[],
 ): Promise<string[]> {
     let zip = new JSZip();
-    let buildings: any[] = [], table: any[] = [], roomsList: Room[] = [], tbody: any;
+    let buildings: any[] = [], table: any[] = [], roomsList: Room[] = [], geoResponses: any[] = [];
     return zip.loadAsync(content, {base64: true}).then((zipFile) => {
         let stringFile = zipFile.folder("rooms").file("index.htm").async("text");
         return Promise.resolve(stringFile);
@@ -120,7 +120,7 @@ export function addRoomDataset(
         let htmData = parse5.parse(fileData);
         let body = findBody(htmData);
         parseForTable(body, table); // find all nodes with name "table"
-        tbody = table[0].childNodes.find((node: any) => {
+        let tbody = table[0].childNodes.find((node: any) => {
             return node.nodeName === "tbody";
         });
         // Building data in form {buildingName, buildingCode, buildingAddress, href, lat, long}
@@ -132,6 +132,7 @@ export function addRoomDataset(
             promises.push(parseForLonAndLat(build.buildingAddress).then((geoR) => {
                 build.long = geoR.lon;
                 build.lat = geoR.lat;
+                geoResponses.push(geoR);
             }));
         }
         return Promise.all(promises);

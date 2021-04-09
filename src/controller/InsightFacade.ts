@@ -82,10 +82,6 @@ export default class InsightFacade implements IInsightFacade {
         if (existingDataSetID(id, this.idList)) {
             return Promise.reject(new InsightError("error: Pre-existing DataSet with this ID"));
         }
-        if (kind === InsightDatasetKind.Rooms) {
-            this.idList.push(id);
-            return Promise.resolve(this.idList);
-        }
         if (!validateDataSetKind(kind)) {
             return Promise.reject(new InsightError("error: Invalid Dataset Kind"));
         }

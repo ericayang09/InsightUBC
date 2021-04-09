@@ -90,7 +90,7 @@ export function parseForLonAndLat(address: string): Promise<GeoResponse> {
                 let returnData = "";
                 let error;
                 if (statusCode !== 200) { // HTTP status codes: 200 = OK
-                    error = new InsightError("GeoLocation request failed; status code:" + "${statusCode}");
+                    error = new InsightError("GeoLocation request failed; status code:" + statusCode);
                 }
                 if (error) {
                     return reject(error.message);
@@ -134,9 +134,11 @@ export function parseForRooms(room: any, building: any): Room[] {
     let fullName = building.buildingName;
     let shortName = building.buildingCode;
     let buildAddress = building.buildingAddress;
+    let buildingLat = building.lat;
+    let buildingLong = building.long;
     for (let tr of trNodes) {
         let oneRoom: Room = {fullname: fullName, shortname: shortName, number: "", name: "", address: buildAddress,
-            lat: 0, long: 0, seats: 0, type: "", furniture: "", href: ""};
+            lat: buildingLat, long: buildingLong, seats: 0, type: "", furniture: "", href: ""};
         parseOneRoom(tr, oneRoom);
         oneRoom.name = shortName + "_" + oneRoom.number;
         roomsList.push(oneRoom);
