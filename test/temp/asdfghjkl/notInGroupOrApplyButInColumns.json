@@ -1,0 +1,31 @@
+{
+    "title": "must exist in group or apply if in columns",
+    "query": {
+  "WHERE": {
+    "GT": {
+      "courses_avg": 98
+    }
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "courses_title"
+    ],
+    "ORDER": "courses_title"
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "courses_dept",
+      "courses_avg"
+    ],
+    "APPLY": [
+      {
+        "overallAvg": {
+          "AVG": "courses_year"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

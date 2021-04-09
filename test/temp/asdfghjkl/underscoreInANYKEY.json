@@ -1,0 +1,26 @@
+{
+    "title": "Underscore in ANYKEY",
+    "query": {
+  "WHERE": {},
+  "OPTIONS": {
+    "COLUMNS": [
+      "courses_title",
+      "overall_Avg"
+    ]
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "courses_title"
+    ],
+    "APPLY": [
+      {
+        "overall_Avg": {
+          "AVG": "courses_avg"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

@@ -1,0 +1,2113 @@
+{
+    "title": "query with IS course_dept: adhe",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "adhe"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_avg",
+                "courses_id",
+                "courses_instructor",
+                "courses_title",
+                "courses_pass",
+                "courses_fail",
+                "courses_audit"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_avg": 67.5,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 25,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 67.95,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 19,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 68.29,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 68.89,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 15,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 69.96,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 22,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 70.53,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 17,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 70.53,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 17,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 70.56,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 24,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 72.29,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 72.55,
+            "courses_id": "327",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "teach adult",
+            "courses_pass": 29,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 72.63,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 23,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 72.93,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 36,
+            "courses_fail": 4,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 72.96,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 27,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 73.79,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 19,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 75.43,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 52,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 75.67,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 115,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 75.68,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 96,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 75.71,
+            "courses_id": "327",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "teach adult",
+            "courses_pass": 34,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 75.91,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 31,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.05,
+            "courses_id": "412",
+            "courses_instructor": "vanwynsberghe, robert",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.17,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 23,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.22,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.35,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 26,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.54,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 23,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.59,
+            "courses_id": "327",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "teach adult",
+            "courses_pass": 31,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.63,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 22,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 76.74,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 22,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77,
+            "courses_id": "330",
+            "courses_instructor": "butterwick, shauna;jubas, kaela",
+            "courses_title": "com adult educ",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 42,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.04,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.07,
+            "courses_id": "330",
+            "courses_instructor": "butterwick, shauna;jubas, kaela",
+            "courses_title": "com adult educ",
+            "courses_pass": 15,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.28,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 48,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.42,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 44,
+            "courses_fail": 4,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.5,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 105,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.54,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 140,
+            "courses_fail": 5,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.58,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 0,
+            "courses_audit": 1
+        },
+        {
+            "courses_avg": 77.58,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 0,
+            "courses_audit": 1
+        },
+        {
+            "courses_avg": 77.59,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.74,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 66,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 77.77,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 30,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 33,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78,
+            "courses_id": "327",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "teach adult",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.09,
+            "courses_id": "328",
+            "courses_instructor": "chan, jennifer",
+            "courses_title": "inst adul educ",
+            "courses_pass": 31,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.2,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 25,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.21,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 22,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.24,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 33,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.41,
+            "courses_id": "327",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "teach adult",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.57,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 35,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.77,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.81,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 15,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.81,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 15,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.85,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.9,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 100,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.91,
+            "courses_id": "328",
+            "courses_instructor": "",
+            "courses_title": "inst adul educ",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.91,
+            "courses_id": "328",
+            "courses_instructor": "chan, jennifer",
+            "courses_title": "inst adul educ",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 78.94,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 32,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 17,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.04,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 23,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.19,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 19,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.33,
+            "courses_id": "328",
+            "courses_instructor": "",
+            "courses_title": "inst adul educ",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.33,
+            "courses_id": "328",
+            "courses_instructor": "elfert, maren",
+            "courses_title": "inst adul educ",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.47,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 34,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.5,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 31,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.83,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 29,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.84,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 30,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 79.88,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 32,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.25,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.33,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.35,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 19,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.4,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 29,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.44,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.55,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.76,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 159,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 80.86,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 84,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.2,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 10,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.4,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 15,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.45,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.45,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.62,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 28,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.67,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 40,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.71,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.71,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 20,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.75,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 46,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.85,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 19,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 81.89,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 27,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 25,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.25,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.25,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.49,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 71,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.73,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 108,
+            "courses_fail": 2,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.76,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.78,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.79,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 32,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.81,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 184,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.82,
+            "courses_id": "328",
+            "courses_instructor": "",
+            "courses_title": "inst adul educ",
+            "courses_pass": 66,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.84,
+            "courses_id": "329",
+            "courses_instructor": "wilson, mary",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 18,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.9,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 82.96,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 193,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.02,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 46,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.05,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.07,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.16,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 22,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.29,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.33,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 32,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.34,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 145,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.41,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.45,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.45,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.47,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 123,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.48,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.57,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.64,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 35,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.66,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 28,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.68,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.69,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 35,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.71,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.74,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.83,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 29,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.87,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 30,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.9,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 50,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.91,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 34,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 83.96,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 185,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.04,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 26,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.07,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 28,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.14,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.3,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 30,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.42,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 32,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.45,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.52,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.57,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 20,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.71,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.78,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 36,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.83,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 51,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.87,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 23,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 84.9,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 71,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 29,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.03,
+            "courses_id": "329",
+            "courses_instructor": "aijazi, omer",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 36,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.04,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 182,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.04,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.06,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.12,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 43,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.14,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.2,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.2,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.2,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 83,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.29,
+            "courses_id": "412",
+            "courses_instructor": "palacios, carolina",
+            "courses_title": "adul educ",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.39,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.41,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.58,
+            "courses_id": "329",
+            "courses_instructor": "palacios, carolina;sork, thomas joda",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.6,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.64,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.7,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 53,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.72,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 50,
+            "courses_fail": 3,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.78,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.78,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.8,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.8,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 20,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.81,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.81,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 85.86,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 7,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 16,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.04,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 25,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.13,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.16,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 43,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.17,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 23,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.19,
+            "courses_id": "329",
+            "courses_instructor": "wilson, mary",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.2,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 35,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.22,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.24,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 29,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.26,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 19,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.26,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 19,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.33,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.44,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 16,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.45,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.5,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.59,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.59,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.59,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.59,
+            "courses_id": "327",
+            "courses_instructor": "walker, judith",
+            "courses_title": "teach adult",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.64,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.65,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 23,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.72,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 90,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 86.78,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.14,
+            "courses_id": "328",
+            "courses_instructor": "vanwynsberghe, robert",
+            "courses_title": "inst adul educ",
+            "courses_pass": 35,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.15,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 13,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.17,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 30,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.37,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 111,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.47,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 53,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.5,
+            "courses_id": "327",
+            "courses_instructor": "crisfield, erin",
+            "courses_title": "teach adult",
+            "courses_pass": 10,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.68,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 30,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.71,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 179,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 87.88,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.03,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 35,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.03,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.23,
+            "courses_id": "327",
+            "courses_instructor": "regmi, kapil",
+            "courses_title": "teach adult",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.25,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.25,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 19,
+            "courses_fail": 1,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.27,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 56,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.53,
+            "courses_id": "327",
+            "courses_instructor": "",
+            "courses_title": "teach adult",
+            "courses_pass": 15,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.53,
+            "courses_id": "327",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "teach adult",
+            "courses_pass": 15,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.56,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 25,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 88.91,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 26,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 26,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.08,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 13,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.28,
+            "courses_id": "327",
+            "courses_instructor": "regmi, kapil",
+            "courses_title": "teach adult",
+            "courses_pass": 32,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.3,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.38,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.38,
+            "courses_id": "329",
+            "courses_instructor": "smulders, dave",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.51,
+            "courses_id": "327",
+            "courses_instructor": "regmi, kapil",
+            "courses_title": "teach adult",
+            "courses_pass": 35,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.55,
+            "courses_id": "412",
+            "courses_instructor": "",
+            "courses_title": "adul educ",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.55,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 89.74,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 23,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.02,
+            "courses_id": "329",
+            "courses_instructor": "",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 62,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.16,
+            "courses_id": "412",
+            "courses_instructor": "vanwynsberghe, robert",
+            "courses_title": "adul educ",
+            "courses_pass": 31,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.17,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 29,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.18,
+            "courses_id": "412",
+            "courses_instructor": "falk, clifford",
+            "courses_title": "adul educ",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.5,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 18,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.72,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 25,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.82,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 90.85,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 34,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 91.29,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 28,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 91.33,
+            "courses_id": "330",
+            "courses_instructor": "",
+            "courses_title": "com adult educ",
+            "courses_pass": 18,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 91.33,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 18,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 91.48,
+            "courses_id": "330",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "com adult educ",
+            "courses_pass": 23,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 92.54,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 26,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 93.33,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 33,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_avg": 96.11,
+            "courses_id": "329",
+            "courses_instructor": "bishundayal, deonarine",
+            "courses_title": "dev wkshp/sem",
+            "courses_pass": 27,
+            "courses_fail": 0,
+            "courses_audit": 0
+        }
+    ]
+}

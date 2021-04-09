@@ -1,0 +1,17 @@
+{
+    "title": "COLUMNS must be a non-empty array (passed in an empty array)",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "adhe",
+                "courses_title": "cpsc"
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

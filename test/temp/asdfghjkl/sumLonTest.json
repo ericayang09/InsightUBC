@@ -1,0 +1,199 @@
+{
+    "title": "sum for longitude",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "rooms_furniture": "*Tables*"
+                    }
+                },
+                {
+                    "GT": {
+                        "rooms_seats": 10
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "rooms_shortname",
+                "countType"
+            ],
+            "ORDER": {
+                "dir": "DOWN",
+                "keys": [
+                    "countType",
+                    "rooms_shortname"
+                ]
+            }
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "rooms_shortname"
+            ],
+            "APPLY": [
+                {
+                    "countType": {
+                        "SUM": "rooms_lon"
+                    }
+                }
+            ]
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "rooms_shortname": "FRDM",
+            "countType": -123.25
+        },
+        {
+            "rooms_shortname": "FNH",
+            "countType": -123.25
+        },
+        {
+            "rooms_shortname": "ESB",
+            "countType": -123.25
+        },
+        {
+            "rooms_shortname": "EOSM",
+            "countType": -123.25
+        },
+        {
+            "rooms_shortname": "OSBO",
+            "countType": -246.49
+        },
+        {
+            "rooms_shortname": "IONA",
+            "countType": -246.5
+        },
+        {
+            "rooms_shortname": "BRKX",
+            "countType": -246.5
+        },
+        {
+            "rooms_shortname": "AUDX",
+            "countType": -246.51
+        },
+        {
+            "rooms_shortname": "LSC",
+            "countType": -369.73
+        },
+        {
+            "rooms_shortname": "CHBE",
+            "countType": -369.74
+        },
+        {
+            "rooms_shortname": "SRC",
+            "countType": -369.75
+        },
+        {
+            "rooms_shortname": "HENN",
+            "countType": -369.76
+        },
+        {
+            "rooms_shortname": "FORW",
+            "countType": -369.76
+        },
+        {
+            "rooms_shortname": "BIOL",
+            "countType": -369.76
+        },
+        {
+            "rooms_shortname": "UCLL",
+            "countType": -369.77
+        },
+        {
+            "rooms_shortname": "SOWK",
+            "countType": -369.77
+        },
+        {
+            "rooms_shortname": "MATH",
+            "countType": -369.77
+        },
+        {
+            "rooms_shortname": "LASR",
+            "countType": -369.77
+        },
+        {
+            "rooms_shortname": "ANSO",
+            "countType": -369.77
+        },
+        {
+            "rooms_shortname": "PHRM",
+            "countType": -492.97
+        },
+        {
+            "rooms_shortname": "HEBB",
+            "countType": -493.01
+        },
+        {
+            "rooms_shortname": "LSK",
+            "countType": -493.02
+        },
+        {
+            "rooms_shortname": "DMP",
+            "countType": -616.24
+        },
+        {
+            "rooms_shortname": "MCML",
+            "countType": -616.25
+        },
+        {
+            "rooms_shortname": "ALRD",
+            "countType": -616.27
+        },
+        {
+            "rooms_shortname": "SPPH",
+            "countType": -739.49
+        },
+        {
+            "rooms_shortname": "CEME",
+            "countType": -739.49
+        },
+        {
+            "rooms_shortname": "MCLD",
+            "countType": -739.5
+        },
+        {
+            "rooms_shortname": "PCOH",
+            "countType": -862.79
+        },
+        {
+            "rooms_shortname": "GEOG",
+            "countType": -862.79
+        },
+        {
+            "rooms_shortname": "FSC",
+            "countType": -985.99
+        },
+        {
+            "rooms_shortname": "ORCH",
+            "countType": -1109.24
+        },
+        {
+            "rooms_shortname": "WOOD",
+            "countType": -1232.47
+        },
+        {
+            "rooms_shortname": "IBLC",
+            "countType": -1232.52
+        },
+        {
+            "rooms_shortname": "SCRF",
+            "countType": -2588.32
+        },
+        {
+            "rooms_shortname": "SWNG",
+            "countType": -2711.59
+        },
+        {
+            "rooms_shortname": "ANGU",
+            "countType": -3451.1
+        },
+        {
+            "rooms_shortname": "BUCH",
+            "countType": -4190.66
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "title": "COUNT Number Type",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "countSeats"
+    ],
+    "ORDER": {
+      "dir": "DOWN",
+      "keys": [
+        "countSeats",
+        "rooms_shortname"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "rooms_shortname"
+    ],
+    "APPLY": [
+      {
+        "countSeats": {
+          "COUNT": "rooms_seats"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": true,
+    "result":[{"rooms_shortname":"OSBO","countSeats":1},{"rooms_shortname":"LSC","countSeats":1},{"rooms_shortname":"HEBB","countSeats":1}]}

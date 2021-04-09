@@ -1,0 +1,50 @@
+{
+    "title": "Multiple KEYS in Apply Array",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "maxSeats",
+      "overallAvg"
+    ],
+    "ORDER": {
+      "dir": "DOWN",
+      "keys": [
+        "maxSeats"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "rooms_shortname"
+    ],
+    "APPLY": [
+      {
+        "maxSeats": {
+          "MAX": "rooms_seats"
+        }
+      },
+      {
+        "overallAvg": {
+          "AVG": "rooms_seats"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": true,
+    "result":[{"rooms_shortname":"OSBO","maxSeats":442,"overallAvg":442},{"rooms_shortname":"HEBB","maxSeats":375,"overallAvg":375},{"rooms_shortname":"LSC","maxSeats":350,"overallAvg":350}]}

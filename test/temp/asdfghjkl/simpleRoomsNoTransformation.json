@@ -1,0 +1,54 @@
+{
+    "title": "Simple Rooms query that does not use transformations",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "rooms_furniture": "*Tables*"
+                    }
+                },
+                {
+                    "GT": {
+                        "rooms_seats": 300
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "rooms_shortname",
+                "rooms_lon",
+                "rooms_lat",
+                "rooms_furniture"
+            ]
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "rooms_shortname": "HEBB",
+            "rooms_lon": -123.25165,
+            "rooms_lat": 49.2661,
+            "rooms_furniture": "Classroom-Fixed Tables/Fixed Chairs"
+        },
+        {
+            "rooms_shortname": "LSC",
+            "rooms_lon": -123.24494,
+            "rooms_lat": 49.26236,
+            "rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+        },
+        {
+            "rooms_shortname": "LSC",
+            "rooms_lon": -123.24494,
+            "rooms_lat": 49.26236,
+            "rooms_furniture": "Classroom-Fixed Tables/Movable Chairs"
+        },
+        {
+            "rooms_shortname": "OSBO",
+            "rooms_lon": -123.24467,
+            "rooms_lat": 49.26047,
+            "rooms_furniture": "Classroom-Movable Tables & Chairs"
+        }
+    ]
+}

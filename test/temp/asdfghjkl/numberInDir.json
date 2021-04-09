@@ -1,0 +1,47 @@
+{
+    "title": "number in Dir",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "maxSeats",
+      "rooms_type"
+    ],
+    "ORDER": {
+      "dir": 5,
+      "keys": [
+        "maxSeats"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "rooms_shortname",
+      "rooms_type"
+    ],
+    "APPLY": [
+      {
+        "maxSeats": {
+          "COUNT": "rooms_seats"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

@@ -1,0 +1,516 @@
+{
+    "title": "get all columns",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_avg": 97
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg",
+                "courses_id",
+                "courses_instructor",
+                "courses_title",
+                "courses_pass",
+                "courses_fail",
+                "courses_audit"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "math",
+            "courses_avg": 97.09,
+            "courses_id": "541",
+            "courses_instructor": "",
+            "courses_title": "harmonic anal i",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 97.09,
+            "courses_id": "541",
+            "courses_instructor": "laba, izabella",
+            "courses_title": "harmonic anal i",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.09,
+            "courses_id": "596",
+            "courses_instructor": "",
+            "courses_title": "cor des ed res",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.09,
+            "courses_id": "596",
+            "courses_instructor": "kishor, nand",
+            "courses_title": "cor des ed res",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 97.25,
+            "courses_id": "525",
+            "courses_instructor": "",
+            "courses_title": "diff geometry i",
+            "courses_pass": 4,
+            "courses_fail": 0,
+            "courses_audit": 1
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 97.25,
+            "courses_id": "525",
+            "courses_instructor": "fraser, ailana",
+            "courses_title": "diff geometry i",
+            "courses_pass": 4,
+            "courses_fail": 0,
+            "courses_audit": 1
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.29,
+            "courses_id": "421",
+            "courses_instructor": "",
+            "courses_title": "assess lrn diffi",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.29,
+            "courses_id": "421",
+            "courses_instructor": "cole, kenneth",
+            "courses_title": "assess lrn diffi",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 97.33,
+            "courses_id": "591",
+            "courses_instructor": "",
+            "courses_title": "eth&profl issues",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 97.33,
+            "courses_id": "591",
+            "courses_instructor": "brew, nancy",
+            "courses_title": "eth&profl issues",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.41,
+            "courses_id": "534",
+            "courses_instructor": "",
+            "courses_title": "acad assess schl",
+            "courses_pass": 17,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.41,
+            "courses_id": "449",
+            "courses_instructor": "wilk, diana",
+            "courses_title": "educ stds autism",
+            "courses_pass": 17,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "cnps",
+            "courses_avg": 97.47,
+            "courses_id": "574",
+            "courses_instructor": "",
+            "courses_title": "career planning",
+            "courses_pass": 15,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "cnps",
+            "courses_avg": 97.47,
+            "courses_id": "574",
+            "courses_instructor": "neault, roberta a",
+            "courses_title": "career planning",
+            "courses_pass": 15,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 97.48,
+            "courses_id": "532",
+            "courses_instructor": "",
+            "courses_title": "algb geometry i",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 97.48,
+            "courses_id": "532",
+            "courses_instructor": "karu, kalle",
+            "courses_title": "algb geometry i",
+            "courses_pass": 21,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "educ",
+            "courses_avg": 97.5,
+            "courses_id": "500",
+            "courses_instructor": "morgan, tannis",
+            "courses_title": "res mthd in educ",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 97.53,
+            "courses_id": "578",
+            "courses_instructor": "",
+            "courses_title": "fam nrs pract",
+            "courses_pass": 17,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 97.53,
+            "courses_id": "578",
+            "courses_instructor": "burrows, marlene;harding, jillian;krist, jennifer;mccuaig, fairleth",
+            "courses_title": "fam nrs pract",
+            "courses_pass": 17,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.67,
+            "courses_id": "606",
+            "courses_instructor": "porath, marion",
+            "courses_title": "coll&uni teachng",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.69,
+            "courses_id": "549",
+            "courses_instructor": "grow, laura",
+            "courses_title": "sem in autism",
+            "courses_pass": 16,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 97.78,
+            "courses_id": "534",
+            "courses_instructor": "amaral, deborah;ford, laurie",
+            "courses_title": "acad assess schl",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "crwr",
+            "courses_avg": 98,
+            "courses_id": "599",
+            "courses_instructor": "grady, albert wayne",
+            "courses_title": "thesis",
+            "courses_pass": 1,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "crwr",
+            "courses_avg": 98,
+            "courses_id": "599",
+            "courses_instructor": "maillard, keith",
+            "courses_title": "thesis",
+            "courses_pass": 1,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.08,
+            "courses_id": "421",
+            "courses_instructor": "cole, kenneth",
+            "courses_title": "assess lrn diffi",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.21,
+            "courses_id": "509",
+            "courses_instructor": "",
+            "courses_title": "cl pro prim care",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.21,
+            "courses_id": "509",
+            "courses_instructor": "krist, jennifer",
+            "courses_title": "cl pro prim care",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.36,
+            "courses_id": "421",
+            "courses_instructor": "",
+            "courses_title": "assess lrn diffi",
+            "courses_pass": 22,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.45,
+            "courses_id": "519",
+            "courses_instructor": "",
+            "courses_title": "dev el sk df&hrd",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.45,
+            "courses_id": "519",
+            "courses_instructor": "cannon, joanna",
+            "courses_title": "dev el sk df&hrd",
+            "courses_pass": 11,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.5,
+            "courses_id": "578",
+            "courses_instructor": "",
+            "courses_title": "fam nrs pract",
+            "courses_pass": 16,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.5,
+            "courses_id": "578",
+            "courses_instructor": "burrows, marlene;harding, jillian;krist, jennifer;mccuaig, fairleth",
+            "courses_title": "fam nrs pract",
+            "courses_pass": 16,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.58,
+            "courses_id": "578",
+            "courses_instructor": "",
+            "courses_title": "fam nrs pract",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.58,
+            "courses_id": "578",
+            "courses_instructor": "",
+            "courses_title": "fam nrs pract",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.58,
+            "courses_id": "449",
+            "courses_instructor": "",
+            "courses_title": "educ stds autism",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.58,
+            "courses_id": "449",
+            "courses_instructor": "grow, laura",
+            "courses_title": "educ stds autism",
+            "courses_pass": 24,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.7,
+            "courses_id": "421",
+            "courses_instructor": "cole, kenneth",
+            "courses_title": "assess lrn diffi",
+            "courses_pass": 10,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.71,
+            "courses_id": "509",
+            "courses_instructor": "",
+            "courses_title": "cl pro prim care",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "nurs",
+            "courses_avg": 98.71,
+            "courses_id": "509",
+            "courses_instructor": "brew, nancy",
+            "courses_title": "cl pro prim care",
+            "courses_pass": 14,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "eece",
+            "courses_avg": 98.75,
+            "courses_id": "541",
+            "courses_instructor": "",
+            "courses_title": "multimedia sys",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "eece",
+            "courses_avg": 98.75,
+            "courses_id": "541",
+            "courses_instructor": "coria, lino",
+            "courses_title": "multimedia sys",
+            "courses_pass": 12,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.76,
+            "courses_id": "449",
+            "courses_instructor": "",
+            "courses_title": "educ stds autism",
+            "courses_pass": 17,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.76,
+            "courses_id": "449",
+            "courses_instructor": "grow, laura",
+            "courses_title": "educ stds autism",
+            "courses_pass": 17,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "epse",
+            "courses_avg": 98.8,
+            "courses_id": "449",
+            "courses_instructor": "grow, laura",
+            "courses_title": "educ stds autism",
+            "courses_pass": 25,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 98.98,
+            "courses_id": "300",
+            "courses_instructor": "",
+            "courses_title": "work int health",
+            "courses_pass": 82,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "spph",
+            "courses_avg": 98.98,
+            "courses_id": "300",
+            "courses_instructor": "frank, erica",
+            "courses_title": "work int health",
+            "courses_pass": 82,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "cnps",
+            "courses_avg": 99.19,
+            "courses_id": "574",
+            "courses_instructor": "cox, daniel",
+            "courses_title": "career planning",
+            "courses_pass": 16,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 99.78,
+            "courses_id": "527",
+            "courses_instructor": "",
+            "courses_title": "algb topology i",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        },
+        {
+            "courses_dept": "math",
+            "courses_avg": 99.78,
+            "courses_id": "527",
+            "courses_instructor": "gomez, jose",
+            "courses_title": "algb topology i",
+            "courses_pass": 9,
+            "courses_fail": 0,
+            "courses_audit": 0
+        }
+    ]
+}

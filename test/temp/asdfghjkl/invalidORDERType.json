@@ -1,0 +1,21 @@
+{
+    "title": "Error when order is a number and not a string",
+    "query": {
+        "WHERE": {
+            "NOT": {
+                "GT": {
+                    "courses_avg": 5
+                }
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ],
+            "ORDER": 123
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

@@ -1,0 +1,47 @@
+{
+    "title": "GROUP by more than one type",
+    "query": {
+  "WHERE": {
+    "AND": [
+      {
+        "IS": {
+          "rooms_furniture": "*Tables*"
+        }
+      },
+      {
+        "GT": {
+          "rooms_seats": 300
+        }
+      }
+    ]
+  },
+  "OPTIONS": {
+    "COLUMNS": [
+      "rooms_shortname",
+      "countSeats",
+      "rooms_type"
+    ],
+    "ORDER": {
+      "dir": "UP",
+      "keys": [
+        "countSeats",
+        "rooms_shortname"
+      ]
+    }
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "rooms_shortname",
+      "rooms_type"
+    ],
+    "APPLY": [
+      {
+        "countSeats": {
+          "COUNT": "rooms_seats"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": true,
+    "result":[{"rooms_shortname":"HEBB","countSeats":1,"rooms_type":"Tiered Large Group"},{"rooms_shortname":"LSC","countSeats":1,"rooms_type":"Tiered Large Group"},{"rooms_shortname":"OSBO","countSeats":1,"rooms_type":"Open Design General Purpose"}]}

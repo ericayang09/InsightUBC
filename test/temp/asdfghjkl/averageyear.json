@@ -1,0 +1,126 @@
+{
+    "title": "year average",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_avg": 98
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "overallAvg",
+                "courses_avg",
+                "courses_title"
+            ],
+            "ORDER": "courses_title"
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_dept",
+                "courses_avg",
+                "courses_title"
+            ],
+            "APPLY": [
+                {
+                    "overallAvg": {
+                        "AVG": "courses_year"
+                    }
+                }
+            ]
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_dept": "math",
+            "overallAvg": 1954.5,
+            "courses_avg": 99.78,
+            "courses_title": "algb topology i"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 2009,
+            "courses_avg": 98.08,
+            "courses_title": "assess lrn diffi"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 2009,
+            "courses_avg": 98.7,
+            "courses_title": "assess lrn diffi"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 1900,
+            "courses_avg": 98.36,
+            "courses_title": "assess lrn diffi"
+        },
+        {
+            "courses_dept": "cnps",
+            "overallAvg": 2012,
+            "courses_avg": 99.19,
+            "courses_title": "career planning"
+        },
+        {
+            "courses_dept": "nurs",
+            "overallAvg": 1955.5,
+            "courses_avg": 98.71,
+            "courses_title": "cl pro prim care"
+        },
+        {
+            "courses_dept": "nurs",
+            "overallAvg": 1957.5,
+            "courses_avg": 98.21,
+            "courses_title": "cl pro prim care"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 1955.5,
+            "courses_avg": 98.45,
+            "courses_title": "dev el sk df&hrd"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 2014,
+            "courses_avg": 98.8,
+            "courses_title": "educ stds autism"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 1956,
+            "courses_avg": 98.58,
+            "courses_title": "educ stds autism"
+        },
+        {
+            "courses_dept": "epse",
+            "overallAvg": 1956,
+            "courses_avg": 98.76,
+            "courses_title": "educ stds autism"
+        },
+        {
+            "courses_dept": "nurs",
+            "overallAvg": 1956.5,
+            "courses_avg": 98.5,
+            "courses_title": "fam nrs pract"
+        },
+        {
+            "courses_dept": "nurs",
+            "overallAvg": 1955,
+            "courses_avg": 98.58,
+            "courses_title": "fam nrs pract"
+        },
+        {
+            "courses_dept": "eece",
+            "overallAvg": 1954.5,
+            "courses_avg": 98.75,
+            "courses_title": "multimedia sys"
+        },
+        {
+            "courses_dept": "spph",
+            "overallAvg": 1957.5,
+            "courses_avg": 98.98,
+            "courses_title": "work int health"
+        }
+    ]
+}

@@ -1,0 +1,3840 @@
+{
+    "title": "Sum All Courses Fields",
+    "query": {
+        "WHERE": {
+            "GT": {
+                "courses_pass": 0
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_id",
+                "countType",
+                "avg",
+                "fail",
+                "audit",
+                "year"
+            ],
+            "ORDER": {
+                "dir": "DOWN",
+                "keys": [
+                    "year",
+                    "avg",
+                    "countType",
+                    "courses_id"
+                ]
+            }
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "courses_id"
+            ],
+            "APPLY": [
+                {
+                    "countType": {
+                        "SUM": "courses_pass"
+                    }
+                },
+                {
+                    "avg": {
+                        "SUM": "courses_avg"
+                    }
+                },
+                {
+                    "fail": {
+                        "SUM": "courses_fail"
+                    }
+                },
+                {
+                    "audit": {
+                        "SUM": "courses_audit"
+                    }
+                },
+                {
+                    "year": {
+                        "SUM": "courses_year"
+                    }
+                }
+            ]
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "courses_id": "101",
+            "countType": 194025,
+            "avg": 101946.28,
+            "fail": 15232,
+            "audit": 427,
+            "year": 2810513
+        },
+        {
+            "courses_id": "112",
+            "countType": 96340,
+            "avg": 79153.55,
+            "fail": 4544,
+            "audit": 34,
+            "year": 2193542
+        },
+        {
+            "courses_id": "200",
+            "countType": 115192,
+            "avg": 73813.39,
+            "fail": 7031,
+            "audit": 245,
+            "year": 1996801
+        },
+        {
+            "courses_id": "102",
+            "countType": 122128,
+            "avg": 70102.83,
+            "fail": 8784,
+            "audit": 289,
+            "year": 1928034
+        },
+        {
+            "courses_id": "100",
+            "countType": 97622,
+            "avg": 71718.62,
+            "fail": 6054,
+            "audit": 302,
+            "year": 1917729
+        },
+        {
+            "courses_id": "201",
+            "countType": 56041,
+            "avg": 55683.31,
+            "fail": 2622,
+            "audit": 152,
+            "year": 1499666
+        },
+        {
+            "courses_id": "500",
+            "countType": 19264,
+            "avg": 53917.48,
+            "fail": 78,
+            "audit": 83,
+            "year": 1248562
+        },
+        {
+            "courses_id": "501",
+            "countType": 12566,
+            "avg": 52174.41,
+            "fail": 20,
+            "audit": 235,
+            "year": 1204934
+        },
+        {
+            "courses_id": "301",
+            "countType": 48472,
+            "avg": 46362.73,
+            "fail": 1780,
+            "audit": 123,
+            "year": 1196078
+        },
+        {
+            "courses_id": "110",
+            "countType": 66374,
+            "avg": 40938.87,
+            "fail": 3550,
+            "audit": 106,
+            "year": 1105877
+        },
+        {
+            "courses_id": "502",
+            "countType": 12194,
+            "avg": 46855.74,
+            "fail": 44,
+            "audit": 76,
+            "year": 1083600
+        },
+        {
+            "courses_id": "302",
+            "countType": 50476,
+            "avg": 40998.63,
+            "fail": 2440,
+            "audit": 116,
+            "year": 1080060
+        },
+        {
+            "courses_id": "300",
+            "countType": 32162,
+            "avg": 40961.22,
+            "fail": 1826,
+            "audit": 165,
+            "year": 1064619
+        },
+        {
+            "courses_id": "210",
+            "countType": 39226,
+            "avg": 40305.05,
+            "fail": 1852,
+            "audit": 101,
+            "year": 1059975
+        },
+        {
+            "courses_id": "221",
+            "countType": 39944,
+            "avg": 32851.94,
+            "fail": 2544,
+            "audit": 41,
+            "year": 890501
+        },
+        {
+            "courses_id": "303",
+            "countType": 20443,
+            "avg": 33997.68,
+            "fail": 538,
+            "audit": 30,
+            "year": 866926
+        },
+        {
+            "courses_id": "111",
+            "countType": 29067,
+            "avg": 30643.85,
+            "fail": 1550,
+            "audit": 57,
+            "year": 810981
+        },
+        {
+            "courses_id": "220",
+            "countType": 26706,
+            "avg": 29801.57,
+            "fail": 1351,
+            "audit": 51,
+            "year": 802739
+        },
+        {
+            "courses_id": "520",
+            "countType": 7190,
+            "avg": 34559.4,
+            "fail": 8,
+            "audit": 44,
+            "year": 801650
+        },
+        {
+            "courses_id": "310",
+            "countType": 31648,
+            "avg": 30195.17,
+            "fail": 1102,
+            "audit": 68,
+            "year": 775910
+        },
+        {
+            "courses_id": "599",
+            "countType": 2180,
+            "avg": 32685.22,
+            "fail": 0,
+            "audit": 0,
+            "year": 737284
+        },
+        {
+            "courses_id": "121",
+            "countType": 78492,
+            "avg": 25673.53,
+            "fail": 8374,
+            "audit": 34,
+            "year": 732212
+        },
+        {
+            "courses_id": "103",
+            "countType": 31170,
+            "avg": 26865.18,
+            "fail": 2124,
+            "audit": 85,
+            "year": 726717
+        },
+        {
+            "courses_id": "550",
+            "countType": 14427,
+            "avg": 30727.35,
+            "fail": 22,
+            "audit": 34,
+            "year": 722982
+        },
+        {
+            "courses_id": "549",
+            "countType": 3230,
+            "avg": 30760.31,
+            "fail": 2,
+            "audit": 6,
+            "year": 701544
+        },
+        {
+            "courses_id": "402",
+            "countType": 14566,
+            "avg": 28051.52,
+            "fail": 292,
+            "audit": 59,
+            "year": 692049
+        },
+        {
+            "courses_id": "505",
+            "countType": 7461,
+            "avg": 29592.77,
+            "fail": 12,
+            "audit": 172,
+            "year": 683299
+        },
+        {
+            "courses_id": "311",
+            "countType": 22862,
+            "avg": 25930.14,
+            "fail": 734,
+            "audit": 40,
+            "year": 668637
+        },
+        {
+            "courses_id": "490",
+            "countType": 9534,
+            "avg": 26899.58,
+            "fail": 94,
+            "audit": 6,
+            "year": 665326
+        },
+        {
+            "courses_id": "315",
+            "countType": 26099,
+            "avg": 24783.79,
+            "fail": 772,
+            "audit": 20,
+            "year": 661629
+        },
+        {
+            "courses_id": "401",
+            "countType": 14659,
+            "avg": 25544.6,
+            "fail": 464,
+            "audit": 20,
+            "year": 653439
+        },
+        {
+            "courses_id": "362",
+            "countType": 16593,
+            "avg": 26503.87,
+            "fail": 114,
+            "audit": 8,
+            "year": 650412
+        },
+        {
+            "courses_id": "503",
+            "countType": 6416,
+            "avg": 27526.85,
+            "fail": 14,
+            "audit": 174,
+            "year": 639066
+        },
+        {
+            "courses_id": "511",
+            "countType": 10343,
+            "avg": 27224.07,
+            "fail": 30,
+            "audit": 28,
+            "year": 636138
+        },
+        {
+            "courses_id": "330",
+            "countType": 24309,
+            "avg": 24406.74,
+            "fail": 2000,
+            "audit": 24,
+            "year": 629833
+        },
+        {
+            "courses_id": "202",
+            "countType": 35664,
+            "avg": 23699.14,
+            "fail": 1270,
+            "audit": 65,
+            "year": 625533
+        },
+        {
+            "courses_id": "510",
+            "countType": 6654,
+            "avg": 27062.03,
+            "fail": 24,
+            "audit": 40,
+            "year": 622443
+        },
+        {
+            "courses_id": "305",
+            "countType": 14011,
+            "avg": 24540.32,
+            "fail": 398,
+            "audit": 37,
+            "year": 618374
+        },
+        {
+            "courses_id": "320",
+            "countType": 18346,
+            "avg": 23446.69,
+            "fail": 882,
+            "audit": 39,
+            "year": 608922
+        },
+        {
+            "courses_id": "370",
+            "countType": 21662,
+            "avg": 23062.25,
+            "fail": 702,
+            "audit": 112,
+            "year": 606643
+        },
+        {
+            "courses_id": "433",
+            "countType": 13760,
+            "avg": 24478.94,
+            "fail": 100,
+            "audit": 71,
+            "year": 606353
+        },
+        {
+            "courses_id": "304",
+            "countType": 23308,
+            "avg": 22995.92,
+            "fail": 872,
+            "audit": 35,
+            "year": 597432
+        },
+        {
+            "courses_id": "504",
+            "countType": 6144,
+            "avg": 25422.64,
+            "fail": 16,
+            "audit": 102,
+            "year": 590565
+        },
+        {
+            "courses_id": "316",
+            "countType": 17980,
+            "avg": 23222.65,
+            "fail": 478,
+            "audit": 20,
+            "year": 587430
+        },
+        {
+            "courses_id": "314",
+            "countType": 30580,
+            "avg": 22105.97,
+            "fail": 767,
+            "audit": 30,
+            "year": 586534
+        },
+        {
+            "courses_id": "450",
+            "countType": 21734,
+            "avg": 22276.55,
+            "fail": 755,
+            "audit": 8,
+            "year": 576535
+        },
+        {
+            "courses_id": "355",
+            "countType": 33588,
+            "avg": 21487.35,
+            "fail": 1130,
+            "audit": 58,
+            "year": 571723
+        },
+        {
+            "courses_id": "335",
+            "countType": 22777,
+            "avg": 22194.04,
+            "fail": 779,
+            "audit": 11,
+            "year": 568231
+        },
+        {
+            "courses_id": "405",
+            "countType": 7053,
+            "avg": 22757.96,
+            "fail": 87,
+            "audit": 28,
+            "year": 564985
+        },
+        {
+            "courses_id": "390",
+            "countType": 12760,
+            "avg": 21132.31,
+            "fail": 152,
+            "audit": 0,
+            "year": 548574
+        },
+        {
+            "courses_id": "400",
+            "countType": 13556,
+            "avg": 22428.51,
+            "fail": 478,
+            "audit": 74,
+            "year": 541804
+        },
+        {
+            "courses_id": "540",
+            "countType": 5491,
+            "avg": 23250.2,
+            "fail": 12,
+            "audit": 105,
+            "year": 537604
+        },
+        {
+            "courses_id": "250",
+            "countType": 17383,
+            "avg": 19870.36,
+            "fail": 487,
+            "audit": 35,
+            "year": 527250
+        },
+        {
+            "courses_id": "340",
+            "countType": 19598,
+            "avg": 20074.28,
+            "fail": 718,
+            "audit": 111,
+            "year": 526036
+        },
+        {
+            "courses_id": "410",
+            "countType": 10617,
+            "avg": 20699.64,
+            "fail": 160,
+            "audit": 26,
+            "year": 522351
+        },
+        {
+            "courses_id": "507",
+            "countType": 7278,
+            "avg": 21767.71,
+            "fail": 10,
+            "audit": 148,
+            "year": 505596
+        },
+        {
+            "courses_id": "312",
+            "countType": 12672,
+            "avg": 19780.86,
+            "fail": 596,
+            "audit": 28,
+            "year": 503924
+        },
+        {
+            "courses_id": "404",
+            "countType": 8220,
+            "avg": 20263.64,
+            "fail": 152,
+            "audit": 25,
+            "year": 501232
+        },
+        {
+            "courses_id": "365",
+            "countType": 14696,
+            "avg": 19254.42,
+            "fail": 408,
+            "audit": 16,
+            "year": 500456
+        },
+        {
+            "courses_id": "521",
+            "countType": 4794,
+            "avg": 21502.63,
+            "fail": 6,
+            "audit": 54,
+            "year": 495829
+        },
+        {
+            "courses_id": "455",
+            "countType": 15052,
+            "avg": 18837.61,
+            "fail": 283,
+            "audit": 18,
+            "year": 495289
+        },
+        {
+            "courses_id": "420",
+            "countType": 7706,
+            "avg": 20301.38,
+            "fail": 114,
+            "audit": 26,
+            "year": 493053
+        },
+        {
+            "courses_id": "353",
+            "countType": 12770,
+            "avg": 18387.41,
+            "fail": 510,
+            "audit": 18,
+            "year": 490032
+        },
+        {
+            "courses_id": "325",
+            "countType": 21871,
+            "avg": 18653.43,
+            "fail": 575,
+            "audit": 29,
+            "year": 488198
+        },
+        {
+            "courses_id": "307",
+            "countType": 20660,
+            "avg": 17857.49,
+            "fail": 1199,
+            "audit": 21,
+            "year": 474952
+        },
+        {
+            "courses_id": "531",
+            "countType": 4857,
+            "avg": 20800.63,
+            "fail": 4,
+            "audit": 42,
+            "year": 472737
+        },
+        {
+            "courses_id": "449",
+            "countType": 5440,
+            "avg": 20719.17,
+            "fail": 22,
+            "audit": 16,
+            "year": 472502
+        },
+        {
+            "courses_id": "530",
+            "countType": 4771,
+            "avg": 20393.97,
+            "fail": 4,
+            "audit": 144,
+            "year": 467251
+        },
+        {
+            "courses_id": "211",
+            "countType": 13676,
+            "avg": 18010.69,
+            "fail": 566,
+            "audit": 27,
+            "year": 465733
+        },
+        {
+            "courses_id": "440",
+            "countType": 6448,
+            "avg": 19074.08,
+            "fail": 36,
+            "audit": 25,
+            "year": 465465
+        },
+        {
+            "courses_id": "406",
+            "countType": 7841,
+            "avg": 19034.24,
+            "fail": 112,
+            "audit": 46,
+            "year": 460368
+        },
+        {
+            "courses_id": "403",
+            "countType": 12307,
+            "avg": 18387.28,
+            "fail": 237,
+            "audit": 30,
+            "year": 456982
+        },
+        {
+            "courses_id": "421",
+            "countType": 6255,
+            "avg": 18929.91,
+            "fail": 73,
+            "audit": 19,
+            "year": 453048
+        },
+        {
+            "courses_id": "516",
+            "countType": 4262,
+            "avg": 19923.15,
+            "fail": 2,
+            "audit": 70,
+            "year": 452317
+        },
+        {
+            "courses_id": "350",
+            "countType": 15822,
+            "avg": 17651.18,
+            "fail": 226,
+            "audit": 14,
+            "year": 451929
+        },
+        {
+            "courses_id": "441",
+            "countType": 9712,
+            "avg": 17883.78,
+            "fail": 164,
+            "audit": 48,
+            "year": 447561
+        },
+        {
+            "courses_id": "321",
+            "countType": 11651,
+            "avg": 17080.57,
+            "fail": 478,
+            "audit": 35,
+            "year": 446885
+        },
+        {
+            "courses_id": "371",
+            "countType": 17783,
+            "avg": 17260.51,
+            "fail": 312,
+            "audit": 28,
+            "year": 445718
+        },
+        {
+            "courses_id": "508",
+            "countType": 4615,
+            "avg": 19150.57,
+            "fail": 0,
+            "audit": 14,
+            "year": 436040
+        },
+        {
+            "courses_id": "430",
+            "countType": 11142,
+            "avg": 17633.74,
+            "fail": 66,
+            "audit": 58,
+            "year": 432475
+        },
+        {
+            "courses_id": "222",
+            "countType": 11632,
+            "avg": 15976.42,
+            "fail": 500,
+            "audit": 29,
+            "year": 432309
+        },
+        {
+            "courses_id": "329",
+            "countType": 12745,
+            "avg": 16558.63,
+            "fail": 250,
+            "audit": 10,
+            "year": 428728
+        },
+        {
+            "courses_id": "425",
+            "countType": 7320,
+            "avg": 17541.61,
+            "fail": 100,
+            "audit": 29,
+            "year": 427014
+        },
+        {
+            "courses_id": "513",
+            "countType": 5513,
+            "avg": 18114.45,
+            "fail": 10,
+            "audit": 48,
+            "year": 423352
+        },
+        {
+            "courses_id": "363",
+            "countType": 12266,
+            "avg": 16824.74,
+            "fail": 118,
+            "audit": 8,
+            "year": 422867
+        },
+        {
+            "courses_id": "512",
+            "countType": 4524,
+            "avg": 18548.58,
+            "fail": 34,
+            "audit": 22,
+            "year": 422455
+        },
+        {
+            "courses_id": "260",
+            "countType": 23806,
+            "avg": 15708.88,
+            "fail": 902,
+            "audit": 42,
+            "year": 421672
+        },
+        {
+            "courses_id": "541",
+            "countType": 5540,
+            "avg": 17791.84,
+            "fail": 8,
+            "audit": 34,
+            "year": 418071
+        },
+        {
+            "courses_id": "306",
+            "countType": 14630,
+            "avg": 16310.77,
+            "fail": 218,
+            "audit": 35,
+            "year": 415618
+        },
+        {
+            "courses_id": "327",
+            "countType": 10418,
+            "avg": 16241.33,
+            "fail": 253,
+            "audit": 18,
+            "year": 414187
+        },
+        {
+            "courses_id": "351",
+            "countType": 13702,
+            "avg": 15385.67,
+            "fail": 368,
+            "audit": 43,
+            "year": 409966
+        },
+        {
+            "courses_id": "331",
+            "countType": 16156,
+            "avg": 15163.08,
+            "fail": 1128,
+            "audit": 21,
+            "year": 408241
+        },
+        {
+            "courses_id": "150",
+            "countType": 9246,
+            "avg": 14555.01,
+            "fail": 406,
+            "audit": 18,
+            "year": 406338
+        },
+        {
+            "courses_id": "354",
+            "countType": 12524,
+            "avg": 14893.07,
+            "fail": 342,
+            "audit": 17,
+            "year": 399655
+        },
+        {
+            "courses_id": "105",
+            "countType": 25879,
+            "avg": 14061.17,
+            "fail": 2418,
+            "audit": 49,
+            "year": 397158
+        },
+        {
+            "courses_id": "333",
+            "countType": 11388,
+            "avg": 15744.14,
+            "fail": 396,
+            "audit": 31,
+            "year": 397033
+        },
+        {
+            "courses_id": "532",
+            "countType": 3853,
+            "avg": 17206.79,
+            "fail": 14,
+            "audit": 18,
+            "year": 396086
+        },
+        {
+            "courses_id": "522",
+            "countType": 3329,
+            "avg": 16910.85,
+            "fail": 26,
+            "audit": 12,
+            "year": 395757
+        },
+        {
+            "courses_id": "515",
+            "countType": 4452,
+            "avg": 16780.02,
+            "fail": 4,
+            "audit": 30,
+            "year": 389430
+        },
+        {
+            "courses_id": "452",
+            "countType": 8848,
+            "avg": 15741.27,
+            "fail": 124,
+            "audit": 16,
+            "year": 388424
+        },
+        {
+            "courses_id": "525",
+            "countType": 3294,
+            "avg": 16891.76,
+            "fail": 8,
+            "audit": 44,
+            "year": 387825
+        },
+        {
+            "courses_id": "393",
+            "countType": 18064,
+            "avg": 14280.92,
+            "fail": 658,
+            "audit": 6,
+            "year": 385079
+        },
+        {
+            "courses_id": "462",
+            "countType": 7697,
+            "avg": 15738.23,
+            "fail": 44,
+            "audit": 6,
+            "year": 380540
+        },
+        {
+            "courses_id": "394",
+            "countType": 13504,
+            "avg": 14273.14,
+            "fail": 72,
+            "audit": 38,
+            "year": 378424
+        },
+        {
+            "courses_id": "535",
+            "countType": 2131,
+            "avg": 16676.58,
+            "fail": 2,
+            "audit": 49,
+            "year": 377978
+        },
+        {
+            "courses_id": "104",
+            "countType": 19880,
+            "avg": 13685.02,
+            "fail": 1974,
+            "audit": 40,
+            "year": 376605
+        },
+        {
+            "courses_id": "562",
+            "countType": 4174,
+            "avg": 16330.17,
+            "fail": 2,
+            "audit": 55,
+            "year": 373466
+        },
+        {
+            "courses_id": "491",
+            "countType": 9077,
+            "avg": 14706.99,
+            "fail": 34,
+            "audit": 6,
+            "year": 371933
+        },
+        {
+            "courses_id": "570",
+            "countType": 2058,
+            "avg": 16158.74,
+            "fail": 0,
+            "audit": 29,
+            "year": 370233
+        },
+        {
+            "courses_id": "317",
+            "countType": 10466,
+            "avg": 13836.01,
+            "fail": 632,
+            "audit": 17,
+            "year": 369547
+        },
+        {
+            "courses_id": "326",
+            "countType": 14667,
+            "avg": 13817.68,
+            "fail": 606,
+            "audit": 8,
+            "year": 364106
+        },
+        {
+            "courses_id": "408",
+            "countType": 6291,
+            "avg": 14844.95,
+            "fail": 50,
+            "audit": 15,
+            "year": 360191
+        },
+        {
+            "courses_id": "345",
+            "countType": 13709,
+            "avg": 13419.68,
+            "fail": 622,
+            "audit": 52,
+            "year": 358563
+        },
+        {
+            "courses_id": "453",
+            "countType": 9455,
+            "avg": 13786.35,
+            "fail": 446,
+            "audit": 8,
+            "year": 355489
+        },
+        {
+            "courses_id": "292",
+            "countType": 12902,
+            "avg": 12952.83,
+            "fail": 428,
+            "audit": 4,
+            "year": 351364
+        },
+        {
+            "courses_id": "523",
+            "countType": 4870,
+            "avg": 14897.07,
+            "fail": 14,
+            "audit": 28,
+            "year": 350994
+        },
+        {
+            "courses_id": "451",
+            "countType": 7833,
+            "avg": 13964.63,
+            "fail": 63,
+            "audit": 16,
+            "year": 348567
+        },
+        {
+            "courses_id": "336",
+            "countType": 11033,
+            "avg": 13826.1,
+            "fail": 202,
+            "audit": 18,
+            "year": 348493
+        },
+        {
+            "courses_id": "461",
+            "countType": 7957,
+            "avg": 14400.02,
+            "fail": 44,
+            "audit": 6,
+            "year": 346994
+        },
+        {
+            "courses_id": "473",
+            "countType": 9046,
+            "avg": 13780.27,
+            "fail": 196,
+            "audit": 29,
+            "year": 343558
+        },
+        {
+            "courses_id": "445",
+            "countType": 6324,
+            "avg": 13867.7,
+            "fail": 186,
+            "audit": 19,
+            "year": 343199
+        },
+        {
+            "courses_id": "235",
+            "countType": 19682,
+            "avg": 12827.42,
+            "fail": 108,
+            "audit": 21,
+            "year": 342252
+        },
+        {
+            "courses_id": "545",
+            "countType": 2921,
+            "avg": 15361.33,
+            "fail": 4,
+            "audit": 59,
+            "year": 340742
+        },
+        {
+            "courses_id": "526",
+            "countType": 3990,
+            "avg": 15039.92,
+            "fail": 6,
+            "audit": 18,
+            "year": 339071
+        },
+        {
+            "courses_id": "319",
+            "countType": 8724,
+            "avg": 12841.38,
+            "fail": 222,
+            "audit": 12,
+            "year": 334917
+        },
+        {
+            "courses_id": "361",
+            "countType": 15924,
+            "avg": 12974.98,
+            "fail": 318,
+            "audit": 2,
+            "year": 334630
+        },
+        {
+            "courses_id": "328",
+            "countType": 10556,
+            "avg": 12828.15,
+            "fail": 249,
+            "audit": 26,
+            "year": 333278
+        },
+        {
+            "courses_id": "279",
+            "countType": 5572,
+            "avg": 13901.88,
+            "fail": 76,
+            "audit": 0,
+            "year": 332848
+        },
+        {
+            "courses_id": "215",
+            "countType": 11300,
+            "avg": 12376.51,
+            "fail": 976,
+            "audit": 12,
+            "year": 332148
+        },
+        {
+            "courses_id": "437",
+            "countType": 3768,
+            "avg": 13698.82,
+            "fail": 16,
+            "audit": 9,
+            "year": 330890
+        },
+        {
+            "courses_id": "213",
+            "countType": 13106,
+            "avg": 12621.96,
+            "fail": 640,
+            "audit": 18,
+            "year": 330477
+        },
+        {
+            "courses_id": "436",
+            "countType": 4377,
+            "avg": 13796.76,
+            "fail": 24,
+            "audit": 24,
+            "year": 328785
+        },
+        {
+            "courses_id": "120",
+            "countType": 18741,
+            "avg": 12055.49,
+            "fail": 1362,
+            "audit": 43,
+            "year": 328154
+        },
+        {
+            "courses_id": "140",
+            "countType": 27058,
+            "avg": 12002.59,
+            "fail": 318,
+            "audit": 0,
+            "year": 327490
+        },
+        {
+            "courses_id": "457",
+            "countType": 11726,
+            "avg": 12958.72,
+            "fail": 442,
+            "audit": 33,
+            "year": 325573
+        },
+        {
+            "courses_id": "460",
+            "countType": 6303,
+            "avg": 12405.73,
+            "fail": 212,
+            "audit": 17,
+            "year": 323362
+        },
+        {
+            "courses_id": "432",
+            "countType": 5213,
+            "avg": 13222.11,
+            "fail": 94,
+            "audit": 30,
+            "year": 322032
+        },
+        {
+            "courses_id": "342",
+            "countType": 10008,
+            "avg": 12196.84,
+            "fail": 213,
+            "audit": 15,
+            "year": 321864
+        },
+        {
+            "courses_id": "527",
+            "countType": 4338,
+            "avg": 13971.41,
+            "fail": 20,
+            "audit": 22,
+            "year": 321202
+        },
+        {
+            "courses_id": "407",
+            "countType": 3814,
+            "avg": 13204.43,
+            "fail": 42,
+            "audit": 8,
+            "year": 319403
+        },
+        {
+            "courses_id": "506",
+            "countType": 2486,
+            "avg": 13839.16,
+            "fail": 2,
+            "audit": 12,
+            "year": 316866
+        },
+        {
+            "courses_id": "465",
+            "countType": 7689,
+            "avg": 12576.2,
+            "fail": 40,
+            "audit": 8,
+            "year": 314015
+        },
+        {
+            "courses_id": "122",
+            "countType": 10046,
+            "avg": 11580.63,
+            "fail": 602,
+            "audit": 31,
+            "year": 313847
+        },
+        {
+            "courses_id": "364",
+            "countType": 9120,
+            "avg": 12493.34,
+            "fail": 240,
+            "audit": 12,
+            "year": 311909
+        },
+        {
+            "courses_id": "514",
+            "countType": 3262,
+            "avg": 13584.77,
+            "fail": 6,
+            "audit": 70,
+            "year": 311752
+        },
+        {
+            "courses_id": "412",
+            "countType": 4784,
+            "avg": 12887.57,
+            "fail": 72,
+            "audit": 13,
+            "year": 310864
+        },
+        {
+            "courses_id": "524",
+            "countType": 3308,
+            "avg": 13390.46,
+            "fail": 4,
+            "audit": 18,
+            "year": 307473
+        },
+        {
+            "courses_id": "223",
+            "countType": 8510,
+            "avg": 11455.15,
+            "fail": 212,
+            "audit": 2,
+            "year": 305605
+        },
+        {
+            "courses_id": "356",
+            "countType": 12351,
+            "avg": 11844.61,
+            "fail": 328,
+            "audit": 30,
+            "year": 304436
+        },
+        {
+            "courses_id": "352",
+            "countType": 7524,
+            "avg": 11590.17,
+            "fail": 146,
+            "audit": 28,
+            "year": 301999
+        },
+        {
+            "courses_id": "416",
+            "countType": 4384,
+            "avg": 12392.51,
+            "fail": 44,
+            "audit": 10,
+            "year": 300183
+        },
+        {
+            "courses_id": "411",
+            "countType": 4361,
+            "avg": 12261.96,
+            "fail": 52,
+            "audit": 10,
+            "year": 297411
+        },
+        {
+            "courses_id": "313",
+            "countType": 9226,
+            "avg": 11509.38,
+            "fail": 360,
+            "audit": 10,
+            "year": 296265
+        },
+        {
+            "courses_id": "341",
+            "countType": 10900,
+            "avg": 11802.35,
+            "fail": 158,
+            "audit": 22,
+            "year": 292392
+        },
+        {
+            "courses_id": "217",
+            "countType": 15536,
+            "avg": 10564.93,
+            "fail": 604,
+            "audit": 18,
+            "year": 290634
+        },
+        {
+            "courses_id": "471",
+            "countType": 11051,
+            "avg": 11881.98,
+            "fail": 62,
+            "audit": 22,
+            "year": 290389
+        },
+        {
+            "courses_id": "230",
+            "countType": 14882,
+            "avg": 11163.51,
+            "fail": 466,
+            "audit": 19,
+            "year": 289526
+        },
+        {
+            "courses_id": "495",
+            "countType": 3631,
+            "avg": 11864.62,
+            "fail": 52,
+            "audit": 10,
+            "year": 289441
+        },
+        {
+            "courses_id": "374",
+            "countType": 7710,
+            "avg": 11397.78,
+            "fail": 130,
+            "audit": 10,
+            "year": 287988
+        },
+        {
+            "courses_id": "309",
+            "countType": 6228,
+            "avg": 11183.21,
+            "fail": 224,
+            "audit": 22,
+            "year": 287550
+        },
+        {
+            "courses_id": "553",
+            "countType": 2429,
+            "avg": 12902.35,
+            "fail": 1,
+            "audit": 16,
+            "year": 285764
+        },
+        {
+            "courses_id": "203",
+            "countType": 12930,
+            "avg": 10738.81,
+            "fail": 774,
+            "audit": 15,
+            "year": 284727
+        },
+        {
+            "courses_id": "231",
+            "countType": 10308,
+            "avg": 10337.55,
+            "fail": 534,
+            "audit": 26,
+            "year": 283916
+        },
+        {
+            "courses_id": "415",
+            "countType": 4198,
+            "avg": 11401.8,
+            "fail": 126,
+            "audit": 8,
+            "year": 283781
+        },
+        {
+            "courses_id": "481",
+            "countType": 7772,
+            "avg": 11374.7,
+            "fail": 32,
+            "audit": 8,
+            "year": 283144
+        },
+        {
+            "courses_id": "544",
+            "countType": 2586,
+            "avg": 12333.64,
+            "fail": 0,
+            "audit": 28,
+            "year": 280647
+        },
+        {
+            "courses_id": "509",
+            "countType": 1786,
+            "avg": 12268.41,
+            "fail": 4,
+            "audit": 182,
+            "year": 280430
+        },
+        {
+            "courses_id": "323",
+            "countType": 8597,
+            "avg": 10771.51,
+            "fail": 68,
+            "audit": 20,
+            "year": 276274
+        },
+        {
+            "courses_id": "418",
+            "countType": 4339,
+            "avg": 10720.43,
+            "fail": 118,
+            "audit": 15,
+            "year": 271917
+        },
+        {
+            "courses_id": "204",
+            "countType": 12546,
+            "avg": 10250.55,
+            "fail": 294,
+            "audit": 16,
+            "year": 271565
+        },
+        {
+            "courses_id": "241",
+            "countType": 6625,
+            "avg": 10027.43,
+            "fail": 444,
+            "audit": 17,
+            "year": 270041
+        },
+        {
+            "courses_id": "431",
+            "countType": 6901,
+            "avg": 10991.69,
+            "fail": 89,
+            "audit": 2,
+            "year": 269347
+        },
+        {
+            "courses_id": "123",
+            "countType": 24118,
+            "avg": 9739.4,
+            "fail": 1914,
+            "audit": 14,
+            "year": 269011
+        },
+        {
+            "courses_id": "442",
+            "countType": 7842,
+            "avg": 10655.32,
+            "fail": 178,
+            "audit": 14,
+            "year": 268667
+        },
+        {
+            "courses_id": "294",
+            "countType": 15933,
+            "avg": 9700.23,
+            "fail": 706,
+            "audit": 4,
+            "year": 267948
+        },
+        {
+            "courses_id": "293",
+            "countType": 15421,
+            "avg": 9269.57,
+            "fail": 1667,
+            "audit": 24,
+            "year": 267832
+        },
+        {
+            "courses_id": "464",
+            "countType": 4546,
+            "avg": 10610.72,
+            "fail": 48,
+            "audit": 10,
+            "year": 266418
+        },
+        {
+            "courses_id": "113",
+            "countType": 5250,
+            "avg": 9822.75,
+            "fail": 164,
+            "audit": 4,
+            "year": 264102
+        },
+        {
+            "courses_id": "493",
+            "countType": 4698,
+            "avg": 10478.41,
+            "fail": 14,
+            "audit": 0,
+            "year": 264056
+        },
+        {
+            "courses_id": "498",
+            "countType": 7739,
+            "avg": 10337.81,
+            "fail": 17,
+            "audit": 22,
+            "year": 262513
+        },
+        {
+            "courses_id": "554",
+            "countType": 2033,
+            "avg": 11416.76,
+            "fail": 2,
+            "audit": 30,
+            "year": 262299
+        },
+        {
+            "courses_id": "560",
+            "countType": 2047,
+            "avg": 11429.62,
+            "fail": 6,
+            "audit": 66,
+            "year": 260418
+        },
+        {
+            "courses_id": "564",
+            "countType": 2780,
+            "avg": 11275.1,
+            "fail": 8,
+            "audit": 10,
+            "year": 259324
+        },
+        {
+            "courses_id": "358",
+            "countType": 6414,
+            "avg": 9670.11,
+            "fail": 188,
+            "audit": 9,
+            "year": 255462
+        },
+        {
+            "courses_id": "595",
+            "countType": 1577,
+            "avg": 10988.58,
+            "fail": 2,
+            "audit": 3,
+            "year": 255233
+        },
+        {
+            "courses_id": "563",
+            "countType": 2440,
+            "avg": 10887.97,
+            "fail": 2,
+            "audit": 38,
+            "year": 252718
+        },
+        {
+            "courses_id": "334",
+            "countType": 5828,
+            "avg": 10012.31,
+            "fail": 102,
+            "audit": 4,
+            "year": 251808
+        },
+        {
+            "courses_id": "444",
+            "countType": 2858,
+            "avg": 9528.25,
+            "fail": 90,
+            "audit": 10,
+            "year": 251005
+        },
+        {
+            "courses_id": "533",
+            "countType": 2694,
+            "avg": 10863.86,
+            "fail": 10,
+            "audit": 17,
+            "year": 250670
+        },
+        {
+            "courses_id": "251",
+            "countType": 13734,
+            "avg": 9130.22,
+            "fail": 616,
+            "audit": 24,
+            "year": 249874
+        },
+        {
+            "courses_id": "227",
+            "countType": 7672,
+            "avg": 9409.7,
+            "fail": 220,
+            "audit": 35,
+            "year": 248603
+        },
+        {
+            "courses_id": "422",
+            "countType": 3339,
+            "avg": 9620.51,
+            "fail": 72,
+            "audit": 16,
+            "year": 245085
+        },
+        {
+            "courses_id": "456",
+            "countType": 5125,
+            "avg": 9535.32,
+            "fail": 92,
+            "audit": 29,
+            "year": 242640
+        },
+        {
+            "courses_id": "180",
+            "countType": 10820,
+            "avg": 7775.48,
+            "fail": 1804,
+            "audit": 11,
+            "year": 240270
+        },
+        {
+            "courses_id": "499",
+            "countType": 4687,
+            "avg": 10033.42,
+            "fail": 302,
+            "audit": 0,
+            "year": 239840
+        },
+        {
+            "courses_id": "528",
+            "countType": 2516,
+            "avg": 10447.04,
+            "fail": 0,
+            "audit": 16,
+            "year": 239078
+        },
+        {
+            "courses_id": "344",
+            "countType": 8098,
+            "avg": 8590.58,
+            "fail": 870,
+            "audit": 9,
+            "year": 237249
+        },
+        {
+            "courses_id": "296",
+            "countType": 12326,
+            "avg": 8996.57,
+            "fail": 40,
+            "audit": 10,
+            "year": 235907
+        },
+        {
+            "courses_id": "337",
+            "countType": 4460,
+            "avg": 9288.84,
+            "fail": 90,
+            "audit": 2,
+            "year": 233578
+        },
+        {
+            "courses_id": "205",
+            "countType": 20330,
+            "avg": 9068.4,
+            "fail": 894,
+            "audit": 5,
+            "year": 232964
+        },
+        {
+            "courses_id": "318",
+            "countType": 5472,
+            "avg": 8641.61,
+            "fail": 232,
+            "audit": 9,
+            "year": 232790
+        },
+        {
+            "courses_id": "459",
+            "countType": 5012,
+            "avg": 9590.28,
+            "fail": 18,
+            "audit": 4,
+            "year": 231592
+        },
+        {
+            "courses_id": "212",
+            "countType": 2784,
+            "avg": 8912.91,
+            "fail": 44,
+            "audit": 12,
+            "year": 229749
+        },
+        {
+            "courses_id": "332",
+            "countType": 7070,
+            "avg": 8765.51,
+            "fail": 288,
+            "audit": 8,
+            "year": 229212
+        },
+        {
+            "courses_id": "551",
+            "countType": 2348,
+            "avg": 10192.34,
+            "fail": 2,
+            "audit": 14,
+            "year": 228892
+        },
+        {
+            "courses_id": "561",
+            "countType": 2248,
+            "avg": 9735.92,
+            "fail": 12,
+            "audit": 32,
+            "year": 225537
+        },
+        {
+            "courses_id": "597",
+            "countType": 874,
+            "avg": 9983.53,
+            "fail": 2,
+            "audit": 10,
+            "year": 224537
+        },
+        {
+            "courses_id": "518",
+            "countType": 1906,
+            "avg": 9695.8,
+            "fail": 4,
+            "audit": 34,
+            "year": 222961
+        },
+        {
+            "courses_id": "360",
+            "countType": 5978,
+            "avg": 8632.84,
+            "fail": 328,
+            "audit": 23,
+            "year": 221630
+        },
+        {
+            "courses_id": "434",
+            "countType": 3392,
+            "avg": 8851.38,
+            "fail": 16,
+            "audit": 19,
+            "year": 221486
+        },
+        {
+            "courses_id": "474",
+            "countType": 4415,
+            "avg": 9009.76,
+            "fail": 32,
+            "audit": 8,
+            "year": 221395
+        },
+        {
+            "courses_id": "454",
+            "countType": 5687,
+            "avg": 8928.07,
+            "fail": 20,
+            "audit": 16,
+            "year": 217481
+        },
+        {
+            "courses_id": "598",
+            "countType": 823,
+            "avg": 9523.24,
+            "fail": 2,
+            "audit": 0,
+            "year": 216127
+        },
+        {
+            "courses_id": "581",
+            "countType": 1839,
+            "avg": 9600.27,
+            "fail": 0,
+            "audit": 22,
+            "year": 215602
+        },
+        {
+            "courses_id": "575",
+            "countType": 1475,
+            "avg": 9483.63,
+            "fail": 0,
+            "audit": 10,
+            "year": 215235
+        },
+        {
+            "courses_id": "557",
+            "countType": 1656,
+            "avg": 9254.7,
+            "fail": 4,
+            "audit": 16,
+            "year": 213445
+        },
+        {
+            "courses_id": "380",
+            "countType": 9070,
+            "avg": 8134.61,
+            "fail": 196,
+            "audit": 16,
+            "year": 212002
+        },
+        {
+            "courses_id": "218",
+            "countType": 10476,
+            "avg": 7429.15,
+            "fail": 950,
+            "audit": 14,
+            "year": 210071
+        },
+        {
+            "courses_id": "184",
+            "countType": 11010,
+            "avg": 6616.24,
+            "fail": 1916,
+            "audit": 0,
+            "year": 209312
+        },
+        {
+            "courses_id": "395",
+            "countType": 7308,
+            "avg": 7936.8,
+            "fail": 108,
+            "audit": 2,
+            "year": 208257
+        },
+        {
+            "courses_id": "443",
+            "countType": 5976,
+            "avg": 7790.44,
+            "fail": 388,
+            "audit": 31,
+            "year": 207956
+        },
+        {
+            "courses_id": "534",
+            "countType": 1262,
+            "avg": 9321.14,
+            "fail": 0,
+            "audit": 10,
+            "year": 207452
+        },
+        {
+            "courses_id": "382",
+            "countType": 4892,
+            "avg": 7817.02,
+            "fail": 94,
+            "audit": 22,
+            "year": 205990
+        },
+        {
+            "courses_id": "427",
+            "countType": 4190,
+            "avg": 8404.73,
+            "fail": 54,
+            "audit": 2,
+            "year": 204295
+        },
+        {
+            "courses_id": "543",
+            "countType": 1770,
+            "avg": 8611.6,
+            "fail": 4,
+            "audit": 6,
+            "year": 201498
+        },
+        {
+            "courses_id": "467",
+            "countType": 3368,
+            "avg": 8389.79,
+            "fail": 8,
+            "audit": 0,
+            "year": 200038
+        },
+        {
+            "courses_id": "343",
+            "countType": 4854,
+            "avg": 8091.69,
+            "fail": 48,
+            "audit": 18,
+            "year": 199610
+        },
+        {
+            "courses_id": "529",
+            "countType": 1284,
+            "avg": 8660.22,
+            "fail": 10,
+            "audit": 22,
+            "year": 199505
+        },
+        {
+            "courses_id": "485",
+            "countType": 3419,
+            "avg": 7945.79,
+            "fail": 29,
+            "audit": 9,
+            "year": 199495
+        },
+        {
+            "courses_id": "206",
+            "countType": 5148,
+            "avg": 7867,
+            "fail": 72,
+            "audit": 10,
+            "year": 198726
+        },
+        {
+            "courses_id": "377",
+            "countType": 4554,
+            "avg": 8031.95,
+            "fail": 26,
+            "audit": 24,
+            "year": 198724
+        },
+        {
+            "courses_id": "582",
+            "countType": 1263,
+            "avg": 8601.82,
+            "fail": 0,
+            "audit": 13,
+            "year": 197940
+        },
+        {
+            "courses_id": "240",
+            "countType": 7916,
+            "avg": 7460.51,
+            "fail": 178,
+            "audit": 12,
+            "year": 197356
+        },
+        {
+            "courses_id": "555",
+            "countType": 1644,
+            "avg": 8506.54,
+            "fail": 6,
+            "audit": 15,
+            "year": 195590
+        },
+        {
+            "courses_id": "207",
+            "countType": 7133,
+            "avg": 7424.33,
+            "fail": 420,
+            "audit": 28,
+            "year": 194921
+        },
+        {
+            "courses_id": "322",
+            "countType": 6118,
+            "avg": 7443.7,
+            "fail": 242,
+            "audit": 8,
+            "year": 194109
+        },
+        {
+            "courses_id": "439",
+            "countType": 3210,
+            "avg": 8068.45,
+            "fail": 34,
+            "audit": 6,
+            "year": 192232
+        },
+        {
+            "courses_id": "308",
+            "countType": 4276,
+            "avg": 7497.44,
+            "fail": 140,
+            "audit": 12,
+            "year": 191678
+        },
+        {
+            "courses_id": "339",
+            "countType": 5558,
+            "avg": 7609.94,
+            "fail": 54,
+            "audit": 12,
+            "year": 191669
+        },
+        {
+            "courses_id": "475",
+            "countType": 3719,
+            "avg": 7544.57,
+            "fail": 36,
+            "audit": 2,
+            "year": 190438
+        },
+        {
+            "courses_id": "255",
+            "countType": 10370,
+            "avg": 6691.89,
+            "fail": 922,
+            "audit": 6,
+            "year": 190088
+        },
+        {
+            "courses_id": "373",
+            "countType": 6786,
+            "avg": 7393.02,
+            "fail": 216,
+            "audit": 8,
+            "year": 190022
+        },
+        {
+            "courses_id": "290",
+            "countType": 15856,
+            "avg": 7043,
+            "fail": 980,
+            "audit": 24,
+            "year": 189331
+        },
+        {
+            "courses_id": "295",
+            "countType": 11291,
+            "avg": 6773.91,
+            "fail": 108,
+            "audit": 38,
+            "year": 186854
+        },
+        {
+            "courses_id": "565",
+            "countType": 1728,
+            "avg": 7963.8,
+            "fail": 6,
+            "audit": 60,
+            "year": 183887
+        },
+        {
+            "courses_id": "225",
+            "countType": 4788,
+            "avg": 6929.49,
+            "fail": 316,
+            "audit": 24,
+            "year": 183406
+        },
+        {
+            "courses_id": "234",
+            "countType": 11022,
+            "avg": 6862.28,
+            "fail": 568,
+            "audit": 4,
+            "year": 183214
+        },
+        {
+            "courses_id": "114",
+            "countType": 34240,
+            "avg": 6770.66,
+            "fail": 1101,
+            "audit": 19,
+            "year": 183150
+        },
+        {
+            "courses_id": "556",
+            "countType": 1646,
+            "avg": 7779.35,
+            "fail": 2,
+            "audit": 28,
+            "year": 181972
+        },
+        {
+            "courses_id": "224",
+            "countType": 4864,
+            "avg": 6840.08,
+            "fail": 292,
+            "audit": 15,
+            "year": 181427
+        },
+        {
+            "courses_id": "435",
+            "countType": 4663,
+            "avg": 7120.86,
+            "fail": 30,
+            "audit": 2,
+            "year": 180821
+        },
+        {
+            "courses_id": "472",
+            "countType": 5682,
+            "avg": 7256.03,
+            "fail": 40,
+            "audit": 14,
+            "year": 179936
+        },
+        {
+            "courses_id": "566",
+            "countType": 1508,
+            "avg": 7550.13,
+            "fail": 6,
+            "audit": 38,
+            "year": 178057
+        },
+        {
+            "courses_id": "419",
+            "countType": 1507,
+            "avg": 7096.59,
+            "fail": 36,
+            "audit": 11,
+            "year": 178052
+        },
+        {
+            "courses_id": "463",
+            "countType": 4152,
+            "avg": 7103.46,
+            "fail": 62,
+            "audit": 12,
+            "year": 176680
+        },
+        {
+            "courses_id": "233",
+            "countType": 18510,
+            "avg": 6354.5,
+            "fail": 3382,
+            "audit": 6,
+            "year": 176133
+        },
+        {
+            "courses_id": "571",
+            "countType": 1096,
+            "avg": 7679.1,
+            "fail": 8,
+            "audit": 6,
+            "year": 176006
+        },
+        {
+            "courses_id": "592",
+            "countType": 1644,
+            "avg": 7971.59,
+            "fail": 4,
+            "audit": 30,
+            "year": 174896
+        },
+        {
+            "courses_id": "470",
+            "countType": 3436,
+            "avg": 7025.35,
+            "fail": 32,
+            "audit": 8,
+            "year": 174545
+        },
+        {
+            "courses_id": "468",
+            "countType": 4154,
+            "avg": 6775.34,
+            "fail": 4,
+            "audit": 6,
+            "year": 174371
+        },
+        {
+            "courses_id": "574",
+            "countType": 1230,
+            "avg": 7745.36,
+            "fail": 6,
+            "audit": 8,
+            "year": 174250
+        },
+        {
+            "courses_id": "424",
+            "countType": 1894,
+            "avg": 7158.5,
+            "fail": 4,
+            "audit": 4,
+            "year": 172124
+        },
+        {
+            "courses_id": "458",
+            "countType": 4594,
+            "avg": 6920.03,
+            "fail": 46,
+            "audit": 6,
+            "year": 170541
+        },
+        {
+            "courses_id": "580",
+            "countType": 1510,
+            "avg": 7460.45,
+            "fail": 2,
+            "audit": 6,
+            "year": 168511
+        },
+        {
+            "courses_id": "542",
+            "countType": 1410,
+            "avg": 7392.5,
+            "fail": 2,
+            "audit": 12,
+            "year": 168207
+        },
+        {
+            "courses_id": "466",
+            "countType": 3555,
+            "avg": 6718.7,
+            "fail": 20,
+            "audit": 6,
+            "year": 168180
+        },
+        {
+            "courses_id": "446",
+            "countType": 2744,
+            "avg": 6634.09,
+            "fail": 74,
+            "audit": 4,
+            "year": 166849
+        },
+        {
+            "courses_id": "366",
+            "countType": 5302,
+            "avg": 6658.1,
+            "fail": 50,
+            "audit": 4,
+            "year": 166520
+        },
+        {
+            "courses_id": "547",
+            "countType": 1785,
+            "avg": 7401.7,
+            "fail": 2,
+            "audit": 26,
+            "year": 166193
+        },
+        {
+            "courses_id": "375",
+            "countType": 6548,
+            "avg": 6543.06,
+            "fail": 460,
+            "audit": 14,
+            "year": 166120
+        },
+        {
+            "courses_id": "489",
+            "countType": 1492,
+            "avg": 6530.22,
+            "fail": 13,
+            "audit": 4,
+            "year": 161157
+        },
+        {
+            "courses_id": "398",
+            "countType": 4282,
+            "avg": 6188.58,
+            "fail": 95,
+            "audit": 6,
+            "year": 161071
+        },
+        {
+            "courses_id": "413",
+            "countType": 1894,
+            "avg": 6513.4,
+            "fail": 22,
+            "audit": 4,
+            "year": 160395
+        },
+        {
+            "courses_id": "517",
+            "countType": 1964,
+            "avg": 6969.18,
+            "fail": 0,
+            "audit": 14,
+            "year": 160393
+        },
+        {
+            "courses_id": "573",
+            "countType": 1004,
+            "avg": 6897.1,
+            "fail": 2,
+            "audit": 24,
+            "year": 160380
+        },
+        {
+            "courses_id": "569",
+            "countType": 1090,
+            "avg": 6809.02,
+            "fail": 0,
+            "audit": 14,
+            "year": 160364
+        },
+        {
+            "courses_id": "482",
+            "countType": 3166,
+            "avg": 6687.35,
+            "fail": 16,
+            "audit": 26,
+            "year": 159056
+        },
+        {
+            "courses_id": "348",
+            "countType": 2088,
+            "avg": 6284.32,
+            "fail": 34,
+            "audit": 2,
+            "year": 157121
+        },
+        {
+            "courses_id": "253",
+            "countType": 12214,
+            "avg": 5516.82,
+            "fail": 894,
+            "audit": 2,
+            "year": 157013
+        },
+        {
+            "courses_id": "438",
+            "countType": 2522,
+            "avg": 6383.2,
+            "fail": 12,
+            "audit": 10,
+            "year": 156817
+        },
+        {
+            "courses_id": "338",
+            "countType": 4052,
+            "avg": 6295.76,
+            "fail": 60,
+            "audit": 12,
+            "year": 156459
+        },
+        {
+            "courses_id": "497",
+            "countType": 3487,
+            "avg": 6086.96,
+            "fail": 8,
+            "audit": 10,
+            "year": 155881
+        },
+        {
+            "courses_id": "596",
+            "countType": 1028,
+            "avg": 6952.98,
+            "fail": 2,
+            "audit": 14,
+            "year": 155261
+        },
+        {
+            "courses_id": "552",
+            "countType": 1374,
+            "avg": 6736.52,
+            "fail": 0,
+            "audit": 12,
+            "year": 154778
+        },
+        {
+            "courses_id": "584",
+            "countType": 1050,
+            "avg": 7068.81,
+            "fail": 0,
+            "audit": 12,
+            "year": 154674
+        },
+        {
+            "courses_id": "469",
+            "countType": 3526,
+            "avg": 6267.21,
+            "fail": 12,
+            "audit": 24,
+            "year": 153576
+        },
+        {
+            "courses_id": "280",
+            "countType": 4024,
+            "avg": 5438.68,
+            "fail": 240,
+            "audit": 10,
+            "year": 151254
+        },
+        {
+            "courses_id": "372",
+            "countType": 5530,
+            "avg": 5855.31,
+            "fail": 122,
+            "audit": 10,
+            "year": 151228
+        },
+        {
+            "courses_id": "298",
+            "countType": 11764,
+            "avg": 5610.39,
+            "fail": 586,
+            "audit": 28,
+            "year": 149870
+        },
+        {
+            "courses_id": "586",
+            "countType": 1362,
+            "avg": 6808.4,
+            "fail": 0,
+            "audit": 8,
+            "year": 149207
+        },
+        {
+            "courses_id": "208",
+            "countType": 8130,
+            "avg": 5565.84,
+            "fail": 448,
+            "audit": 18,
+            "year": 147558
+        },
+        {
+            "courses_id": "349",
+            "countType": 932,
+            "avg": 5828.34,
+            "fail": 28,
+            "audit": 0,
+            "year": 145144
+        },
+        {
+            "courses_id": "357",
+            "countType": 3156,
+            "avg": 5674.76,
+            "fail": 82,
+            "audit": 6,
+            "year": 144745
+        },
+        {
+            "courses_id": "291",
+            "countType": 12862,
+            "avg": 5435.55,
+            "fail": 349,
+            "audit": 27,
+            "year": 144725
+        },
+        {
+            "courses_id": "447",
+            "countType": 2058,
+            "avg": 5996.56,
+            "fail": 14,
+            "audit": 2,
+            "year": 144717
+        },
+        {
+            "courses_id": "594",
+            "countType": 445,
+            "avg": 6238.92,
+            "fail": 0,
+            "audit": 16,
+            "year": 138915
+        },
+        {
+            "courses_id": "486",
+            "countType": 2324,
+            "avg": 5593.32,
+            "fail": 6,
+            "audit": 3,
+            "year": 136901
+        },
+        {
+            "courses_id": "386",
+            "countType": 3508,
+            "avg": 5414.5,
+            "fail": 34,
+            "audit": 4,
+            "year": 136897
+        },
+        {
+            "courses_id": "577",
+            "countType": 1194,
+            "avg": 5841.36,
+            "fail": 6,
+            "audit": 12,
+            "year": 133318
+        },
+        {
+            "courses_id": "536",
+            "countType": 516,
+            "avg": 5834.5,
+            "fail": 2,
+            "audit": 18,
+            "year": 133004
+        },
+        {
+            "courses_id": "477",
+            "countType": 2029,
+            "avg": 5089.9,
+            "fail": 30,
+            "audit": 4,
+            "year": 129422
+        },
+        {
+            "courses_id": "480",
+            "countType": 2008,
+            "avg": 5229.82,
+            "fail": 22,
+            "audit": 12,
+            "year": 129083
+        },
+        {
+            "courses_id": "152",
+            "countType": 11248,
+            "avg": 4211.78,
+            "fail": 1774,
+            "audit": 0,
+            "year": 127691
+        },
+        {
+            "courses_id": "591",
+            "countType": 700,
+            "avg": 5696.73,
+            "fail": 0,
+            "audit": 0,
+            "year": 125181
+        },
+        {
+            "courses_id": "537",
+            "countType": 752,
+            "avg": 5479,
+            "fail": 28,
+            "audit": 12,
+            "year": 125156
+        },
+        {
+            "courses_id": "548",
+            "countType": 1288,
+            "avg": 5385.16,
+            "fail": 2,
+            "audit": 2,
+            "year": 123823
+        },
+        {
+            "courses_id": "426",
+            "countType": 1296,
+            "avg": 5141.06,
+            "fail": 26,
+            "audit": 0,
+            "year": 123616
+        },
+        {
+            "courses_id": "226",
+            "countType": 3268,
+            "avg": 4726.15,
+            "fail": 126,
+            "audit": 31,
+            "year": 123359
+        },
+        {
+            "courses_id": "367",
+            "countType": 6154,
+            "avg": 4718.56,
+            "fail": 198,
+            "audit": 6,
+            "year": 123262
+        },
+        {
+            "courses_id": "428",
+            "countType": 1681,
+            "avg": 4919.39,
+            "fail": 11,
+            "audit": 0,
+            "year": 121380
+        },
+        {
+            "courses_id": "257",
+            "countType": 4266,
+            "avg": 4198.73,
+            "fail": 462,
+            "audit": 2,
+            "year": 120797
+        },
+        {
+            "courses_id": "160",
+            "countType": 13432,
+            "avg": 4470.03,
+            "fail": 1948,
+            "audit": 2,
+            "year": 118888
+        },
+        {
+            "courses_id": "483",
+            "countType": 4644,
+            "avg": 4755.93,
+            "fail": 24,
+            "audit": 15,
+            "year": 118603
+        },
+        {
+            "courses_id": "423",
+            "countType": 1402,
+            "avg": 4913.84,
+            "fail": 18,
+            "audit": 2,
+            "year": 117365
+        },
+        {
+            "courses_id": "414",
+            "countType": 1470,
+            "avg": 4827.94,
+            "fail": 0,
+            "audit": 4,
+            "year": 117357
+        },
+        {
+            "courses_id": "359",
+            "countType": 1670,
+            "avg": 4861.93,
+            "fail": 14,
+            "audit": 6,
+            "year": 116013
+        },
+        {
+            "courses_id": "170",
+            "countType": 12994,
+            "avg": 4382.78,
+            "fail": 1238,
+            "audit": 0,
+            "year": 114763
+        },
+        {
+            "courses_id": "262",
+            "countType": 3942,
+            "avg": 4406.94,
+            "fail": 64,
+            "audit": 3,
+            "year": 113748
+        },
+        {
+            "courses_id": "409",
+            "countType": 1374,
+            "avg": 4479.78,
+            "fail": 26,
+            "audit": 2,
+            "year": 113456
+        },
+        {
+            "courses_id": "568",
+            "countType": 719,
+            "avg": 5102.09,
+            "fail": 0,
+            "audit": 16,
+            "year": 113447
+        },
+        {
+            "courses_id": "108",
+            "countType": 1934,
+            "avg": 4404.95,
+            "fail": 52,
+            "audit": 20,
+            "year": 113433
+        },
+        {
+            "courses_id": "572",
+            "countType": 750,
+            "avg": 5017.26,
+            "fail": 0,
+            "audit": 4,
+            "year": 113425
+        },
+        {
+            "courses_id": "479",
+            "countType": 1634,
+            "avg": 4650.19,
+            "fail": 28,
+            "audit": 6,
+            "year": 111860
+        },
+        {
+            "courses_id": "381",
+            "countType": 1944,
+            "avg": 4391.62,
+            "fail": 26,
+            "audit": 0,
+            "year": 111526
+        },
+        {
+            "courses_id": "583",
+            "countType": 778,
+            "avg": 4944.72,
+            "fail": 0,
+            "audit": 4,
+            "year": 109516
+        },
+        {
+            "courses_id": "585",
+            "countType": 972,
+            "avg": 4670.24,
+            "fail": 4,
+            "audit": 12,
+            "year": 109420
+        },
+        {
+            "courses_id": "391",
+            "countType": 5900,
+            "avg": 4157.72,
+            "fail": 256,
+            "audit": 0,
+            "year": 107750
+        },
+        {
+            "courses_id": "378",
+            "countType": 2082,
+            "avg": 3970.01,
+            "fail": 202,
+            "audit": 5,
+            "year": 107624
+        },
+        {
+            "courses_id": "492",
+            "countType": 1355,
+            "avg": 4465.22,
+            "fail": 10,
+            "audit": 3,
+            "year": 105853
+        },
+        {
+            "courses_id": "385",
+            "countType": 2544,
+            "avg": 4021.28,
+            "fail": 76,
+            "audit": 10,
+            "year": 105624
+        },
+        {
+            "courses_id": "125",
+            "countType": 3118,
+            "avg": 3896.21,
+            "fail": 276,
+            "audit": 10,
+            "year": 104364
+        },
+        {
+            "courses_id": "270",
+            "countType": 3984,
+            "avg": 4064.17,
+            "fail": 130,
+            "audit": 18,
+            "year": 104058
+        },
+        {
+            "courses_id": "589",
+            "countType": 188,
+            "avg": 4634.53,
+            "fail": 2,
+            "audit": 0,
+            "year": 103269
+        },
+        {
+            "courses_id": "261",
+            "countType": 5391,
+            "avg": 3901.51,
+            "fail": 143,
+            "audit": 0,
+            "year": 102192
+        },
+        {
+            "courses_id": "698",
+            "countType": 242,
+            "avg": 4594.9,
+            "fail": 0,
+            "audit": 0,
+            "year": 102120
+        },
+        {
+            "courses_id": "587",
+            "countType": 702,
+            "avg": 4323.99,
+            "fail": 6,
+            "audit": 4,
+            "year": 101818
+        },
+        {
+            "courses_id": "324",
+            "countType": 1832,
+            "avg": 3876.77,
+            "fail": 22,
+            "audit": 13,
+            "year": 101712
+        },
+        {
+            "courses_id": "478",
+            "countType": 2311,
+            "avg": 3982.35,
+            "fail": 32,
+            "audit": 4,
+            "year": 101704
+        },
+        {
+            "courses_id": "376",
+            "countType": 3172,
+            "avg": 4146.86,
+            "fail": 42,
+            "audit": 33,
+            "year": 101692
+        },
+        {
+            "courses_id": "578",
+            "countType": 450,
+            "avg": 4462.62,
+            "fail": 0,
+            "audit": 3,
+            "year": 101689
+        },
+        {
+            "courses_id": "368",
+            "countType": 3224,
+            "avg": 3730.33,
+            "fail": 140,
+            "audit": 4,
+            "year": 99899
+        },
+        {
+            "courses_id": "190",
+            "countType": 2756,
+            "avg": 3446.4,
+            "fail": 270,
+            "audit": 0,
+            "year": 98953
+        },
+        {
+            "courses_id": "281",
+            "countType": 2186,
+            "avg": 3727.32,
+            "fail": 50,
+            "audit": 2,
+            "year": 98721
+        },
+        {
+            "courses_id": "392",
+            "countType": 3700,
+            "avg": 4003.58,
+            "fail": 20,
+            "audit": 4,
+            "year": 97799
+        },
+        {
+            "courses_id": "546",
+            "countType": 582,
+            "avg": 4346.4,
+            "fail": 0,
+            "audit": 20,
+            "year": 97775
+        },
+        {
+            "courses_id": "209",
+            "countType": 6036,
+            "avg": 3606.49,
+            "fail": 184,
+            "audit": 6,
+            "year": 96028
+        },
+        {
+            "courses_id": "576",
+            "countType": 706,
+            "avg": 4161.64,
+            "fail": 2,
+            "audit": 14,
+            "year": 93882
+        },
+        {
+            "courses_id": "107",
+            "countType": 2474,
+            "avg": 3595.03,
+            "fail": 36,
+            "audit": 18,
+            "year": 92667
+        },
+        {
+            "courses_id": "232",
+            "countType": 2924,
+            "avg": 3282.97,
+            "fail": 240,
+            "audit": 6,
+            "year": 92651
+        },
+        {
+            "courses_id": "601",
+            "countType": 576,
+            "avg": 4027.26,
+            "fail": 2,
+            "audit": 3,
+            "year": 92075
+        },
+        {
+            "courses_id": "151",
+            "countType": 2564,
+            "avg": 3256.35,
+            "fail": 142,
+            "audit": 14,
+            "year": 90869
+        },
+        {
+            "courses_id": "417",
+            "countType": 998,
+            "avg": 3498.92,
+            "fail": 28,
+            "audit": 2,
+            "year": 89972
+        },
+        {
+            "courses_id": "519",
+            "countType": 937,
+            "avg": 4050.89,
+            "fail": 0,
+            "audit": 16,
+            "year": 89967
+        },
+        {
+            "courses_id": "448",
+            "countType": 848,
+            "avg": 3604.52,
+            "fail": 10,
+            "audit": 4,
+            "year": 89954
+        },
+        {
+            "courses_id": "118",
+            "countType": 11896,
+            "avg": 3376.13,
+            "fail": 695,
+            "audit": 4,
+            "year": 88973
+        },
+        {
+            "courses_id": "116",
+            "countType": 7168,
+            "avg": 3218.36,
+            "fail": 463,
+            "audit": 10,
+            "year": 88844
+        },
+        {
+            "courses_id": "244",
+            "countType": 2817,
+            "avg": 3267.36,
+            "fail": 154,
+            "audit": 5,
+            "year": 86067
+        },
+        {
+            "courses_id": "346",
+            "countType": 2566,
+            "avg": 3252.18,
+            "fail": 102,
+            "audit": 6,
+            "year": 86047
+        },
+        {
+            "courses_id": "388",
+            "countType": 1074,
+            "avg": 3229.6,
+            "fail": 10,
+            "audit": 0,
+            "year": 84640
+        },
+        {
+            "courses_id": "347",
+            "countType": 1402,
+            "avg": 3356.8,
+            "fail": 26,
+            "audit": 2,
+            "year": 82144
+        },
+        {
+            "courses_id": "559",
+            "countType": 639,
+            "avg": 3598.37,
+            "fail": 0,
+            "audit": 2,
+            "year": 80620
+        },
+        {
+            "courses_id": "476",
+            "countType": 1362,
+            "avg": 3008.51,
+            "fail": 24,
+            "audit": 2,
+            "year": 80359
+        },
+        {
+            "courses_id": "275",
+            "countType": 1892,
+            "avg": 3033.25,
+            "fail": 20,
+            "audit": 0,
+            "year": 79636
+        },
+        {
+            "courses_id": "109",
+            "countType": 1193,
+            "avg": 3288.02,
+            "fail": 16,
+            "audit": 0,
+            "year": 79573
+        },
+        {
+            "courses_id": "567",
+            "countType": 352,
+            "avg": 3471.26,
+            "fail": 2,
+            "audit": 0,
+            "year": 78255
+        },
+        {
+            "courses_id": "494",
+            "countType": 841,
+            "avg": 3084.02,
+            "fail": 30,
+            "audit": 2,
+            "year": 78229
+        },
+        {
+            "courses_id": "369",
+            "countType": 2506,
+            "avg": 2891.02,
+            "fail": 64,
+            "audit": 4,
+            "year": 76560
+        },
+        {
+            "courses_id": "484",
+            "countType": 2170,
+            "avg": 3107.82,
+            "fail": 12,
+            "audit": 6,
+            "year": 76338
+        },
+        {
+            "courses_id": "539",
+            "countType": 392,
+            "avg": 3272.86,
+            "fail": 0,
+            "audit": 0,
+            "year": 74320
+        },
+        {
+            "courses_id": "602",
+            "countType": 410,
+            "avg": 3246.88,
+            "fail": 4,
+            "audit": 4,
+            "year": 74320
+        },
+        {
+            "courses_id": "389",
+            "countType": 1544,
+            "avg": 2843.2,
+            "fail": 62,
+            "audit": 3,
+            "year": 73270
+        },
+        {
+            "courses_id": "256",
+            "countType": 5182,
+            "avg": 2543.8,
+            "fail": 426,
+            "audit": 2,
+            "year": 71085
+        },
+        {
+            "courses_id": "399",
+            "countType": 3374,
+            "avg": 2800.16,
+            "fail": 10,
+            "audit": 2,
+            "year": 70408
+        },
+        {
+            "courses_id": "590",
+            "countType": 326,
+            "avg": 3029.66,
+            "fail": 2,
+            "audit": 10,
+            "year": 70400
+        },
+        {
+            "courses_id": "603",
+            "countType": 333,
+            "avg": 3138.16,
+            "fail": 0,
+            "audit": 0,
+            "year": 70399
+        },
+        {
+            "courses_id": "252",
+            "countType": 3398,
+            "avg": 2565.24,
+            "fail": 84,
+            "audit": 0,
+            "year": 68613
+        },
+        {
+            "courses_id": "488",
+            "countType": 808,
+            "avg": 2696.4,
+            "fail": 2,
+            "audit": 17,
+            "year": 66504
+        },
+        {
+            "courses_id": "387",
+            "countType": 1226,
+            "avg": 2582.2,
+            "fail": 12,
+            "audit": 10,
+            "year": 66499
+        },
+        {
+            "courses_id": "159",
+            "countType": 3076,
+            "avg": 2544.38,
+            "fail": 16,
+            "audit": 0,
+            "year": 66250
+        },
+        {
+            "courses_id": "106",
+            "countType": 2331,
+            "avg": 2380.25,
+            "fail": 102,
+            "audit": 7,
+            "year": 62829
+        },
+        {
+            "courses_id": "429",
+            "countType": 1422,
+            "avg": 2290.62,
+            "fail": 42,
+            "audit": 3,
+            "year": 62583
+        },
+        {
+            "courses_id": "593",
+            "countType": 666,
+            "avg": 2819.28,
+            "fail": 0,
+            "audit": 4,
+            "year": 62579
+        },
+        {
+            "courses_id": "153",
+            "countType": 3096,
+            "avg": 2426.78,
+            "fail": 146,
+            "audit": 0,
+            "year": 62576
+        },
+        {
+            "courses_id": "155",
+            "countType": 902,
+            "avg": 2241.28,
+            "fail": 132,
+            "audit": 8,
+            "year": 62576
+        },
+        {
+            "courses_id": "278",
+            "countType": 6456,
+            "avg": 2079.34,
+            "fail": 462,
+            "audit": 10,
+            "year": 59220
+        },
+        {
+            "courses_id": "579",
+            "countType": 326,
+            "avg": 2620.58,
+            "fail": 0,
+            "audit": 4,
+            "year": 58675
+        },
+        {
+            "courses_id": "183",
+            "countType": 2196,
+            "avg": 2149.63,
+            "fail": 66,
+            "audit": 0,
+            "year": 57326
+        },
+        {
+            "courses_id": "117",
+            "countType": 1284,
+            "avg": 2220.48,
+            "fail": 108,
+            "audit": 0,
+            "year": 57244
+        },
+        {
+            "courses_id": "191",
+            "countType": 1608,
+            "avg": 2070.69,
+            "fail": 100,
+            "audit": 0,
+            "year": 55924
+        },
+        {
+            "courses_id": "273",
+            "countType": 762,
+            "avg": 2181.84,
+            "fail": 12,
+            "audit": 7,
+            "year": 54773
+        },
+        {
+            "courses_id": "487",
+            "countType": 709,
+            "avg": 2187.03,
+            "fail": 2,
+            "audit": 2,
+            "year": 54771
+        },
+        {
+            "courses_id": "245",
+            "countType": 1964,
+            "avg": 1920.85,
+            "fail": 22,
+            "audit": 0,
+            "year": 53675
+        },
+        {
+            "courses_id": "164",
+            "countType": 534,
+            "avg": 2384.81,
+            "fail": 0,
+            "audit": 0,
+            "year": 53298
+        },
+        {
+            "courses_id": "141",
+            "countType": 741,
+            "avg": 2181.09,
+            "fail": 8,
+            "audit": 0,
+            "year": 53184
+        },
+        {
+            "courses_id": "640",
+            "countType": 322,
+            "avg": 2147.14,
+            "fail": 0,
+            "audit": 0,
+            "year": 47274
+        },
+        {
+            "courses_id": "259",
+            "countType": 2460,
+            "avg": 1837.1,
+            "fail": 160,
+            "audit": 5,
+            "year": 46958
+        },
+        {
+            "courses_id": "558",
+            "countType": 306,
+            "avg": 2111.7,
+            "fail": 0,
+            "audit": 0,
+            "year": 46942
+        },
+        {
+            "courses_id": "588",
+            "countType": 200,
+            "avg": 2061.84,
+            "fail": 0,
+            "audit": 2,
+            "year": 46937
+        },
+        {
+            "courses_id": "238",
+            "countType": 2148,
+            "avg": 1707.12,
+            "fail": 18,
+            "audit": 0,
+            "year": 45250
+        },
+        {
+            "courses_id": "154",
+            "countType": 8710,
+            "avg": 1527.82,
+            "fail": 802,
+            "audit": 4,
+            "year": 43483
+        },
+        {
+            "courses_id": "115",
+            "countType": 566,
+            "avg": 1681.93,
+            "fail": 2,
+            "audit": 0,
+            "year": 43367
+        },
+        {
+            "courses_id": "131",
+            "countType": 784,
+            "avg": 1728.14,
+            "fail": 18,
+            "audit": 0,
+            "year": 43029
+        },
+        {
+            "courses_id": "228",
+            "countType": 2598,
+            "avg": 1686.54,
+            "fail": 36,
+            "audit": 0,
+            "year": 43028
+        },
+        {
+            "courses_id": "214",
+            "countType": 372,
+            "avg": 1698.46,
+            "fail": 4,
+            "audit": 4,
+            "year": 43015
+        },
+        {
+            "courses_id": "119",
+            "countType": 1294,
+            "avg": 1671.99,
+            "fail": 54,
+            "audit": 0,
+            "year": 41615
+        },
+        {
+            "courses_id": "606",
+            "countType": 248,
+            "avg": 1937.72,
+            "fail": 0,
+            "audit": 0,
+            "year": 41340
+        },
+        {
+            "courses_id": "161",
+            "countType": 2302,
+            "avg": 1631.1,
+            "fail": 2,
+            "audit": 0,
+            "year": 39362
+        },
+        {
+            "courses_id": "396",
+            "countType": 1332,
+            "avg": 1483.82,
+            "fail": 34,
+            "audit": 4,
+            "year": 39132
+        },
+        {
+            "courses_id": "600",
+            "countType": 306,
+            "avg": 1655.5,
+            "fail": 4,
+            "audit": 6,
+            "year": 39108
+        },
+        {
+            "courses_id": "264",
+            "countType": 1966,
+            "avg": 1230.6,
+            "fail": 300,
+            "audit": 0,
+            "year": 37460
+        },
+        {
+            "courses_id": "635",
+            "countType": 186,
+            "avg": 1653.62,
+            "fail": 0,
+            "audit": 0,
+            "year": 37212
+        },
+        {
+            "courses_id": "148",
+            "countType": 712,
+            "avg": 1214.15,
+            "fail": 34,
+            "audit": 0,
+            "year": 36035
+        },
+        {
+            "courses_id": "693",
+            "countType": 218,
+            "avg": 1541.5,
+            "fail": 0,
+            "audit": 0,
+            "year": 35207
+        },
+        {
+            "courses_id": "271",
+            "countType": 276,
+            "avg": 1481.6,
+            "fail": 0,
+            "audit": 0,
+            "year": 35207
+        },
+        {
+            "courses_id": "272",
+            "countType": 270,
+            "avg": 1444.94,
+            "fail": 4,
+            "audit": 0,
+            "year": 35207
+        },
+        {
+            "courses_id": "282",
+            "countType": 386,
+            "avg": 1254.32,
+            "fail": 16,
+            "audit": 2,
+            "year": 35207
+        },
+        {
+            "courses_id": "163",
+            "countType": 288,
+            "avg": 1587.98,
+            "fail": 0,
+            "audit": 0,
+            "year": 35199
+        },
+        {
+            "courses_id": "627",
+            "countType": 284,
+            "avg": 1573.18,
+            "fail": 2,
+            "audit": 0,
+            "year": 35199
+        },
+        {
+            "courses_id": "628",
+            "countType": 200,
+            "avg": 1558.46,
+            "fail": 2,
+            "audit": 8,
+            "year": 35199
+        },
+        {
+            "courses_id": "167",
+            "countType": 202,
+            "avg": 1555.66,
+            "fail": 2,
+            "audit": 0,
+            "year": 35199
+        },
+        {
+            "courses_id": "149",
+            "countType": 108,
+            "avg": 1545.84,
+            "fail": 0,
+            "audit": 0,
+            "year": 35199
+        },
+        {
+            "courses_id": "626",
+            "countType": 292,
+            "avg": 1522.16,
+            "fail": 2,
+            "audit": 0,
+            "year": 35199
+        },
+        {
+            "courses_id": "135",
+            "countType": 233,
+            "avg": 1453.06,
+            "fail": 2,
+            "audit": 4,
+            "year": 35199
+        },
+        {
+            "courses_id": "263",
+            "countType": 774,
+            "avg": 1195.34,
+            "fail": 68,
+            "audit": 0,
+            "year": 35199
+        },
+        {
+            "courses_id": "632",
+            "countType": 96,
+            "avg": 1480.06,
+            "fail": 0,
+            "audit": 0,
+            "year": 31292
+        },
+        {
+            "courses_id": "274",
+            "countType": 214,
+            "avg": 1314.28,
+            "fail": 0,
+            "audit": 0,
+            "year": 31292
+        },
+        {
+            "courses_id": "671",
+            "countType": 186,
+            "avg": 1333.88,
+            "fail": 2,
+            "audit": 4,
+            "year": 31291
+        },
+        {
+            "courses_id": "216",
+            "countType": 612,
+            "avg": 1135,
+            "fail": 54,
+            "audit": 0,
+            "year": 31291
+        },
+        {
+            "courses_id": "239",
+            "countType": 546,
+            "avg": 1181.22,
+            "fail": 12,
+            "audit": 0,
+            "year": 31290
+        },
+        {
+            "courses_id": "157",
+            "countType": 4466,
+            "avg": 1056.72,
+            "fail": 312,
+            "audit": 0,
+            "year": 29878
+        },
+        {
+            "courses_id": "249",
+            "countType": 192,
+            "avg": 1221.14,
+            "fail": 0,
+            "audit": 0,
+            "year": 27389
+        },
+        {
+            "courses_id": "379",
+            "countType": 544,
+            "avg": 1036.98,
+            "fail": 20,
+            "audit": 6,
+            "year": 27385
+        },
+        {
+            "courses_id": "130",
+            "countType": 496,
+            "avg": 984.4,
+            "fail": 2,
+            "audit": 2,
+            "year": 23592
+        },
+        {
+            "courses_id": "243",
+            "countType": 1534,
+            "avg": 1004.02,
+            "fail": 10,
+            "audit": 0,
+            "year": 23475
+        },
+        {
+            "courses_id": "397",
+            "countType": 246,
+            "avg": 897.46,
+            "fail": 2,
+            "audit": 0,
+            "year": 23469
+        },
+        {
+            "courses_id": "699",
+            "countType": 58,
+            "avg": 867.16,
+            "fail": 0,
+            "audit": 0,
+            "year": 19557
+        },
+        {
+            "courses_id": "672",
+            "countType": 144,
+            "avg": 845.14,
+            "fail": 2,
+            "audit": 0,
+            "year": 19555
+        },
+        {
+            "courses_id": "695",
+            "countType": 170,
+            "avg": 833.82,
+            "fail": 0,
+            "audit": 0,
+            "year": 19555
+        },
+        {
+            "courses_id": "621",
+            "countType": 42,
+            "avg": 795.2,
+            "fail": 0,
+            "audit": 0,
+            "year": 19550
+        },
+        {
+            "courses_id": "284",
+            "countType": 1738,
+            "avg": 695.87,
+            "fail": 22,
+            "audit": 0,
+            "year": 17669
+        },
+        {
+            "courses_id": "660",
+            "countType": 56,
+            "avg": 760.25,
+            "fail": 0,
+            "audit": 2,
+            "year": 17646
+        },
+        {
+            "courses_id": "229",
+            "countType": 360,
+            "avg": 663.47,
+            "fail": 6,
+            "audit": 0,
+            "year": 15887
+        },
+        {
+            "courses_id": "219",
+            "countType": 432,
+            "avg": 637.38,
+            "fail": 14,
+            "audit": 0,
+            "year": 15887
+        },
+        {
+            "courses_id": "158",
+            "countType": 2584,
+            "avg": 535.3,
+            "fail": 348,
+            "audit": 0,
+            "year": 15887
+        },
+        {
+            "courses_id": "172",
+            "countType": 424,
+            "avg": 513.4,
+            "fail": 78,
+            "audit": 0,
+            "year": 15660
+        },
+        {
+            "courses_id": "383",
+            "countType": 460,
+            "avg": 648.9,
+            "fail": 4,
+            "audit": 0,
+            "year": 15654
+        },
+        {
+            "courses_id": "496",
+            "countType": 36,
+            "avg": 706.84,
+            "fail": 0,
+            "audit": 0,
+            "year": 15649
+        },
+        {
+            "courses_id": "683",
+            "countType": 120,
+            "avg": 748.14,
+            "fail": 0,
+            "audit": 22,
+            "year": 15648
+        },
+        {
+            "courses_id": "662",
+            "countType": 49,
+            "avg": 678.91,
+            "fail": 0,
+            "audit": 0,
+            "year": 15647
+        },
+        {
+            "courses_id": "538",
+            "countType": 62,
+            "avg": 651.98,
+            "fail": 0,
+            "audit": 0,
+            "year": 15647
+        },
+        {
+            "courses_id": "654",
+            "countType": 50,
+            "avg": 680.82,
+            "fail": 0,
+            "audit": 2,
+            "year": 15645
+        },
+        {
+            "courses_id": "682",
+            "countType": 114,
+            "avg": 745.52,
+            "fail": 0,
+            "audit": 36,
+            "year": 15644
+        },
+        {
+            "courses_id": "276",
+            "countType": 148,
+            "avg": 449.52,
+            "fail": 2,
+            "audit": 0,
+            "year": 11744
+        },
+        {
+            "courses_id": "265",
+            "countType": 144,
+            "avg": 524,
+            "fail": 0,
+            "audit": 0,
+            "year": 11742
+        },
+        {
+            "courses_id": "684",
+            "countType": 56,
+            "avg": 544.08,
+            "fail": 0,
+            "audit": 0,
+            "year": 11737
+        },
+        {
+            "courses_id": "657",
+            "countType": 22,
+            "avg": 473,
+            "fail": 0,
+            "audit": 2,
+            "year": 11737
+        },
+        {
+            "courses_id": "634",
+            "countType": 34,
+            "avg": 506.94,
+            "fail": 0,
+            "audit": 0,
+            "year": 11729
+        },
+        {
+            "courses_id": "607",
+            "countType": 26,
+            "avg": 346.08,
+            "fail": 0,
+            "audit": 0,
+            "year": 7831
+        },
+        {
+            "courses_id": "254",
+            "countType": 200,
+            "avg": 313.68,
+            "fail": 6,
+            "audit": 0,
+            "year": 7831
+        },
+        {
+            "courses_id": "182",
+            "countType": 228,
+            "avg": 293.3,
+            "fail": 14,
+            "audit": 0,
+            "year": 7831
+        },
+        {
+            "courses_id": "724",
+            "countType": 16,
+            "avg": 358.5,
+            "fail": 0,
+            "audit": 0,
+            "year": 7829
+        },
+        {
+            "courses_id": "384",
+            "countType": 86,
+            "avg": 299.64,
+            "fail": 2,
+            "audit": 0,
+            "year": 7829
+        },
+        {
+            "courses_id": "236",
+            "countType": 232,
+            "avg": 283.44,
+            "fail": 20,
+            "audit": 0,
+            "year": 7829
+        },
+        {
+            "courses_id": "171",
+            "countType": 194,
+            "avg": 268.82,
+            "fail": 0,
+            "audit": 0,
+            "year": 7829
+        },
+        {
+            "courses_id": "722",
+            "countType": 16,
+            "avg": 348.5,
+            "fail": 0,
+            "audit": 0,
+            "year": 7827
+        },
+        {
+            "courses_id": "721",
+            "countType": 16,
+            "avg": 336.5,
+            "fail": 0,
+            "audit": 0,
+            "year": 7826
+        },
+        {
+            "courses_id": "127",
+            "countType": 76,
+            "avg": 169.32,
+            "fail": 0,
+            "audit": 2,
+            "year": 3915
+        },
+        {
+            "courses_id": "173",
+            "countType": 68,
+            "avg": 148.66,
+            "fail": 4,
+            "audit": 0,
+            "year": 3915
+        },
+        {
+            "courses_id": "126",
+            "countType": 40,
+            "avg": 148.3,
+            "fail": 0,
+            "audit": 0,
+            "year": 3915
+        },
+        {
+            "courses_id": "178",
+            "countType": 64,
+            "avg": 145.52,
+            "fail": 10,
+            "audit": 0,
+            "year": 3915
+        },
+        {
+            "courses_id": "285",
+            "countType": 82,
+            "avg": 134.5,
+            "fail": 6,
+            "audit": 0,
+            "year": 3915
+        },
+        {
+            "courses_id": "620",
+            "countType": 8,
+            "avg": 186,
+            "fail": 0,
+            "audit": 0,
+            "year": 3910
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "title": "have two key:value pairs in Equals",
+    "query": {
+        "WHERE": {
+            "NOT": {
+                "EQ": {
+                    "courses_avg": 97,
+                    "invalid_key": 50
+                }
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

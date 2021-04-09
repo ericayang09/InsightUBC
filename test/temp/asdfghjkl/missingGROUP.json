@@ -1,0 +1,24 @@
+{
+    "title": "Missing GROUP in TRANSFORMATIONS",
+    "query": {
+  "WHERE": {},
+  "OPTIONS": {
+    "COLUMNS": [
+      "overallAvg"
+    ]
+  },
+  "TRANSFORMATIONS": {
+    "APPLY": [{
+
+         "overallAvg": {
+
+              "AVG": "courses_avg"
+
+          }
+
+      }]
+  }
+},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

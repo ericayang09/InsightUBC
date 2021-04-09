@@ -1,0 +1,28 @@
+{
+    "title": "ANYKEY is invalid when TRANSFORMATIONS does not exist",
+    "query": {
+        "WHERE": {
+            "AND": [
+                {
+                    "IS": {
+                        "rooms_furniture": "*Tables*"
+                    }
+                },
+                {
+                    "GT": {
+                        "rooms_seats": 300
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "rooms_shortname",
+                "maxSeats"
+            ],
+            "ORDER": "rooms_shortname"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

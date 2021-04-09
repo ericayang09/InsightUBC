@@ -1,0 +1,17 @@
+{
+    "title": "IS must be object",
+    "query": {
+        "WHERE": {
+            "IS": []
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_avg",
+                "courses_id"
+            ],
+            "ORDER": 123
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

@@ -1,0 +1,26 @@
+{
+    "title": "All items in COLUMNS must exist in either GROUP or APPLY",
+    "query": {
+  "WHERE": {},
+  "OPTIONS": {
+    "COLUMNS": [
+      "courses_title",
+      "overallAvg"
+    ]
+  },
+  "TRANSFORMATIONS": {
+    "GROUP": [
+      "courses_avg"
+    ],
+    "APPLY": [
+      {
+        "overallAvg": {
+          "AVG": "courses_avg"
+        }
+      }
+    ]
+  }
+},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

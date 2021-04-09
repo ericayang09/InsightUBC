@@ -1,0 +1,20 @@
+{
+    "title": "LT should have more exactly one key",
+    "query": {
+        "WHERE": {
+            "LT": {}
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_avg",
+                "courses_id",
+                "courses_pass",
+                "courses_fail",
+                "courses_audit"
+            ],
+            "ORDER": "courses_avg"
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}
