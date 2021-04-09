@@ -131,9 +131,6 @@ export function addRoomDataset(
             buildings = parseForBuildings(tbody);
         }
         let promises = []; // parse each building in buildings for room data
-        let thisBuilding = {buildingName: "testBuilding",
-            buildingCode: "test", buildingAddress: "11252 78A Ave", href: "", lat: 0, long: 0};
-        buildings.push(thisBuilding);
         for (let build of buildings) {
             promises.push(parseForLonAndLat(build.buildingAddress).then((geoR) => {
                 parseBuildingGeoError(geoR, build);
@@ -141,7 +138,7 @@ export function addRoomDataset(
         }
         return Promise.all(promises);
     }).then(() => {
-        filterBuildings(buildings);
+        filterBuildings(buildings); // remove/ignore all buildings without geoLocation information
         let promises: any[] = [];
         buildings.forEach((build) => promises.push(zip.file("rooms" + build.href.substr(1)).async("text")));
         return Promise.all(promises);
