@@ -1,0 +1,17 @@
+{
+    "title": "Invalid value type in audit, should be number",
+    "query": {
+	  "WHERE": {
+		"GT": {
+		  "courses_audit": "string"
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_instructor"
+		]
+	  }
+	},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

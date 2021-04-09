@@ -1,6 +1,0 @@
-{
-    "title": "try to query with a string instead of a JSON",
-    "query": "not even a JSON object",
-    "isQueryValid": false,
-    "result": "InsightError"
-}

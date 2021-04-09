@@ -1,0 +1,39 @@
+{
+    "title": "query with multiple keys in AND",
+    "query": {
+		  "WHERE": {
+			"AND": [
+			  {
+				"IS": {
+				  "courses_dept": "cpsc"
+				}
+			  },
+			  {
+				"GT": {
+				  "courses_avg": 90
+				}
+			  },
+			  {
+				"LT": {
+				  "courses_avg": 92
+				}
+			  },
+			  {
+				"IS": {
+				  "courses_instructor": "tsiknis, georgios"
+				}
+			  }
+			]
+		  },
+		  "OPTIONS": {
+			"COLUMNS": [
+			  "courses_dept",
+			  "courses_avg",
+			  "courses_instructor"
+			],
+			"ORDER": "courses_avg"
+		  }
+    },
+    "isQueryValid": true,
+	"result":[{"courses_dept":"cpsc","courses_avg":90.25,"courses_instructor":"tsiknis, georgios"}]
+}

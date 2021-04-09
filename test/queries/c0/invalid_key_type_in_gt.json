@@ -1,0 +1,17 @@
+{
+    "title": "Invalid key type in GT",
+    "query": {
+	  "WHERE": {
+		"GT": {
+		  "courses_instructor": "string"
+		}
+	  },
+	  "OPTIONS": {
+		"COLUMNS": [
+		  "courses_instructor"
+		]
+	  }
+	},
+    "isQueryValid": false,
+    "result": "InsightError"
+}

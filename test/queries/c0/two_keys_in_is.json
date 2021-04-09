@@ -1,0 +1,19 @@
+{
+    "title": "have two key value pairs in IS",
+    "query": {
+        "WHERE": {
+            "IS": {
+                "courses_dept": "cpsc",
+                "invalid_key": 10
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}

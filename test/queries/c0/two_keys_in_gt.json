@@ -1,0 +1,21 @@
+{
+    "title": "have two key value pairs in GT",
+    "query": {
+        "WHERE": {
+            "NOT": {
+                "GT": {
+                    "courses_avg": 95,
+                    "courses_pass": 10
+                }
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "courses_dept",
+                "courses_avg"
+            ]
+        }
+    },
+    "isQueryValid": false,
+    "result": "InsightError"
+}
