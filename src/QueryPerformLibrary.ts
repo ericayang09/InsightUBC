@@ -59,8 +59,8 @@ export function performQueryAfterValidation(query: any, datasets: Dataset[]): Pr
         if (typeof(query.OPTIONS.ORDER) === "string") {
             sortRule.keys.push(query.OPTIONS.ORDER);
         } else {
-            sortRule.direction = query.OPTIONS.dir;
-            for (let k of query.OPTIONS.keys) {
+            sortRule.direction = query.OPTIONS.ORDER.dir;
+            for (let k of query.OPTIONS.ORDER.keys) {
                 sortRule.keys.push(k);
             }
         }
@@ -113,10 +113,7 @@ function getSectionObjectToReturn(datasetId: string, section: any, keysToReturn:
                 retKey += "_instructor";
                 break;
             }
-            case Keys.title: {
-                retKey += "_title";
-                break;
-            }
+
             case Keys.uuid: {
                 retKey += "_uuid";
                 break;
@@ -125,21 +122,12 @@ function getSectionObjectToReturn(datasetId: string, section: any, keysToReturn:
                 retKey += "_avg";
                 break;
             }
-            case Keys.pass: {
-                retKey += "_pass";
-                break;
-            }
-            case Keys.fail: {
-                retKey += "_fail";
-                break;
-            }
             case Keys.audit: {
                 retKey += "_audit";
                 break;
             }
-            case Keys.year: {
-                retKey += "_year";
-                break;
+            default: {
+                retKey += "_" + keyEnum.toLowerCase();
             }
         }
         retSec[retKey] = keyEnum === Keys.uuid ? retVal.toString() : (keyEnum === Keys.year ? Number(retVal) : retVal);

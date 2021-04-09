@@ -88,13 +88,8 @@ export function parseForLonAndLat(address: string): Promise<GeoResponse> {
             (result: { headers?: any; resume?: any; setEncoding?: any; on?: any; statusCode?: any; }) => {
                 const {statusCode} = result;
                 let returnData = "";
-                let error;
-                if (statusCode !== 200) { // HTTP status codes: 200 = OK
-                    error = new InsightError("GeoLocation request failed; status code:" + statusCode);
-                }
-                if (error) {
-                    return reject(error.message);
-                } else {
+                // let error;
+                if (statusCode === 200) { // HTTP status codes: 200 = OK
                     result.setEncoding("utf8");
                     result.on("data", (data: any) => {
                         returnData += data;
@@ -105,12 +100,31 @@ export function parseForLonAndLat(address: string): Promise<GeoResponse> {
                             geoResponse.lat = JSON.parse(returnData).lat;
                             return resolve(geoResponse);
                         } else {
-                            return reject(new InsightError("error getting lat and lon"));
+                            geoResponse.error = "error";
+                            return resolve(geoResponse);
                         }
                     });
+                } else {
+                    geoResponse.error = "error";
+                    return resolve(geoResponse);
                 }
         });
     });
+}
+
+export function parseBuildingGeoError(geoResponse: any, building: any) {
+    if (!geoResponse.error) {
+        building.long = geoResponse.lon;
+        building.lat = geoResponse.lat;
+    }
+}
+
+export function filterBuildings(buildings: any[]) {
+    for (let i = 0; i < buildings.length; i++) {
+        if (buildings[i].lat === 0 && buildings[i].long === 0) {
+            buildings.splice(i, 1);
+        }
+    }
 }
 
 export function parseForRooms(room: any, building: any): Room[] {

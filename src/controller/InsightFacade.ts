@@ -2,7 +2,7 @@ import Log from "../Util";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 
 import * as dataSetHelpers from "../dataSetHelpers";
-import {existingDataSetID, validateDataSetKind, validJSON} from "../dataSetHelpers";
+import {existingDataSetID, validateDataSetKind} from "../dataSetHelpers";
 import {addCourseDataset, addRoomDataset} from "../AddDataSetLibrary";
 
 import {validateQuery} from "../QueryValidateLibrary";
@@ -178,17 +178,29 @@ export default class InsightFacade implements IInsightFacade {
             }
         }
 
-        // TODO modify this to read rooms data from disk
-
         // at this point, dataset doesn't exist in memory
         fs.readFile("./data/" + datasetId, "utf-8", (err, data) => {
             if (err) {
                 return false;
             }
 
+            let thisDataSet: Dataset;
             let fromDisk = JSON.parse(data);
-            let thisDataSet: Dataset = {id: datasetId, sections: fromDisk, rooms: [],
-                kind: InsightDatasetKind.Courses };
+            let randomValidKey: string = query.OPTIONS.COLUMNS[0];
+            let randomValidField: string = randomValidKey.substr(randomValidKey.indexOf("_") + 1,
+                randomValidKey.length);
+            const sectionsMKeys: string[] = [ "avg", "pass", "fail", "audit", "year" ];
+            const sectionsSKeys: string[] = [ "dept", "id", "instructor", "title", "uuid" ];
+            const roomsMKeys: string[] = [ "lat", "lon", "seats" ];
+            const roomsSKeys: string[] =
+                [ "fullname", "shortname", "number", "name", "address", "type", "furniture", "href" ];
+            if (sectionsMKeys.includes(randomValidField) || sectionsSKeys.includes(randomValidField)) {
+                thisDataSet = {id: datasetId, sections: fromDisk, rooms: [],
+                    kind: InsightDatasetKind.Courses };
+            } else if (roomsMKeys.includes(randomValidField) || roomsSKeys.includes(randomValidField)) {
+                thisDataSet = {id: datasetId, sections: [], rooms: fromDisk,
+                    kind: InsightDatasetKind.Rooms };
+            }
             this.datasets.push(thisDataSet);
             this.idList.push(datasetId);
         });

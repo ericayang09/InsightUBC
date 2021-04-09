@@ -9,7 +9,7 @@ export function validateTransformation(query: any, id: string): boolean {
         if (query.TRANSFORMATIONS.GROUP === undefined || query.TRANSFORMATIONS.GROUP.length < 1) {
             return false;
         }
-        if (query.TRANSFORMATIONS.APPLY === undefined || query.TRANSFORMATIONS.APPLY.length < 1) {
+        if (query.TRANSFORMATIONS.APPLY === undefined) {
             return false;
         }
         for (let groupkey of query.TRANSFORMATIONS.GROUP) {

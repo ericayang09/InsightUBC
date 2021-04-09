@@ -71,7 +71,7 @@ function getDataStringKeyHelperB(key: string, obj: any): any {
             return obj.lat;
         }
         case "lon": {
-            return obj.lon;
+            return obj.long;
         }
         case "seats": {
             return obj.seats;
