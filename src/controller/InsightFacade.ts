@@ -102,56 +102,55 @@ export default class InsightFacade implements IInsightFacade {
     // used information provided at:
     // https://stackoverflow.com/questions/8668174/indexof-method-in-an-object-array/38516944
     public removeDataset(id: string): Promise<string> {
-        if (!dataSetHelpers.validDataSetID(id)) {
+        if (dataSetHelpers.validDataSetID(id) === false) {
             return Promise.reject(new InsightError("error: Invalid DataSet ID"));
         }
-        if (!existingDataSetID(id, this.idList)) { // check idList first, if not in idList do another check
+        if (existingDataSetID(id, this.idList) === false) { // check idList first, if not in idList do another check
             let noID: boolean = true;
             for (let dataset of this.datasets) {
                 if (dataset.id === id) {
                     noID = false;
                 }
-                if (noID === true) {
-                    return Promise.reject(new NotFoundError("error: no existing dataSet with this ID"));
-                }
             }
-            return new Promise<string>((res, reject) => {
-                if (this.datasets.length !== 0) {
-                    let indexOfDataset;
-                    indexOfDataset = this.datasets.findIndex((oneDataset) => oneDataset.id === id);
-                    if (indexOfDataset >= 0) {
-                        try {
-                            this.datasets.splice(indexOfDataset, 1);
-                        } catch (err) {
-                            return reject(new InsightError("error: unable to remove dataset from memory"));
-                        }
-                    }
-                } else if (this.datasets.length === 0) {
-                    return reject(new InsightError("error: currently no datasets in memory"));
-                }
-                if (this.idList.length !== 0) {
-                    let indexOfID;
-                    indexOfID = this.idList.indexOf(id);
-                    if (indexOfID >= 0) {
-                        try {
-                            this.idList.splice(indexOfID, 1);
-                        } catch (err) {
-                            return reject(new InsightError("error: unable to remove id from idList"));
-                        }
-                    }
-                }
-                if (fs.existsSync("./data")) {
-                    try {
-                        fs.unlinkSync("./data/" + id);
-                    } catch (e) {
-                        return reject(new InsightError("error: unable to remove dataset from disk"));
-                    }
-                } else {
-                    return reject(new InsightError("error: currently no 'data' folder on disk"));
-                }
-                res(id);
-            });
+            if (noID === true) {
+                return Promise.reject(new NotFoundError("error: no existing dataSet with this ID"));
+            }
         }
+        return new Promise<string>((res, reject) => {
+            if (this.datasets.length !== 0 && this.insightDatasets.length !== 0 && this.idList.length !== 0) {
+                // buildings.forEach((build) => promises.push(zip.file("rooms" + build.href.substr(1)).async("text")));
+                for (let i = 0; i < this.datasets.length; i++) {
+                    if (this.datasets[i].id === id) {
+                        this.datasets.splice(i, 1);
+                        break;
+                    }
+                }
+                for (let i = 0; i < this.idList.length; i++) {
+                    if (this.idList[i] === id) {
+                        this.idList.splice(i, 1);
+                        break;
+                    }
+                }
+                for (let i = 0; i < this.insightDatasets.length; i++) {
+                    if (this.insightDatasets[i].id === id) {
+                        this.idList.splice(i, 1);
+                        break;
+                    }
+                }
+            } else if (this.datasets.length === 0) {
+                return reject(new InsightError("error: currently no datasets in memory"));
+            }
+            if (fs.existsSync("./data")) {
+                try {
+                    fs.unlinkSync("./data/" + id);
+                } catch (e) {
+                    return reject(new InsightError("error: unable to remove dataset from disk"));
+                }
+            } else {
+                return reject(new InsightError("error: currently no 'data' folder on disk"));
+            }
+            res(id);
+        });
     }
 
     public performQuery(query: any): Promise<any[]> {

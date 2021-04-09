@@ -410,7 +410,50 @@ describe("InsightFacade Add/Remove/List Dataset", function () {
             .addDataset(id, datasets[id], InsightDatasetKind.Rooms);
         return expect(futureResult).to.eventually.deep.equal(expected);
     });
-    // at least one valid course section
+    // one valid room dataset and then one valid course dataset
+    it("should list after adding rooms then courses datasets", function () {
+        const id: string = "rooms";
+        const id2: string = "oneValidCourse";
+        const insight1: InsightDataset = {id: id, kind: InsightDatasetKind.Rooms, numRows: 364};
+        const insight2: InsightDataset = {id: id, kind: InsightDatasetKind.Courses, numRows: 17};
+        const expected: InsightDataset[] = [insight1, insight2];
+        const addDataSet1: Promise<string[]> = insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+        const addDataSet2: Promise<string[]> = insightFacade.addDataset(id2, datasets[id2], InsightDatasetKind.Courses);
+        const listDataset = insightFacade.listDatasets();
+        addDataSet1.then((result) => {
+            expect(result).to.eventually.equal("rooms");
+        }).then(() => {
+            return addDataSet2;
+        }).then(() => {
+            return listDataset;
+        }).then((result) => {
+            return expect(result).to.eventually.equal(expected);
+        });
+    });
+    // add then remove a dataset
+    it("should delete after adding rooms then courses datasets", function () {
+        const id: string = "rooms";
+        const id2: string = "oneValidCourse";
+        const insight1: InsightDataset = {id: id, kind: InsightDatasetKind.Rooms, numRows: 364};
+        const insight2: InsightDataset = {id: id, kind: InsightDatasetKind.Courses, numRows: 17};
+        const expected: InsightDataset[] = [insight1, insight2];
+        const addDataSet1: Promise<string[]> = insightFacade.addDataset(id, datasets[id], InsightDatasetKind.Rooms);
+        const addDataSet2: Promise<string[]> = insightFacade.addDataset(id2, datasets[id2], InsightDatasetKind.Courses);
+        const listDataset = insightFacade.listDatasets();
+        addDataSet1.then((result) => {
+            //
+        }).then(() => {
+            return addDataSet2;
+        }).then(() => {
+            return listDataset;
+        }).then((result) => {
+            // expect(result).to.eventually.equal(expected);
+        }).then(() => {
+            return insightFacade.removeDataset(id);
+        }).then((result) => {
+            return expect(result).to.eventually.equal(id);
+        });
+    });
     it("Should add a valid dataset one course", function () {
         const id: string = "oneValidCourse";
         const expected: string[] = [id];
